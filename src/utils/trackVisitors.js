@@ -1,5 +1,5 @@
 // utils/trackVisitor.js
-const API_URL = process.env.REACT_APP_API_URL || "http://82.29.162.67:5000";
+const API_URL = process.env.REACT_APP_API_URL || "https://pms-tracker-3.onrender.com";
 
 export const trackVisitor = async (page) => {
   try {
