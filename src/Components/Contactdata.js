@@ -114,6 +114,7 @@ function Contactdata() {
                         <th scope="col">Phone</th>
                         <th scope="col">Subject</th>
                         <th scope="col">Message</th>
+                        <th scope='col'>Date</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -125,6 +126,7 @@ function Contactdata() {
                             <td>{item.email}</td>
                             <td>{item.phone}</td>
                             <td>{item.subject}</td>
+                            <td>{item.createdAt.slice(0, 10)}</td>
                             <td>{item.message}</td>
                             <td>
                             <button onClick={()=>{deleteContact(item.id)}} type="button" className="btn btn-outline-danger">Delete</button>
