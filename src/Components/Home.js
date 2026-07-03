@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Contactform from "./Contactform";
 import { Helmet } from "react-helmet";
+import WhyUs from "../Home/WhyUs";
+import Testimonials from "../Home/Testimonials";
 
 
 function Home() {
@@ -145,7 +147,6 @@ function Home() {
                     style={{
                       backgroundImage: `url(${"/assets/images/banner/banner-image.jpg"})`,
                     }}
-                  //   data-background="/assets/images/banner/banner-image.jpg"
                   />
                   <div className="container">
                     <div className="banner__content">
@@ -180,7 +181,7 @@ function Home() {
                             fill="white"
                           />
                         </svg>
-                        Best it SOULTION Provider
+                        Best it SOLUTION Provider
                       </h4>
                       <h1
                         data-animation="slideInRight"
@@ -188,7 +189,7 @@ function Home() {
                         data-delay=".5s"
                         className="text-white"
                       >
-                        Excellent It Services for Your Success
+                        Transforming Ideas into Powerful Digital Experiences
                       </h1>
                       <p
                         data-animation="slideInRight"
@@ -196,124 +197,102 @@ function Home() {
                         data-delay=".7s"
                         className="mt-20"
                       >
-                        Unlock your business potential with our excellent IT
-                        services designed to drive success.
+                        Build, grow, and scale your business with innovative digital solutions tailored to your goals.
+                        From custom websites and mobile applications to performance-driven digital marketing,
+                        Pixelmindsolutions helps businesses create a strong online presence and achieve sustainable
+                        growth.
                         <br />
-                        Tailored solutions to seamless support, we ensure your
-                        technology works for you, every step of the way.
+                        Whether you're a startup, small business, or established enterprise, our team delivers
+                        technology and marketing solutions designed to drive measurable results.
                       </p>
-                      <Link
+
+                      {/* Button Group - Two Buttons Side by Side */}
+                      <div
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay=".9s"
-                        to="/about"
-                        className="btn-one mt-60"
+                        className="d-flex flex-wrap gap-3 mt-60"
                       >
-                        Explore More{" "}
-                        <i className="fa-regular fa-arrow-right-long" />
-                      </Link>
+                        <Link to="/about" className="btn-one">
+                          Get Started{" "}
+                          <i className="fa-regular fa-arrow-right-long" />
+                        </Link>
+                        <Link
+                          to="/contact"
+                          className="btn btn-outline-light px-4 py-3"
+                          style={{
+                            fontWeight: "600",
+                            borderRadius: "0",
+                            textTransform: "capitalize",
+                            transition: "all 0.3s ease",
+                          }}
+                        >
+                          Book Free Consultation{" "}
+                          <i className="fa-regular fa-arrow-right-long ms-2" />
+                        </Link>
+                      </div>
+
+                      {/* Stats Section */}
+                      <div
+                        data-animation="slideInRight"
+                        data-duration="2s"
+                        data-delay="1.1s"
+                        className="d-flex flex-wrap mt-5"
+                        style={{
+                          // background: "rgba(255, 255, 255, 0.08)",
+                          // backdropFilter: "blur(10px)",
+                          // border: "1px solid rgba(255, 255, 255, 0.1)",
+                          borderRadius: "50px",
+                          padding: "20px 10px",
+                          display: "inline-flex",
+                          gap: "30px",
+                        }}
+                      >
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">50+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Projects
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">25+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Clients
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">
+                              4.9<i className="fas fa-star text-warning ms-1" style={{ fontSize: "20px" }}></i>
+                            </h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Rating
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Second Slide */}
                 <div className="swiper-slide">
-                  <div
-                    data-animation="slideInLeft"
-                    data-duration="2s"
-                    data-delay=".3s"
-                    className="banner__shape-left2"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-regular-left-shape.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    data-animation="slideInLeft"
-                    data-duration="2s"
-                    data-delay=".9s"
-                    className="banner__shape-left1"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-solid-left-shape.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div className="banner__shape-left3 wow slideInLeft">
-                    <img
-                      className="sway__animation"
-                      src="/assets/images/banner/banner-shape-left.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__shape-right2"
-                    data-animation="slideInRight"
-                    data-duration="3s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-shape-right-line.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__shape-right1"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-shape-right.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line1"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".9s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line1.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line2"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".7s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line2.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line3"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".5s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line3.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line4"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line4.png"
-                      alt="shape"
-                    />
-                  </div>
+                  {/* ... same content with banner-image2.jpg ... */}
                   <div
                     className="slide-bg"
-                    data-background="/assets/images/banner/banner-image2.jpg"
+                    style={{
+                      backgroundImage: `url(${"/assets/images/banner/banner-image2.jpg"})`,
+                    }}
                   />
                   <div className="container">
                     <div className="banner__content">
@@ -348,7 +327,7 @@ function Home() {
                             fill="white"
                           />
                         </svg>
-                        Best it SOULTION Provider
+                        Best it SOLUTION Provider
                       </h4>
                       <h1
                         data-animation="slideInRight"
@@ -356,7 +335,7 @@ function Home() {
                         data-delay=".5s"
                         className="text-white"
                       >
-                        Excellent It Services for Your Success
+                        Innovative Digital Solutions
                       </h1>
                       <p
                         data-animation="slideInRight"
@@ -364,124 +343,97 @@ function Home() {
                         data-delay=".7s"
                         className="mt-20"
                       >
-                        Unlock your business potential with our excellent IT
-                        services designed to drive success.
+                        Transform your business with cutting-edge digital solutions
+                        designed to drive growth and efficiency.
                         <br />
-                        Tailored solutions to seamless support, we ensure your
-                        technology works for you, every step of the way.
+                        From strategy to execution, we deliver results that matter.
                       </p>
-                      <Link
+
+                      <div
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay=".9s"
-                        to="/about"
-                        className="btn-one mt-60"
+                        className="d-flex flex-wrap gap-3 mt-60"
                       >
-                        Explore More{" "}
-                        <i className="fa-regular fa-arrow-right-long" />
-                      </Link>
+                        <Link to="/about" className="btn-one">
+                          Explore More{" "}
+                          <i className="fa-regular fa-arrow-right-long" />
+                        </Link>
+                        <Link
+                          to="/contact"
+                          className="btn btn-outline-light px-4 py-3"
+                          style={{
+                            fontWeight: "600",
+                            borderRadius: "0",
+                            textTransform: "capitalize",
+                            transition: "all 0.3s ease",
+                          }}
+                        >
+                          Get Started{" "}
+                          <i className="fa-regular fa-arrow-right-long ms-2" />
+                        </Link>
+                      </div>
+
+                      <div
+                        data-animation="slideInRight"
+                        data-duration="2s"
+                        data-delay="1.1s"
+                        className="d-flex flex-wrap mt-5"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.08)",
+                          backdropFilter: "blur(10px)",
+                          border: "1px solid rgba(255, 255, 255, 0.1)",
+                          borderRadius: "50px",
+                          padding: "20px 40px",
+                          display: "inline-flex",
+                          gap: "30px",
+                        }}
+                      >
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">50+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Projects
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">25+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Clients
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">
+                              4.9<i className="fas fa-star text-warning ms-1" style={{ fontSize: "20px" }}></i>
+                            </h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Rating
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Third Slide */}
                 <div className="swiper-slide">
-                  <div
-                    data-animation="slideInLeft"
-                    data-duration="2s"
-                    data-delay=".3s"
-                    className="banner__shape-left2"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-regular-left-shape.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    data-animation="slideInLeft"
-                    data-duration="2s"
-                    data-delay=".9s"
-                    className="banner__shape-left1"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-solid-left-shape.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div className="banner__shape-left3 wow slideInLeft">
-                    <img
-                      className="sway__animation"
-                      src="/assets/images/banner/banner-shape-left.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__shape-right2"
-                    data-animation="slideInRight"
-                    data-duration="3s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-shape-right-line.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__shape-right1"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-shape-right.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line1"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".9s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line1.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line2"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".7s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line2.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line3"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".5s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line3.png"
-                      alt="shape"
-                    />
-                  </div>
-                  <div
-                    className="banner__right-line4"
-                    data-animation="slideInRight"
-                    data-duration="2s"
-                    data-delay=".3s"
-                  >
-                    <img
-                      src="/assets/images/banner/banner-right-line4.png"
-                      alt="shape"
-                    />
-                  </div>
+                  {/* ... same content with banner-image3.jpg ... */}
                   <div
                     className="slide-bg"
-                    data-background="/assets/images/banner/banner-image3.jpg"
+                    style={{
+                      backgroundImage: `url(${"/assets/images/banner/banner-image3.jpg"})`,
+                    }}
                   />
                   <div className="container">
                     <div className="banner__content">
@@ -516,7 +468,7 @@ function Home() {
                             fill="white"
                           />
                         </svg>
-                        Best it SOULTION Provider
+                        Best it SOLUTION Provider
                       </h4>
                       <h1
                         data-animation="slideInRight"
@@ -524,7 +476,7 @@ function Home() {
                         data-delay=".5s"
                         className="text-white"
                       >
-                        Excellent It Services for Your Success
+                        Technology That Drives Growth
                       </h1>
                       <p
                         data-animation="slideInRight"
@@ -532,22 +484,85 @@ function Home() {
                         data-delay=".7s"
                         className="mt-20"
                       >
-                        Unlock your business potential with our excellent IT
-                        services designed to drive success.
+                        Leverage the power of technology to accelerate your business growth
+                        and stay ahead of the competition.
                         <br />
-                        Tailored solutions to seamless support, we ensure your
-                        technology works for you, every step of the way.
+                        Our innovative solutions are designed to meet your unique needs.
                       </p>
-                      <Link
+
+                      <div
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay=".9s"
-                        to="/about"
-                        className="btn-one mt-60"
+                        className="d-flex flex-wrap gap-3 mt-60"
                       >
-                        Explore More{" "}
-                        <i className="fa-regular fa-arrow-right-long" />
-                      </Link>
+                        <Link to="/about" className="btn-one">
+                          Explore More{" "}
+                          <i className="fa-regular fa-arrow-right-long" />
+                        </Link>
+                        <Link
+                          to="/contact"
+                          className="btn btn-outline-light px-4 py-3"
+                          style={{
+                            fontWeight: "600",
+                            borderRadius: "0",
+                            textTransform: "capitalize",
+                            transition: "all 0.3s ease",
+                          }}
+                        >
+                          Get Started{" "}
+                          <i className="fa-regular fa-arrow-right-long ms-2" />
+                        </Link>
+                      </div>
+
+                      <div
+                        data-animation="slideInRight"
+                        data-duration="2s"
+                        data-delay="1.1s"
+                        className="d-flex flex-wrap mt-5"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.08)",
+                          backdropFilter: "blur(10px)",
+                          border: "1px solid rgba(255, 255, 255, 0.1)",
+                          borderRadius: "50px",
+                          padding: "20px 40px",
+                          display: "inline-flex",
+                          gap: "30px",
+                        }}
+                      >
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">50+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Projects
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">25+</h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Clients
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="border-end border-light border-opacity-25" style={{ height: "40px" }}></div>
+
+                        <div className="d-flex align-items-center gap-3">
+                          <div>
+                            <h2 className="text-white fw-bold mb-0">
+                              4.9<i className="fas fa-star text-warning ms-1" style={{ fontSize: "20px" }}></i>
+                            </h2>
+                            <p className="text-light opacity-75 mb-0" style={{ fontSize: "14px" }}>
+                              Rating
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -558,7 +573,6 @@ function Home() {
               <div className="dot-light banner__dot" />
             </div>
           </section>
-          {/* Banner area end here */}
           {/* Service area start here */}
           <section className="service-area pt-60 pb-60">
             <div className="service__shape wow slideInRight">
@@ -624,9 +638,9 @@ function Home() {
                       <a >Digital Marketing</a>
                     </h4>
                     <p>
-                      We combine strategy, creativity, and technology to help
-                      you reach the right audience and achieve measurable
-                      growth.
+                      Reach the right audience with customized marketing strategies designed to improve visibility,
+                      generate quality leads, and increase conversions through SEO, social media, paid advertising,
+                      email campaigns, and WhatsApp marketing.
                     </p>
                   </div>
                 </div>
@@ -652,8 +666,8 @@ function Home() {
                       <a >App Development</a>
                     </h4>
                     <p>
-                      We create intuitive, scalable, and high-performance mobile
-                      applications to enhance user experiences.
+                      Develop high-performance Android and iOS applications that provide seamless user experiences
+                      while supporting your business operations.
                     </p>
                   </div>
                 </div>
@@ -679,9 +693,8 @@ function Home() {
                       <a >Web Development</a>
                     </h4>
                     <p>
-                      We design and build responsive, user-friendly websites
-                      that deliver exceptional performance and drive business
-                      success.
+                      Create a professional online presence with responsive, secure, and scalable websites tailored to
+                      your business requirements and customer expectations.
                     </p>
                   </div>
                 </div>
@@ -830,11 +843,13 @@ function Home() {
             </div>
           </section>
           {/* About area end here */}
+
+          <WhyUs />
+
           {/* Counter area start here */}
-          <section className="counter-area pt-60 pb-60">
+          {/* <section className="counter-area pt-60 pb-60">
             <div className="container">
               <div className="counter__wrp gradient-bg position-relative overflow-hidden p-4 p-md-5">
-                {/* Background Shape */}
                 <div
                   className="counter__shape wow slideInRight"
                   data-wow-delay="200ms"
@@ -847,13 +862,11 @@ function Home() {
                   />
                 </div>
 
-                {/* Section Title */}
                 <h2 className="text-light text-center mb-4 mb-md-5">
                   Our Achievements
                 </h2>
 
                 <div className="row g-4 justify-content-center">
-                  {/* Counter Item 1 */}
                   <div
                     className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp"
                     data-wow-delay="00ms"
@@ -879,7 +892,6 @@ function Home() {
                     </div>
                   </div>
 
-                  {/* Counter Item 2 */}
                   <div
                     className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp"
                     data-wow-delay="200ms"
@@ -905,8 +917,7 @@ function Home() {
                     </div>
                   </div>
 
-                  {/* Counter Item 3 */}
-                  <div
+\                  <div
                     className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp"
                     data-wow-delay="400ms"
                     data-wow-duration="1000ms"
@@ -931,7 +942,6 @@ function Home() {
                     </div>
                   </div>
 
-                  {/* Counter Item 4 */}
                   <div
                     className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp"
                     data-wow-delay="800ms"
@@ -960,7 +970,6 @@ function Home() {
               </div>
             </div>
 
-            {/* Styles */}
             <style jsx>{`
     .counter-area {
       position: relative;
@@ -1007,7 +1016,6 @@ function Home() {
       max-width: 150px;
     }
 
-    /* Small devices (landscape phones, 576px and up) */
     @media (min-width: 576px) {
       .counter__item {
         padding: 20px;
@@ -1028,7 +1036,6 @@ function Home() {
       }
     }
 
-    /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) {
       .counter__shape img {
         max-width: 220px;
@@ -1038,7 +1045,6 @@ function Home() {
       }
     }
 
-    /* Large devices (desktops, 992px and up) */
     @media (min-width: 992px) {
       .counter__shape img {
         max-width: 280px;
@@ -1051,7 +1057,6 @@ function Home() {
       }
     }
 
-    /* X-Large devices (large desktops, 1200px and up) */
     @media (min-width: 1200px) {
       .counter__shape img {
         max-width: 350px;
@@ -1063,14 +1068,13 @@ function Home() {
       }
     }
 
-    /* XX-Large devices (larger desktops, 1400px and up) */
     @media (min-width: 1400px) {
       .counter__shape img {
         max-width: 400px;
       }
     }
   `}</style>
-          </section>
+          </section> */}
           {/* Counter area end here */}
           {/* Cause area start here */}
           {/* <section className="case-area pt-60 pb-60">
@@ -1708,6 +1712,9 @@ function Home() {
             </div>
           </section>
           {/* Process area end here */}
+
+          <Testimonials />
+          
           {/* Testimonial area start here */}
           <Contactform />
           {/* Testimonial area end here */}

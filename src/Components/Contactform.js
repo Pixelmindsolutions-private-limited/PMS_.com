@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Contactform() {
 
@@ -53,6 +54,7 @@ function Contactform() {
                         autoClose: 3000,
                     });
                     setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
+                    setErrors({}); // Clear errors
                 })
                 .catch((error) => {
                     console.error("Error submitting data:", error);
@@ -72,21 +74,20 @@ function Contactform() {
     return (
         <div>
             <section
-                className="testimonial-area bg-image pt-60 pb-60"
+                className="contact-form-area pt-60 pb-60"
                 style={{
                     backgroundImage: `url(${"/assets/images/bg/testimonial-bg.png"})`,
                 }}
-            // data-background="/assets/images/bg/testimonial-bg.png"
             >
                 <div className="container">
-                    <div className="row g-4">
+                    <div className="row g-4 justify-content-center">
                         <div
-                            className="col-lg-6 wow fadeInLeft"
+                            className="col-lg-8 wow fadeInUp"
                             data-wow-delay="200ms"
                             data-wow-duration="1500ms"
                         >
                             <div className="talk-us__item">
-                                <div className="section-header mb-30">
+                                <div className="section-header text-center mb-40">
                                     <h5 className="text-white">
                                         <svg
                                             width={28}
@@ -112,227 +113,116 @@ function Contactform() {
                                                 fill="white"
                                             />
                                         </svg>
-                                        TALK TO US
+                                        GET IN TOUCH
                                     </h5>
-                                    <h2 className="text-white">How May We Help You!</h2>
+                                    <h2 className="text-white">Let's Start Your Project Today</h2>
+                                    <p className="text-white opacity-75 mt-15">
+                                        Have a project in mind? Fill out the form below and we'll get back to you 
+                                        within 24 hours with a detailed proposal.
+                                    </p>
                                 </div>
+
                                 <form onSubmit={handleSubmit}>
                                     <div className="row g-3">
                                         {/* Name Field */}
                                         <div className="col-sm-6">
-                                            <label htmlFor="name">Your Name*</label>
+                                            <label htmlFor="name" className="text-white">Your Name*</label>
                                             <input
                                                 type="text"
                                                 id="name"
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 placeholder="Enter your name"
-                                                required
+                                                className={errors.name ? "error" : ""}
                                             />
-                                            {errors.name && <small style={{ color: "red" }}>{errors.name}</small>}
+                                            {errors.name && <small className="error-text">{errors.name}</small>}
                                         </div>
 
                                         {/* Email Field */}
                                         <div className="col-sm-6">
-                                            <label htmlFor="email">Your Email*</label>
+                                            <label htmlFor="email" className="text-white">Your Email*</label>
                                             <input
                                                 type="email"
                                                 id="email"
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 placeholder="Enter your email"
-                                                required
-                                                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                                                className={errors.email ? "error" : ""}
                                             />
-                                            {errors.email && (
-                                                <small style={{ color: "red" }}>{errors.email}</small>
-                                            )}
+                                            {errors.email && <small className="error-text">{errors.email}</small>}
+                                        </div>
+
+                                        {/* Phone Field */}
+                                        <div className="col-sm-6">
+                                            <label htmlFor="phone" className="text-white">Your Phone*</label>
+                                            <input
+                                                type="tel"
+                                                id="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                placeholder="Enter your phone number"
+                                                className={errors.phone ? "error" : ""}
+                                            />
+                                            {errors.phone && <small className="error-text">{errors.phone}</small>}
                                         </div>
 
                                         {/* Subject Field */}
                                         <div className="col-sm-6">
-                                            <label htmlFor="subject">Subject*</label>
+                                            <label htmlFor="subject" className="text-white">Subject*</label>
                                             <input
                                                 type="text"
                                                 id="subject"
                                                 value={formData.subject}
                                                 onChange={handleChange}
                                                 placeholder="Enter the subject"
-                                                required
+                                                className={errors.subject ? "error" : ""}
                                             />
-                                            {errors.subject && (
-                                                <small style={{ color: "red" }}>{errors.subject}</small>
-                                            )}
-                                        </div>
-
-                                        {/* Phone Field */}
-                                        <div className="col-sm-6">
-                                            <label htmlFor="phone">Your Phone*</label>
-                                            <input
-                                                type="text"
-                                                id="phone"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                                placeholder="Enter your phone number"
-                                                required
-                                                pattern="^\+?\d{10,15}$"
-                                            />
-                                            {errors.phone && (
-                                                <small style={{ color: "red" }}>{errors.phone}</small>
-                                            )}
+                                            {errors.subject && <small className="error-text">{errors.subject}</small>}
                                         </div>
 
                                         {/* Message Field */}
                                         <div className="col-12">
-                                            <label htmlFor="message">Message*</label>
+                                            <label htmlFor="message" className="text-white">Message*</label>
                                             <textarea
                                                 id="message"
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 placeholder="Write your message here"
-                                                required
+                                                rows="5"
+                                                className={errors.message ? "error" : ""}
                                             />
-                                            {errors.message && (
-                                                <small style={{ color: "red" }}>{errors.message}</small>
-                                            )}
+                                            {errors.message && <small className="error-text">{errors.message}</small>}
+                                        </div>
+
+                                        {/* Submit Button */}
+                                        <div className="col-12 text-center">
+                                            <button type="submit" className="btn-one">
+                                                Send Message{" "}
+                                                <i className="fa-regular fa-arrow-right-long" />
+                                            </button>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary mt-3">
-                                        Send Message
-                                    </button>
                                 </form>
                             </div>
-                        </div>
-                        <div className="col-lg-6 ps-2 ps-lg-5">
-                            <div className="section-header mb-40">
-                                <h5
-                                    className="wow fadeInUp"
-                                    data-wow-delay="00ms"
-                                    data-wow-duration="1500ms"
-                                >
-                                    <img
-                                        className="me-1"
-                                        src="/assets/images/icon/section-title.png"
-                                        alt="icon"
-                                    />
-                                    CLIENTS REVIEW
-                                </h5>
-                                <h2
-                                    className="wow fadeInUp"
-                                    data-wow-delay="200ms"
-                                    data-wow-duration="1500ms"
-                                >
-                                    What They Say About Our
-                                </h2>
-                                <p
-                                    className="wow fadeInUp"
-                                    data-wow-delay="400ms"
-                                    data-wow-duration="1500ms"
-                                >
-                                    At Pixelmind Solutions, our success is driven by a passionate team of experts dedicated to delivering innovative IT solutions. With diverse skills in web development, mobile application design, and digital marketing, our team works collaboratively to bring your vision to life. We focus on creativity, quality, and customer satisfaction to ensure your business thrives in the digital world.
-                                </p>
-                            </div>
-                            <div
-                                className="swiper testimonial__slider wow fadeInDown"
-                                data-wow-delay="00ms"
-                                data-wow-duration="1500ms"
-                            >
-                                <div className="swiper-wrapper">
-                                    <div className="swiper-slide">
-                                        <div className="testimonial__item">
-                                            <svg
-                                                className="coma"
-                                                width={50}
-                                                height={37}
-                                                viewBox="0 0 50 37"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M0 0V37L18.75 18.5V0H0ZM31.25 0V37L50 18.5V0H31.25Z"
-                                                    fill="#06cabc"
-                                                />
-                                            </svg>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <img
-                                                    src="/assets/images/testimonial/testimonial-image1.png"
-                                                    alt="image"
-                                                />
-                                                <div className="testi-info">
-                                                    <h4>Suborna Tarchera</h4>
-                                                    <p>Web Developer</p>
-                                                    <div className="star mt-1">
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star disable" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p className="mt-30">
-                                                “ Our experience with Pixelmind Solutions has been outstanding. Their team truly understands our needs and provides innovative solutions that drive measurable success.”
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide">
-                                        <div className="testimonial__item">
-                                            <svg
-                                                className="coma"
-                                                width={50}
-                                                height={37}
-                                                viewBox="0 0 50 37"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M0 0V37L18.75 18.5V0H0ZM31.25 0V37L50 18.5V0H31.25Z"
-                                                    fill="#06cabc"
-                                                />
-                                            </svg>
-                                            <div className="d-flex align-items-center gap-3">
-                                                <img
-                                                    src="/assets/images/testimonial/testimonial-image2.png"
-                                                    alt="image"
-                                                />
-                                                <div className="testi-info">
-                                                    <h4>Alex Rony</h4>
-                                                    <p>Web Designer</p>
-                                                    <div className="star mt-1">
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star" />
-                                                        <i className="fa-sharp fa-solid fa-star disable" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p className="mt-30">
-                                                “ Our experience with Pixelmind Solutions has been outstanding. Their team truly understands our needs and provides innovative solutions that drive measurable success.”
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <ToastContainer />
-                            {/* <div
-                    className="testimonial__arry-btn mt-40 wow fadeInDown"
-                    data-wow-delay="200ms"
-                    data-wow-duration="1500ms"
-                  >
-                    <button className="arry-prev testimonial__arry-prev">
-                      <i className="fa-light fa-chevron-left" />
-                    </button>
-                    <button className="arry-next testimonial__arry-next active">
-                      <i className="fa-light fa-chevron-right" />
-                    </button>
-                  </div> */}
                         </div>
                     </div>
                 </div>
             </section>
+
+            <ToastContainer 
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
-    )
+    );
 }
 
-export default Contactform
+export default Contactform;
