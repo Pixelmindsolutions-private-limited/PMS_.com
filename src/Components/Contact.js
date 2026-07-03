@@ -13,6 +13,7 @@ import {
   FaTwitter,
   FaLinkedinIn
 } from 'react-icons/fa';
+import { Helmet } from 'react-helmet';
 
 
 function Contact() {
@@ -83,6 +84,13 @@ function Contact() {
 
   return (
     <div>
+      <Helmet>
+        <title>Contact PixelmindSolutions | Web Development, Mobile Apps & Digital Marketing</title>
+        <meta name="description" content="Get in touch with PixelmindSolutions Pvt Ltd in Hyderabad for professional web development, mobile app development, UI/UX design, digital marketing, website maintenance, and custom software solutions. Contact our experts today." />
+        <meta name="keywords" content="contact pixelmindsolutions, contact software company hyderabad, web development company contact, mobile app development company hyderabad, digital marketing company contact, ui ux design company hyderabad, website development services, custom software development, website maintenance company, IT company contact hyderabad" />
+        <link rel="canonical" href="https://www.pixelmindsolutions.com/contact" />
+      </Helmet>
+
       <Header />
       <main>
         {/* Page banner area start here */}

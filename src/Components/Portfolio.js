@@ -191,7 +191,7 @@ function Portfolio() {
     return (
         <div>
             <Helmet>
-                <title>Portfolio | Our Creative Work & Projects - PixelMind Solutions</title>
+                <title>Portfolio | Our Creative Work & Projects - PixelMindSolutions</title>
                 <meta name="description" content="Explore our diverse portfolio including websites, mobile apps, branding projects and digital experiences delivered for top clients." />
                 <meta name="keywords" content="portfolio, case studies, app development projects, website design samples, branding, PixelMind Solutions portfolio" />
                 <link rel="preload" as="image" href="/assets/images/banner/banner-inner-page.jpg" />

@@ -215,7 +215,9 @@ function Header() {
           <div className="sidebar__overlay" />
           <Link to="/" className="logo1  mb-40">
             <img style={{ width: "50px" }} src="/logo1.png" alt="icon" />
-            <h2 className="text-white ms-1">Pixelmind</h2>
+            <h1 className="ms-1" style={{ fontSize: "1.5rem", color: "#06cabc " }}>
+              PixelmindSolutions
+            </h1>
           </Link>
           <div className="sidebar__search mb-30">
             <div className="">
