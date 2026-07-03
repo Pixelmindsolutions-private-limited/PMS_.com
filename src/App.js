@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <HelmetProvider>
-        {/* <GlobalTracker /> */}
+        <GlobalTracker />
         <Routes>
           
           <Route path="/" element={<Home />} />
