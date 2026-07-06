@@ -21,6 +21,7 @@ import Blog3 from './blogs/Blog3';
 import Portfolio from './Components/Portfolio';
 import GlobalTracker from './utils/GlobalTracker';
 import AdminVisitors from './utils/AdminVisitors';
+import SinglePortfolio from './Components/SinglePortfolio';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/webdevelopment" element={<Webdevelopment />} />
           <Route path="/digitalmarketing" element={<Digitalmarketing />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/:id" element={<SinglePortfolio />} />
           <Route path="/formdata" element={<Contactdata />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/empowering-businesses-through-it-services" element={<Blog1 />} />

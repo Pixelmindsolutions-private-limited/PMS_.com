@@ -8,6 +8,7 @@ import Contactform from "./Contactform";
 import { Helmet } from "react-helmet";
 import WhyUs from "../Home/WhyUs";
 import Testimonials from "../Home/Testimonials";
+import Founder from "../Home/Founder";
 
 
 function Home() {
@@ -1714,6 +1715,8 @@ function Home() {
           {/* Process area end here */}
 
           <Testimonials />
+
+          <Founder/>
           
           {/* Testimonial area start here */}
           <Contactform />
