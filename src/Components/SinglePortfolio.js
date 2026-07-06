@@ -14,70 +14,82 @@ function SinglePortfolio() {
     const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-        const foundProject = portfolioItems.find(item => item.id === parseInt(id));
-        if (foundProject) {
-            setProject(foundProject);
-        }
+        const foundProject = portfolioItems.find(
+            item => item.id === Number(id)
+        );
+
+        setProject(foundProject || null);
         setLoading(false);
         setActiveImage(0);
     }, [id]);
 
     const typeMeta = {
         website: {
-            label: 'Website',
-            icon: 'fa-globe',
-            color: '#2563eb',
-            colorDark: '#1d4ed8',
-            lightBg: '#eff6ff',
-            emoji: '🌐',
-            screenshotLabel: 'Website Screenshots',
+            label: "Website",
+            icon: "fa-globe",
+            color: "#2563eb",
+            colorDark: "#1d4ed8",
+            lightBg: "#eff6ff",
+            emoji: "🌐",
+            screenshotLabel: "Website Screenshots",
         },
         app: {
-            label: 'Mobile App',
-            icon: 'fa-mobile-screen-button',
-            color: '#059669',
-            colorDark: '#047857',
-            lightBg: '#ecfdf5',
-            emoji: '📱',
-            screenshotLabel: 'App Screenshots',
+            label: "Mobile App",
+            icon: "fa-mobile-screen-button",
+            color: "#059669",
+            colorDark: "#047857",
+            lightBg: "#ecfdf5",
+            emoji: "📱",
+            screenshotLabel: "App Screenshots",
         },
         digital: {
-            label: 'Digital Marketing',
-            icon: 'fa-chart-line',
-            color: '#db2777',
-            colorDark: '#be185d',
-            lightBg: '#fdf2f8',
-            emoji: '📊',
-            screenshotLabel: 'Marketing Materials',
+            label: "Digital Marketing",
+            icon: "fa-chart-line",
+            color: "#db2777",
+            colorDark: "#be185d",
+            lightBg: "#fdf2f8",
+            emoji: "📊",
+            screenshotLabel: "Marketing Materials",
         },
     };
 
-    
+    // Safe defaults while project is null
+    const meta = typeMeta[project?.type] || typeMeta.website;
 
-    const meta = typeMeta[project.type] || typeMeta.website;
-    const screenshots = project.screenshots && project.screenshots.length > 0 ? project.screenshots : [project.image];
-    const isApp = project.type === 'app';
-    const isWebsite = project.type === 'website';
+    const screenshots =
+        project?.screenshots?.length > 0
+            ? project.screenshots
+            : project?.image
+                ? [project.image]
+                : [];
 
-    const displayUrl = project.websiteLink
-        ? project.websiteLink.replace(/^https?:\/\//, '').replace(/\/$/, '')
-        : `www.${project.title.toLowerCase().replace(/\s+/g, '')}.com`;
+    const isApp = project?.type === "app";
+    const isWebsite = project?.type === "website";
 
-    const initials = (project.testimonial?.name || '')
-        .split(' ')
-        .map(w => w[0])
-        .join('')
+    const displayUrl = project?.websiteLink
+        ? project.websiteLink.replace(/^https?:\/\//, "").replace(/\/$/, "")
+        : project?.title
+            ? `www.${project.title.toLowerCase().replace(/\s+/g, "")}.com`
+            : "";
+
+    const initials = (project?.testimonial?.name || "")
+        .split(" ")
+        .map((w) => w[0])
+        .join("")
         .slice(0, 2)
         .toUpperCase();
 
-    // ── Auto-scroll gallery player ──
+    // ✅ Hook stays BEFORE any return
     useEffect(() => {
+        if (!project) return;
         if (screenshots.length <= 1 || isPaused) return;
+
         const interval = setInterval(() => {
             setActiveImage((prev) => (prev + 1) % screenshots.length);
         }, 3000);
+
         return () => clearInterval(interval);
-    }, [screenshots.length, isPaused]);
+    }, [project, screenshots.length, isPaused]);
 
     const goToSlide = (index) => {
         setActiveImage(index);
@@ -85,7 +97,10 @@ function SinglePortfolio() {
 
     if (loading) {
         return (
-            <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+            <div
+                className="d-flex justify-content-center align-items-center"
+                style={{ minHeight: "60vh" }}
+            >
                 <div className="spinner-border text-primary" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
@@ -98,11 +113,14 @@ function SinglePortfolio() {
             <div className="container py-5">
                 <div className="text-center py-5">
                     <h2>Project not found</h2>
-                    <Link to="/portfolio" className="btn btn-primary mt-3">Back to Portfolio</Link>
+                    <Link to="/portfolio" className="btn btn-primary mt-3">
+                        Back to Portfolio
+                    </Link>
                 </div>
             </div>
         );
     }
+
 
     return (
         <div>
@@ -233,17 +251,7 @@ function SinglePortfolio() {
                                                     <i className="fa-solid fa-lock me-2" style={{ fontSize: '10px' }}></i>
                                                     {displayUrl}
                                                 </div>
-                                                {project.websiteLink && (
-                                                    <a
-                                                        href={project.websiteLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="browser-visit-icon d-none d-sm-inline-flex align-items-center justify-content-center rounded-circle ms-2"
-                                                        title="Open live site"
-                                                    >
-                                                        <i className="fa-solid fa-arrow-up-right-from-square" style={{ fontSize: '11px' }}></i>
-                                                    </a>
-                                                )}
+
                                             </div>
                                             <div className="browser-screen position-relative">
                                                 <img
@@ -252,19 +260,7 @@ function SinglePortfolio() {
                                                     alt={project.title}
                                                     className="browser-screen-img gallery-fade"
                                                 />
-                                                {project.websiteLink && (
-                                                    <a
-                                                        href={project.websiteLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="browser-screen-overlay d-flex align-items-center justify-content-center text-decoration-none"
-                                                    >
-                                                        <span className="btn-view-live rounded-pill px-4 py-2">
-                                                            <i className="fa-solid fa-arrow-up-right-from-square me-2"></i>
-                                                            View Live Site
-                                                        </span>
-                                                    </a>
-                                                )}
+
                                             </div>
                                         </div>
                                     ) : (
@@ -351,7 +347,7 @@ function SinglePortfolio() {
                                 </div>
 
                                 {/* ── Video Section (App Only) ── */}
-                                {isApp && project.videoId && (
+                                {isApp && project?.videoId && (
                                     <div className="card border-0 rounded-4 shadow-sm mt-3 overflow-hidden">
                                         {/* Header */}
                                         <div className="px-3 pt-3">
@@ -364,9 +360,9 @@ function SinglePortfolio() {
                                         {/* Video */}
                                         <div className="ratio ratio-16x9 mt-3">
                                             <iframe
-                                                src={`https://www.youtube.com/embed/${project.videoId}?controls=0&modestbranding=1&rel=0&fs=0&iv_load_policy=3&playsinline=1&showinfo=0`}
+                                                src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${project.videoId}&disablekb=1`}
                                                 title={`${project.title} Demo Video`}
-                                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                                 allowFullScreen
                                                 className="border-0 rounded-bottom-4"
                                             />
@@ -722,22 +718,21 @@ function SinglePortfolio() {
                 .browser-visit-icon:hover { background: #06cabc; border-color: #06cabc; color: #fff; }
 
                 .browser-screen {
+                    position: relative;
                     width: 100%;
+                    height: 500px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
                     background: #fff;
-                    max-height: 440px;
-                    overflow: hidden;
+                    scroll-behavior: smooth;
                 }
 
                 .browser-screen-img {
                     display: block;
                     width: 100%;
-                    height: 440px;
-                    object-fit: cover;
-                    object-position: top;
-                    transition: transform 0.5s ease;
+                    height: auto;
+                    object-fit: contain;
                 }
-
-                .preview-panel:hover .browser-screen-img { transform: scale(1.03); }
 
                 .browser-screen-overlay {
                     position: absolute;
@@ -1077,11 +1072,45 @@ function SinglePortfolio() {
                 }
 
                 @media (max-width: 576px) {
-                    .browser-screen-img, .generic-frame-img { height: 220px; }
-                    .badge-glass { font-size: 12px; padding: 4px 12px; }
-                    .phone-frame { width: 170px; height: 350px; padding: 8px; }
-                    .phone-notch { width: 70px; height: 14px; }
-                    .browser-visit-icon { display: none !important; }
+                    .browser-screen {
+                        height: 220px;
+                    }
+
+                    .browser-screen-img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                    }
+
+                    .generic-frame {
+                        height: 220px;
+                    }
+
+                    .generic-frame-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    .badge-glass {
+                        font-size: 12px;
+                        padding: 4px 12px;
+                    }
+
+                    .phone-frame {
+                        width: 170px;
+                        height: 350px;
+                        padding: 8px;
+                    }
+
+                    .phone-notch {
+                        width: 70px;
+                        height: 14px;
+                    }
+
+                    .browser-visit-icon {
+                        display: none !important;
+                    }
                 }
             `}</style>
         </div>

@@ -179,13 +179,13 @@ function Portfolio() {
         : portfolioItems.filter(item => item.type === activeFilter);
 
     const websiteCount = portfolioItems.filter(i => i.type === 'website').length;
-    const appCount     = portfolioItems.filter(i => i.type === 'app').length;
+    const appCount = portfolioItems.filter(i => i.type === 'app').length;
     const digitalCount = portfolioItems.filter(i => i.type === 'digital').length;
 
     const typeMeta = {
-        website: { label: 'Website',          icon: 'fa-globe',                color: '#2563eb', lightBg: '#eff6ff' },
-        app:     { label: 'Mobile App',        icon: 'fa-mobile-screen-button', color: '#059669', lightBg: '#ecfdf5' },
-        digital: { label: 'Digital Marketing', icon: 'fa-chart-line',           color: '#db2777', lightBg: '#fdf2f8' },
+        website: { label: 'Website', icon: 'fa-globe', color: '#2563eb', lightBg: '#eff6ff' },
+        app: { label: 'Mobile App', icon: 'fa-mobile-screen-button', color: '#059669', lightBg: '#ecfdf5' },
+        digital: { label: 'Digital Marketing', icon: 'fa-chart-line', color: '#db2777', lightBg: '#fdf2f8' },
     };
 
     return (
@@ -220,9 +220,9 @@ function Portfolio() {
                         <div className="pf-filter-box">
                             <div className="pf-filter-nav">
                                 {[
-                                    { key: 'all',     label: 'All Projects',      count: portfolioItems.length },
-                                    { key: 'website', label: 'Websites',          count: websiteCount },
-                                    { key: 'app',     label: 'Mobile Apps',       count: appCount },
+                                    { key: 'all', label: 'All Projects', count: portfolioItems.length },
+                                    { key: 'website', label: 'Websites', count: websiteCount },
+                                    { key: 'app', label: 'Mobile Apps', count: appCount },
                                     { key: 'digital', label: 'Digital Marketing', count: digitalCount },
                                 ].map(f => (
                                     <button
@@ -309,8 +309,17 @@ function Portfolio() {
                                                     )}
                                                 </p>
 
-                                                {/* ── Links ── */}
                                                 <div className="pf-links">
+                                                    {item.id && (
+                                                        <a href={`/portfolio/${item.id}`} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-web">
+                                                            <i className="fa-solid fa-globe"></i>
+                                                            <span>View More</span>
+                                                        </a>
+                                                    )}
+                                                </div>
+
+                                                {/* ── Links ── */}
+                                                {/* <div className="pf-links">
                                                     {item.websiteLink && (
                                                         <a href={item.websiteLink} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-web">
                                                             <i className="fa-solid fa-globe"></i>
@@ -329,7 +338,7 @@ function Portfolio() {
                                                             <span>App Store</span>
                                                         </a>
                                                     )}
-                                                </div>
+                                                </div> */}
 
                                             </div>
                                         </div>
@@ -473,9 +482,9 @@ function Portfolio() {
                             <div className="row g-4 justify-content-center">
                                 {[
                                     { icon: 'counter-icon1', count: '499', label: 'Satisfied Clients', delay: '0ms' },
-                                    { icon: 'counter-icon2', count: '25',  label: 'Finished Projects', delay: '200ms' },
-                                    { icon: 'counter-icon3', count: '50',  label: 'Skilled Experts',   delay: '400ms' },
-                                    { icon: 'counter-icon4', count: '30',  label: 'Media Posts',       delay: '800ms' },
+                                    { icon: 'counter-icon2', count: '25', label: 'Finished Projects', delay: '200ms' },
+                                    { icon: 'counter-icon3', count: '50', label: 'Skilled Experts', delay: '400ms' },
+                                    { icon: 'counter-icon4', count: '30', label: 'Media Posts', delay: '800ms' },
                                 ].map((c) => (
                                     <div key={c.label} className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp" data-wow-delay={c.delay} data-wow-duration="1000ms">
                                         <div className="counter__item h-100">

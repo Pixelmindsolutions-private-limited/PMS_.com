@@ -148,6 +148,7 @@ const portfolioItems = [
             Redemly10,
             Redemly11
         ],
+        videoLabel: "Watch Demo",
         videoId: "QcvN_Pc4ue8"  // Example YouTube video ID for demonstration
     },
     {
