@@ -311,8 +311,8 @@ function Portfolio() {
 
                                                 <div className="pf-links">
                                                     {item.id && (
-                                                        <a href={`/portfolio/${item.id}`} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-web">
-                                                            <i className="fa-solid fa-globe"></i>
+                                                        <a href={`/portfolio/${item.id}`} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-web d-flex align-items-center gap-1">
+                                                            <i className="fa-eye fa-solid"></i>
                                                             <span>View More</span>
                                                         </a>
                                                     )}

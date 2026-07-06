@@ -4,6 +4,7 @@ import Footer from './Footer';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import portfolioItems from '../Home/PortfolioData';
+import bannerImage from '../assets/portfolio.png';
 
 function SinglePortfolio() {
     const { id } = useParams();
@@ -134,7 +135,14 @@ function SinglePortfolio() {
             <main>
 
                 {/* ── Premium Hero Banner ── */}
-                <section className="hero-banner position-relative overflow-hidden">
+                <section className="hero-banner position-relative overflow-hidden"
+                    style={{
+                        backgroundImage: `url(${project.BackgroundImage || bannerImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                    }}
+                >
                     <div className="container position-relative" style={{ zIndex: 2 }}>
                         <div className="row align-items-center">
                             <div className="col-lg-8">
@@ -144,7 +152,7 @@ function SinglePortfolio() {
                                         {meta.emoji} {meta.label}
                                     </span>
                                     <h1 className="text-white fw-bold display-4 mb-3">{project.title}</h1>
-                                    <div className="d-flex flex-wrap gap-3 text-white-50 mb-3">
+                                    <div className="d-flex flex-wrap gap-3 text-white mb-3">
                                         <span><i className="fa-regular fa-user me-2"></i>{project.client}</span>
                                         <span><i className="fa-regular fa-folder me-2"></i>{project.category}</span>
                                         <span><i className="fa-regular fa-calendar me-2"></i>{project.year}</span>
@@ -601,10 +609,30 @@ function SinglePortfolio() {
             <style jsx>{`
                 /* ── Hero Banner ── */
                 .hero-banner {
-                    background: linear-gradient(135deg, #06cabc 0%, #2e77b0 100%);
+                    position: relative;
                     min-height: 380px;
                     padding-top: 80px;
                     padding-bottom: 60px;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                .hero-banner::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                }
+
+                .hero-banner .container {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .hero-shape {
+                    z-index: 2;
                 }
 
                 .hero-content { animation: fadeInDown 0.8s ease; }
