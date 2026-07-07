@@ -1,5 +1,5 @@
 import React from 'react';
-import bannerImage from '../assets/portfolio.png';
+import bannerImage from '../assets/bg.png';
 import Redemly1 from '../assets/Redemly/11.jpeg';
 import Redemly2 from '../assets/Redemly/22.jpeg';
 import Redemly3 from '../assets/Redemly/33.jpeg';
@@ -18,6 +18,34 @@ import PMS4 from '../assets/PMS/4.png';
 import PMS5 from '../assets/PMS/5.png';
 import PMS6 from '../assets/PMS/6.png';
 import PMS7 from '../assets/PMS/7.png';
+import Bing1 from '../assets/Bingenjoy/1.png';
+import Bing2 from '../assets/Bingenjoy/2.png';
+import Bing3 from '../assets/Bingenjoy/3.png';
+import Bing4 from '../assets/Bingenjoy/4.png';
+import Bing5 from '../assets/Bingenjoy/5.png';
+import Bing6 from '../assets/Bingenjoy/6.png';
+import Bing7 from '../assets/Bingenjoy/7.png';
+import Bing8 from '../assets/Bingenjoy/8.png';
+import Carnival1 from '../assets/Carnival/1.png';
+import Carnival2 from '../assets/Carnival/2.png';
+import Carnival3 from '../assets/Carnival/3.png';
+import Carnival4 from '../assets/Carnival/4.png';
+import Carnival5 from '../assets/Carnival/5.png';
+import Carnival6 from '../assets/Carnival/6.png';
+import Carnival7 from '../assets/Carnival/7.png';
+import Carnival8 from '../assets/Carnival/8.png';
+import Carnival9 from '../assets/Carnival/9.png';
+import veg1 from '../assets/Vegiffy/1.jpeg';
+import veg2 from '../assets/Vegiffy/2.jpeg';
+import veg3 from '../assets/Vegiffy/3.jpeg';
+import veg4 from '../assets/Vegiffy/4.jpeg';
+import veg5 from '../assets/Vegiffy/5.jpeg';
+import veg6 from '../assets/Vegiffy/6.jpeg';
+import veg7 from '../assets/Vegiffy/7.jpeg';
+import veg8 from '../assets/Vegiffy/8.jpeg';
+import veg9 from '../assets/Vegiffy/9.jpeg';
+import veg10 from '../assets/Vegiffy/10.jpeg';
+
 
 // Complete portfolio data
 const portfolioItems = [
@@ -81,10 +109,14 @@ const portfolioItems = [
         solution: "BingeNJoy provides an all-in-one private theatre and celebration platform where users can book exclusive cinema spaces along with decoration, food, cakes, photography, and customized event services. The platform delivers a premium entertainment experience while simplifying event planning through a single online booking system, making celebrations convenient, private, and memorable.",
         testimonial: { name: "Sarah Johnson", position: "Event Manager", text: "Transformed our booking process completely!" },
         screenshots: [
-            "/assets/images/banner/binenjoy.jpg",
-            "/assets/images/banner/carnival.jpg",
-            "/assets/images/banner/pixelmind.jpg",
-            "/assets/images/banner/binenjoy.jpg"
+            Bing1,
+            Bing2,
+            Bing3,
+            Bing4,
+            Bing5,
+            Bing6,
+            Bing7,
+            Bing8
         ],
         BackgroundImage: bannerImage,
     },
@@ -128,10 +160,15 @@ const portfolioItems = [
         solution: "Carnival Castle simplifies celebration planning by providing an all-in-one private theatre booking platform. Customers can book exclusive theatre spaces along with customized decorations, cakes, food, photography, bouquets, and entertainment through a single booking process. The platform delivers a premium, private, and hassle-free celebration experience for couples, families, friends, and corporate groups.",
         testimonial: { name: "Mike Wilson", position: "Director", text: "Amazing platform for our venues!" },
         screenshots: [
-            "/assets/images/banner/carnival.jpg",
-            "/assets/images/banner/pixelmind.jpg",
-            "/assets/images/banner/binenjoy.jpg",
-            "/assets/images/banner/carnival.jpg"
+            Carnival1,
+            Carnival2,
+            Carnival3,
+            Carnival4,
+            Carnival5,
+            Carnival6,
+            Carnival7,
+            Carnival8,
+            Carnival9
         ],
         BackgroundImage: bannerImage,
     },
@@ -177,10 +214,16 @@ const portfolioItems = [
         solution: "VEGIFFY solves these challenges by providing a dedicated platform exclusively for pure vegetarian food. It verifies every restaurant partner, ensures strict vegetarian standards, offers fast and reliable delivery, and creates growth opportunities for vendors and delivery partners. By combining trusted food delivery, business support, and a vegetarian-focused marketplace, VEGIFFY delivers a complete and reliable ecosystem for the vegetarian community.",
         testimonial: { name: "Priya Sharma", position: "CEO, Vegiffyy", text: "Revolutionized vegetarian food delivery!" },
         screenshots: [
-            "/assets/portfolio/veg.jpeg",
-            Redemly1,
-            Redemly2,
-            "/assets/portfolio/carrentlogo.png"
+            veg1,
+            veg2,
+            veg3,
+            veg4,
+            veg5,
+            veg6,
+            veg7,
+            veg8,
+            veg9,
+            veg10
         ],
         videoLabel: "Watch Demo",
         videoId: "QcvN_Pc4ue8",

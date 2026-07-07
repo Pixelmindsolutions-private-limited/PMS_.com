@@ -4,7 +4,7 @@ import Footer from './Footer';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import portfolioItems from '../Home/PortfolioData';
-import bannerImage from '../assets/portfolio.png';
+import bannerImage from '../assets/bg.png';
 
 function SinglePortfolio() {
     const { id } = useParams();
@@ -28,8 +28,8 @@ function SinglePortfolio() {
         website: {
             label: "Website",
             icon: "fa-globe",
-            color: "#2563eb",
-            colorDark: "#1d4ed8",
+            color: "#06cabc",
+            colorDark: "#06cabc",
             lightBg: "#eff6ff",
             emoji: "🌐",
             screenshotLabel: "Website Screenshots",
@@ -37,9 +37,9 @@ function SinglePortfolio() {
         app: {
             label: "Mobile App",
             icon: "fa-mobile-screen-button",
-            color: "#059669",
-            colorDark: "#047857",
-            lightBg: "#ecfdf5",
+            color: "#06cabc",
+            colorDark: "#06cabc",
+            lightBg: "#eff6ff",
             emoji: "📱",
             screenshotLabel: "App Screenshots",
         },
@@ -135,7 +135,8 @@ function SinglePortfolio() {
             <main>
 
                 {/* ── Premium Hero Banner ── */}
-                <section className="hero-banner position-relative overflow-hidden"
+                <section
+                    className="hero-banner position-relative overflow-hidden"
                     style={{
                         backgroundImage: `url(${project.BackgroundImage || bannerImage})`,
                         backgroundSize: "cover",
@@ -143,56 +144,85 @@ function SinglePortfolio() {
                         backgroundRepeat: "no-repeat",
                     }}
                 >
+                    
+
                     <div className="container position-relative" style={{ zIndex: 2 }}>
                         <div className="row align-items-center">
                             <div className="col-lg-8">
                                 <div className="hero-content">
+
                                     <span className="badge-glass d-inline-flex align-items-center rounded-pill px-4 py-2 mb-3">
-                                        <i className={`fa-solid ${meta.icon} me-2`}></i>
-                                        {meta.emoji} {meta.label}
+                                        <i className={`fa-solid ${meta.icon} me-2 text-teal`}></i>
+                                        <span className="text-white fw-semibold">
+                                            {meta.label}
+                                        </span>
                                     </span>
-                                    <h1 className="text-white fw-bold display-4 mb-3">{project.title}</h1>
-                                    <div className="d-flex flex-wrap gap-3 text-white mb-3">
-                                        <span><i className="fa-regular fa-user me-2"></i>{project.client}</span>
-                                        <span><i className="fa-regular fa-folder me-2"></i>{project.category}</span>
-                                        <span><i className="fa-regular fa-calendar me-2"></i>{project.year}</span>
-                                        <span><i className="fa-regular fa-clock me-2"></i>{project.duration}</span>
+
+                                    <h1
+                                        className="fw-bold display-4 mb-3"
+                                        style={{
+                                            color: "#fff",
+                                            textShadow: "0 4px 20px rgba(0,0,0,0.5)",
+                                        }}
+                                    >
+                                        {project.title}
+                                    </h1>
+
+                                    <div className="d-flex flex-wrap gap-3 mb-3">
+                                        <span className="text-white-50">
+                                            <i className="fa-regular fa-user me-2 text-teal"></i>
+                                            {project.client}
+                                        </span>
+
+                                        <span className="text-white-50">
+                                            <i className="fa-regular fa-folder me-2 text-teal"></i>
+                                            {project.category}
+                                        </span>
+
+                                        <span className="text-white-50">
+                                            <i className="fa-regular fa-calendar me-2 text-teal"></i>
+                                            {project.year}
+                                        </span>
+
+                                        <span className="text-white-50">
+                                            <i className="fa-regular fa-clock me-2 text-teal"></i>
+                                            {project.duration}
+                                        </span>
                                     </div>
+
                                     <nav aria-label="breadcrumb">
                                         <div className="d-flex align-items-center flex-wrap">
-                                            <Link to="/" className="text-dark text-decoration-none fw-semibold">
+
+                                            <Link
+                                                to="/"
+                                                className="text-white text-decoration-none fw-semibold"
+                                            >
                                                 Home
                                             </Link>
 
-                                            <span className="mx-2 text-dark">/</span>
+                                            <span className="mx-2 text-teal">/</span>
 
-                                            <Link to="/portfolio" className="text-dark text-decoration-none fw-semibold">
+                                            <Link
+                                                to="/portfolio"
+                                                className="text-white text-decoration-none fw-teal"
+                                            >
                                                 Portfolio
                                             </Link>
 
-                                            <span className="mx-2 text-dark">/</span>
+                                            <span className="mx-2 text-teal">/</span>
 
-                                            <span className="text-black fw-bold">
+                                            <span className="text-teal fw-bold">
                                                 {project.title}
                                             </span>
+
                                         </div>
                                     </nav>
-                                </div>
-                            </div>
-                            <div className="col-lg-4 d-none d-lg-block">
-                                <div className="row g-2">
-                                    {Object.entries(project.results || {}).slice(0, 4).map(([key, value], idx) => (
-                                        <div className="col-6" key={idx}>
-                                            <div className="stat-glass p-3 rounded-4 text-center">
-                                                <h3 className="text-white fw-bold mb-0">{value}</h3>
-                                                <small className="text-white-50 text-uppercase" style={{ letterSpacing: '0.5px', fontSize: '11px' }}>{key}</small>
-                                            </div>
-                                        </div>
-                                    ))}
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div className="hero-shape shape-1"></div>
                     <div className="hero-shape shape-2"></div>
                 </section>
@@ -394,7 +424,7 @@ function SinglePortfolio() {
                                 </div>
 
                                 {/* Results */}
-                                {project.results && Object.keys(project.results).length > 0 && (
+                                {/* {project.results && Object.keys(project.results).length > 0 && (
                                     <div className="card border-0 rounded-4 shadow-sm mt-3 p-3" style={{ background: meta.lightBg }}>
                                         <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
                                             <i className="fa-solid fa-chart-simple me-2"></i>
@@ -411,7 +441,7 @@ function SinglePortfolio() {
                                             ))}
                                         </div>
                                     </div>
-                                )}
+                                )} */}
                             </div>
 
                             {/* ── Right Column: Project Details ── */}
@@ -583,9 +613,9 @@ function SinglePortfolio() {
                             </div>
                             <div className="row g-4 justify-content-center">
                                 {[
-                                    { count: '499', label: 'Satisfied Clients', icon: 'fa-user-check' },
-                                    { count: '25', label: 'Finished Projects', icon: 'fa-check-circle' },
-                                    { count: '50', label: 'Skilled Experts', icon: 'fa-users' },
+                                    { count: '25', label: 'Satisfied Clients', icon: 'fa-user-check' },
+                                    { count: '30', label: 'Finished Projects', icon: 'fa-check-circle' },
+                                    { count: '20', label: 'Skilled Experts', icon: 'fa-users' },
                                     { count: '30', label: 'Media Posts', icon: 'fa-bullhorn' },
                                 ].map((c, idx) => (
                                     <div className="col-6 col-sm-6 col-md-3" key={idx}>
@@ -608,6 +638,10 @@ function SinglePortfolio() {
             {/* Styles */}
             <style jsx>{`
                 /* ── Hero Banner ── */
+                .text-teal { 
+                    color: #06cabc !important; 
+                }
+
                 .hero-banner {
                     position: relative;
                     min-height: 380px;
