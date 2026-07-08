@@ -11,6 +11,11 @@ import Redemly8 from '../assets/Redemly/88.jpeg';
 import Redemly9 from '../assets/Redemly/99.jpeg';
 import Redemly10 from '../assets/Redemly/110.jpeg';
 import Redemly11 from '../assets/Redemly/120.jpeg';
+import Redemlyweb1 from '../assets/Redemly/web1.png';
+import Redemlyweb2 from '../assets/Redemly/web2.png';
+import Redemlyweb3 from '../assets/Redemly/web3.png';
+import Redemlyweb4 from '../assets/Redemly/web4.png';
+import Redemlyweb5 from '../assets/Redemly/web5.png';
 import PMS1 from '../assets/PMS/1.png';
 import PMS2 from '../assets/PMS/2.png';
 import PMS3 from '../assets/PMS/3.png';
@@ -90,6 +95,7 @@ import Narada8 from '../assets/Narada/8.jpeg';
 import Narada9 from '../assets/Narada/9.jpeg';
 import Narada10 from '../assets/Narada/10.jpeg';
 import Narada11 from '../assets/Narada/11.jpeg';
+import Naradaweb from '../assets/Narada/web.png'
 import ss1 from '../assets/ss/1.png';
 import ss2 from '../assets/ss/2.png';
 import ss3 from '../assets/ss/3.png';
@@ -99,7 +105,13 @@ import ss6 from '../assets/ss/6.png';
 import ss7 from '../assets/ss/7.png';
 import ss8 from '../assets/ss/8.png';
 import editweb1 from '../assets/EditEZY/web1.png';
-import editweb2 from '../assets/EditEZY/web2.png'
+import editweb2 from '../assets/EditEZY/web2.png';
+import Nupuraweb from '../assets/Nupura/web.png';
+import Simcurax1 from '../assets/Clynix/web1.png';
+import Simcurax2 from '../assets/Clynix/web2.png';
+import Simcurax3 from '../assets/Clynix/web3.png';
+import Simcurax4 from '../assets/Clynix/web4.png';
+import Simcurax5 from '../assets/Clynix/web5.png';
 
  
 
@@ -781,10 +793,11 @@ const portfolioItems = [
         solution: "SimcuraRX addresses these challenges by providing an integrated ecosystem that combines healthcare services with advanced IT solutions. From patient care and diagnostics to custom software development, mobile applications, enterprise systems, and digital transformation, the platform enables healthcare providers and businesses to improve efficiency, enhance patient experiences, and scale operations through a single trusted technology partner.",
         testimonial: { name: "Dr. Mehta", position: "Medical Director", text: "Revolutionary healthcare platform!" },
         screenshots: [
-            "/assets/portfolio/clynixlogo.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Simcurax1,
+            Simcurax2,
+            Simcurax3,
+            Simcurax4,
+            Simcurax5
         ],
         BackgroundImage: bannerImage,
     },
@@ -956,17 +969,11 @@ const portfolioItems = [
         solution: "The Redemly website effectively communicates the value proposition through clear visuals and interactive elements. By showcasing success stories and providing easy access for both users and merchants, it acts as a powerful acquisition channel for the mobile app and the B2B merchant network.",
         testimonial: { name: "Alex Chen", position: "Founder, Redemly", text: "The website perfectly complements our app!" },
         screenshots: [
-            Redemly1,
-            Redemly2,
-            Redemly3,
-            Redemly4,
-            Redemly5,
-            Redemly6,
-            Redemly7,
-            Redemly8,
-            Redemly9,
-            Redemly10,
-            Redemly11
+            Redemlyweb1,
+            Redemlyweb2,
+            Redemlyweb3,
+            Redemlyweb4,
+            Redemlyweb5
         ],
         BackgroundImage: bannerImage,
     },
@@ -1006,10 +1013,8 @@ const portfolioItems = [
         solution: "The EditEZY website builds credibility through transparent processes, robust security features, and proven case studies. By offering tailored enterprise solutions and dedicated support, it positions itself as a reliable partner for high-volume image editing needs.",
         testimonial: { name: "Emily Davis", position: "Lead Designer", text: "Essential for our workflow!" },
         screenshots: [
-            "/assets/portfolio/editezy.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/carrentlogo.png"
+            editweb1,
+            editweb2
         ],
         BackgroundImage: bannerImage,
     },
@@ -1049,16 +1054,12 @@ const portfolioItems = [
         solution: "The Varahi corporate portal streamlines business rentals with automated reporting, flexible billing, and dedicated support. It ensures businesses have reliable, compliant, and cost-effective mobility solutions for their teams.",
         testimonial: { name: "Rahul Patel", position: "CEO, Varahi Cabs", text: "A game-changer for corporate clients!" },
         screenshots: [
-            Varahi1,
-            Varahi2,
-            Varahi3,
-            Varahi4,
-            Varahi5,
-            Varahi6,
-            Varahi7,
-            Varahi8,
-            Varahi9,
-            Varahi10
+            Varahiweb1,
+            Varahiweb2,
+            Varahiweb3,
+            Varahiweb4,
+            Varahiweb5,
+            Varahiweb6
         ],
         BackgroundImage: bannerImage,
     },
@@ -1098,10 +1099,7 @@ const portfolioItems = [
         solution: "The Nupura website offers a clean, professional, and informative platform that highlights the company's strengths. By making booking easy and information accessible, it enhances customer confidence and drives conversions.",
         testimonial: { name: "Vikram Singh", position: "CEO, Nupura Motors", text: "Our online presence is stronger than ever!" },
         screenshots: [
-            "/assets/portfolio/carservicelogo.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Nupuraweb
         ],
         BackgroundImage: bannerImage,
     },
@@ -1141,17 +1139,7 @@ const portfolioItems = [
         solution: "The Dharmadwajam website provides a robust, fast, and engaging platform for news consumption. By focusing on quality content, visual storytelling, and user experience, it builds a loyal readership and establishes itself as a trusted source of information.",
         testimonial: { name: "Ananya Reddy", position: "Editor", text: "A vital platform for our voice!" },
         screenshots: [
-            Narada1,
-            Narada2,
-            Narada3,
-            Narada4,
-            Narada5,
-            Narada6,
-            Narada7,
-            Narada8,
-            Narada9,
-            Narada10,
-            Narada11
+            Naradaweb
         ],
         BackgroundImage: bannerImage,
     }
