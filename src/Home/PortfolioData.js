@@ -45,6 +45,63 @@ import veg7 from '../assets/Vegiffy/7.jpeg';
 import veg8 from '../assets/Vegiffy/8.jpeg';
 import veg9 from '../assets/Vegiffy/9.jpeg';
 import veg10 from '../assets/Vegiffy/10.jpeg';
+import vegweb1 from '../assets/Vegiffy/web1.png'
+import vegweb2 from '../assets/Vegiffy/web2.png'
+import vegweb3 from '../assets/Vegiffy/web3.png'
+import vegweb4 from '../assets/Vegiffy/web4.png'
+import vegweb5 from '../assets/Vegiffy/web5.png'
+import vegweb6 from '../assets/Vegiffy/web6.png'
+import vegweb7 from '../assets/Vegiffy/web7.png'
+import Varahi1 from '../assets/Varahi/1.jpeg';
+import Varahi2 from '../assets/Varahi/2.jpeg';
+import Varahi3 from '../assets/Varahi/3.jpeg';
+import Varahi4 from '../assets/Varahi/4.jpeg';
+import Varahi5 from '../assets/Varahi/5.jpeg';
+import Varahi6 from '../assets/Varahi/6.jpeg';
+import Varahi7 from '../assets/Varahi/7.jpeg';
+import Varahi8 from '../assets/Varahi/8.jpeg';
+import Varahi9 from '../assets/Varahi/9.jpeg';
+import Varahi10 from '../assets/Varahi/10.jpeg';
+import Varahiweb1 from '../assets/Varahi/web1.png';
+import Varahiweb2 from '../assets/Varahi/web2.png';
+import Varahiweb3 from '../assets/Varahi/web3.png';
+import Varahiweb4 from '../assets/Varahi/web4.png';
+import Varahiweb5 from '../assets/Varahi/web5.png';
+import Varahiweb6 from '../assets/Varahi/web6.png';
+import Tech1 from '../assets/Techsterker/1.png';
+import Tech2 from '../assets/Techsterker/2.png';
+import Tech3 from '../assets/Techsterker/3.png';
+import Tech4 from '../assets/Techsterker/4.png';
+import Tech5 from '../assets/Techsterker/5.png';
+import Tech6 from '../assets/Techsterker/6.png';
+import Tech7 from '../assets/Techsterker/7.png';
+import Tech8 from '../assets/Techsterker/8.png';
+import Tech9 from '../assets/Techsterker/9.png';
+import Tech10 from '../assets/Techsterker/10.png';
+import Tech11 from '../assets/Techsterker/11.png';
+import Narada1 from '../assets/Narada/1.jpeg';
+import Narada2 from '../assets/Narada/2.jpeg';
+import Narada3 from '../assets/Narada/3.jpeg';
+import Narada4 from '../assets/Narada/4.jpeg';
+import Narada5 from '../assets/Narada/5.jpeg';
+import Narada6 from '../assets/Narada/6.jpeg';
+import Narada7 from '../assets/Narada/7.jpeg';
+import Narada8 from '../assets/Narada/8.jpeg';
+import Narada9 from '../assets/Narada/9.jpeg';
+import Narada10 from '../assets/Narada/10.jpeg';
+import Narada11 from '../assets/Narada/11.jpeg';
+import ss1 from '../assets/ss/1.png';
+import ss2 from '../assets/ss/2.png';
+import ss3 from '../assets/ss/3.png';
+import ss4 from '../assets/ss/4.png';
+import ss5 from '../assets/ss/5.png';
+import ss6 from '../assets/ss/6.png';
+import ss7 from '../assets/ss/7.png';
+import ss8 from '../assets/ss/8.png';
+import editweb1 from '../assets/EditEZY/web1.png';
+import editweb2 from '../assets/EditEZY/web2.png'
+
+ 
 
 
 // Complete portfolio data
@@ -375,10 +432,16 @@ const portfolioItems = [
         solution: "Varahi Self Drive Cars solves these challenges by offering a fully digital self-drive car rental platform with a diverse fleet of well-maintained vehicles, transparent pricing, flexible rental plans, comprehensive insurance, and a simple online booking process. Customers enjoy complete privacy, convenience, and the freedom to travel at their own pace without relying on a driver.",
         testimonial: { name: "Rahul Patel", position: "CEO, Varahi Cabs", text: "Perfect solution for self-drive!" },
         screenshots: [
-            "/assets/portfolio/carrentlogo.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Varahi1,
+            Varahi2,
+            Varahi3,
+            Varahi4,
+            Varahi5,
+            Varahi6,
+            Varahi7,
+            Varahi8,
+            Varahi9,
+            Varahi10
         ],
         videoId: "QcvN_Pc4ue8",
         BackgroundImage: bannerImage,
@@ -424,10 +487,18 @@ const portfolioItems = [
         solution: "Techsterker addresses these challenges by offering industry-relevant, project-based IT training with expert instructors, live online classes, practical assignments, personalized mentorship, mock interviews, resume support, and placement assistance. Its comprehensive learning approach equips students with the technical and professional skills required to succeed in today's competitive IT job market.",
         testimonial: { name: "Dr. Smith", position: "Dean, Techsterker", text: "Best platform for tech education!" },
         screenshots: [
-            "/assets/portfolio/tech.png",
-            "/assets/portfolio/carservicelogo.png",
-            "/assets/portfolio/news.png",
-            "/assets/portfolio/clynixlogo.png"
+            Tech1,
+            Tech2,
+            Tech3,
+            Tech4,
+            Tech5,
+            Tech3,
+            Tech6,
+            Tech7,
+            Tech8,
+            Tech9,
+            Tech10,
+            Tech11,
         ],
         BackgroundImage: bannerImage,
     },
@@ -470,10 +541,17 @@ const portfolioItems = [
         solution: "Dharmadhwajam addresses these challenges by offering a trusted digital news platform that combines verified journalism with engaging content formats such as articles, videos, posters, and infographics. It enables users to consume accurate news quickly while providing premium features, bookmarks, and an intuitive experience for staying informed anytime and anywhere.",
         testimonial: { name: "Ananya Reddy", position: "Editor", text: "Great platform for meaningful content!" },
         screenshots: [
-            "/assets/portfolio/news.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Narada1,
+            Narada2,
+            Narada3,
+            Narada4,
+            Narada5,
+            Narada6,
+            Narada7,
+            Narada8,
+            Narada9,
+            Narada10,
+            Narada11
         ],
         BackgroundImage: bannerImage,
     },
@@ -652,10 +730,14 @@ const portfolioItems = [
         solution: "SS Air Conditioners addresses these challenges by delivering complete HVAC solutions, including system design, installation, maintenance, emergency repairs, and energy-efficient upgrades. With experienced engineers, customized project execution, and 24/7 technical support, the company helps businesses achieve reliable cooling performance, reduced energy costs, and long-term operational efficiency.",
         testimonial: { name: "Mr. Sharma", position: "Owner", text: "Amazing digital marketing results!" },
         screenshots: [
-            "/assets/portfolio/ss.png",
-            "/assets/portfolio/editezy.png",
-            "/assets/portfolio/carrentlogo.png",
-            "/assets/portfolio/news.png"
+            ss1,
+            ss2,
+            ss3,
+            ss4,
+            ss5,
+            ss6,
+            ss7,
+            ss8
         ],
         BackgroundImage: bannerImage,
     },
@@ -703,6 +785,373 @@ const portfolioItems = [
             "/assets/portfolio/veg.jpeg",
             "/assets/portfolio/redemly.png",
             "/assets/portfolio/editezy.png"
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 15, 
+        title: "EditEZY – Online Graphic Design Platform", 
+        type: "website",
+        description: "EditEZY is an easy-to-use poster and graphic design platform helping users create eye-catching posters, banners, and social media creatives in minutes.",
+        fullDescription: "EditEZY is a comprehensive online graphic design platform that empowers users to create professional-quality visuals without prior design experience. With a vast library of ready-made templates, drag-and-drop editing tools, and powerful customization features, users can design posters, banners, social media posts, and marketing materials in minutes. The platform bridges the gap between complex design software and simple mobile apps by offering robust web-based tools accessible from any browser. It serves freelancers, small businesses, marketers, and content creators who need quick, high-quality designs for their digital presence.",
+        image: "/assets/portfolio/editezy.png", 
+        icon: "/assets/portfolio/editezy.png",
+        websiteLink: "https://editezy.com/",
+        client: "EditEZY Studios",
+        category: "Graphic Design, Web Application, SaaS, Creative Tools, Marketing",
+        year: "2024",
+        duration: "6 Months",
+        technologies: ["React", "Node.js", "Canvas API", "AWS S3", "Tailwind CSS"],
+        features: [
+            "Web-based design editor",
+            "Thousands of ready-made templates",
+            "Drag-and-drop interface",
+            "Customizable fonts and colors",
+            "Social media size presets",
+            "High-resolution exports",
+            "Cloud storage for projects",
+            "Collaboration tools",
+            "Brand kit management",
+            "Stock photo integration",
+            "Responsive design preview",
+            "Easy sharing options",
+            "No installation required",
+            "Cross-browser compatibility",
+            "Affordable subscription plans"
+        ],
+        results: { "Users": "+50000", "Designs Created": "+1M", "Retention": "85%", "Rating": "4.7/5" },
+        challenges: "Users find professional design software too complex and expensive. Mobile apps often lack advanced features needed for desktop workflows. Businesses need consistent branding across multiple platforms. Quick turnaround time is essential for social media marketing.",
+        solution: "EditEZY provides a powerful yet intuitive web-based design platform that combines ease of use with professional capabilities. By offering pre-sized templates, drag-and-drop functionality, and cloud-based project management, it enables users to create stunning visuals quickly and efficiently from any device.",
+        testimonial: { name: "Sarah Lee", position: "Marketing Manager", text: "The best web tool for quick designs!" },
+        screenshots: [
+            editweb1,
+            editweb2
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 16, 
+        title: "Varahi SelfDriveCars – Official Website", 
+        type: "website",
+        description: "Varahi SelfDriveCars is a premier car rental service offering a wide range of self-drive vehicles for leisure and business travelers.",
+        fullDescription: "The Varahi SelfDriveCars official website serves as the primary digital gateway for customers seeking reliable self-drive car rental services in Hyderabad. The platform showcases the extensive fleet of vehicles, including hatchbacks, sedans, SUVs, and luxury cars, with detailed specifications and pricing. Users can browse availability, compare vehicles, read customer reviews, and book rentals directly through the secure online system. The website emphasizes transparency, convenience, and customer satisfaction, providing detailed information on rental policies, insurance coverage, and pickup locations. It integrates seamlessly with the mobile app to offer a unified experience for both web and mobile users.",
+        image: "/assets/portfolio/carrentlogo.png", 
+        icon: "/assets/portfolio/carrentlogo.png",
+        websiteLink: "https://varahiselfdrivecars.com/",
+        client: "Varahi Cabs",
+        category: "Car Rental, Travel, Transportation, Web Portal, Booking System",
+        year: "2024",
+        duration: "4 Months",
+        technologies: ["React", "Node.js", "MongoDB", "Google Maps API", "Stripe"],
+        features: [
+            "Comprehensive vehicle catalog",
+            "Real-time availability check",
+            "Online booking system",
+            "Detailed pricing breakdown",
+            "Customer reviews and ratings",
+            "Rental policy information",
+            "Insurance details",
+            "Pickup location maps",
+            "FAQ and support section",
+            "Mobile-responsive design",
+            "Secure payment gateway",
+            "User account management",
+            "Booking history tracking",
+            "Promotional offers display",
+            "SEO optimized content"
+        ],
+        results: { "Traffic": "+200%", "Bookings": "+150%", "Conversion": "4.5%", "Speed": "1.5s" },
+        challenges: "Customers need detailed information before booking. Trust is crucial for self-drive rentals. Mobile-only apps limit access for desktop users. SEO visibility is key for local search traffic.",
+        solution: "The Varahi website provides a robust, informative, and user-friendly platform that builds trust through transparency. By offering detailed vehicle info, clear pricing, and easy booking, it captures desktop traffic and complements the mobile app, driving overall business growth.",
+        testimonial: { name: "Rahul Patel", position: "CEO, Varahi Cabs", text: "Our website drives significant bookings!" },
+        screenshots: [
+            Varahiweb1,
+            Varahiweb2,
+            Varahiweb3,
+            Varahiweb4,
+            Varahiweb5,
+            Varahiweb6
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 18, 
+        title: "Vegiffyy – Vegetarian Food Delivery Website", 
+        type: "website",
+        description: "Vegiffyy is a cutting-edge mobile food delivery application focused on fresh, hygienic, and delicious vegetarian meals.",
+        fullDescription: "The Vegiffyy website extends the brand's mission of providing 100% pure vegetarian food delivery to a broader audience. It serves as an informational hub and ordering platform for users who prefer browsing on desktop. The site features a curated list of verified vegetarian restaurants, cloud kitchens, and sweet shops. Users can explore menus, read about the hygiene standards, learn about the vendor partnership program, and place orders. The website highlights the company's commitment to quality, purity, and community support, offering a seamless experience for health-conscious consumers and potential business partners.",
+        image: "/assets/portfolio/veg.jpeg", 
+        icon: "/assets/portfolio/veglogo.png",
+        websiteLink: "https://vegiffy.com/",
+        client: "Vegiffy Foods",
+        category: "Food Delivery, E-commerce, Vegetarian Dining, Restaurant Marketplace",
+        year: "2024",
+        duration: "5 Months",
+        technologies: ["React", "Node.js", "MongoDB", "Redux", "Tailwind CSS"],
+        features: [
+            "Online food ordering",
+            "Restaurant listings and menus",
+            "Vendor registration portal",
+            "Delivery partner sign-up",
+            "Hygiene and quality standards info",
+            "Customer testimonials",
+            "Blog and nutrition tips",
+            "Search and filter options",
+            "Secure checkout",
+            "Order tracking integration",
+            "Responsive web design",
+            "SEO friendly structure",
+            "Promotional campaigns",
+            "Customer support chat",
+            "Multi-city availability info"
+        ],
+        results: { "Traffic": "+180%", "Orders": "+25%", "Vendor Signups": "+50", "Rating": "4.8/5" },
+        challenges: "Desktop users want a full browsing experience. Need to attract vendors and delivery partners. Building trust in food purity online. Competing with general food delivery platforms.",
+        solution: "The Vegiffyy website offers a specialized, trustworthy platform for vegetarian food lovers. By highlighting verification processes, offering easy vendor onboarding, and providing a smooth ordering experience, it strengthens the brand's position as the go-to destination for pure vegetarian dining.",
+        testimonial: { name: "Priya Sharma", position: "CEO, Vegiffyy", text: "Our web presence has grown significantly!" },
+        screenshots: [
+            vegweb1,
+            vegweb2,
+            vegweb3,
+            vegweb4,
+            vegweb5,
+            vegweb6,
+            vegweb7
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 19, 
+        title: "Redemly – Rewards Platform Website", 
+        type: "website",
+        description: "Redemly simplifies redeeming rewards, discounts, and offers from various brands and retailers.",
+        fullDescription: "The Redemly website serves as the central hub for its gamified rewards ecosystem. It allows users to learn more about how to earn coins through walking, quizzes, and daily activities. The site features a directory of participating local businesses, detailed explanations of the reward redemption process, and a portal for merchants to join the network. With a clean, engaging design, the website educates users on the benefits of supporting local businesses while saving money. It also provides resources for businesses looking to increase customer loyalty through the Redemly Pro program.",
+        image: "/assets/portfolio/redemly.png", 
+        icon: "/assets/portfolio/redemlylogo.png",
+        websiteLink: "https://redemly.com/",
+        client: "Redemly Inc",
+        category: "Loyalty Program, Local Business, Gamification, Web Portal",
+        year: "2024",
+        duration: "4 Months",
+        technologies: ["React", "Firebase", "Node.js", "GraphQL"],
+        features: [
+            "How-it-works guide",
+            "Participating business directory",
+            "Merchant onboarding portal",
+            "Redemly Pro information",
+            "User testimonials",
+            "Blog on savings and health",
+            "FAQ section",
+            "Download app links",
+            "Secure user login",
+            "Reward balance check",
+            "Newsletter subscription",
+            "Contact support",
+            "Privacy policy",
+            "Terms of service",
+            "Interactive coin calculator"
+        ],
+        results: { "Visitors": "+30000", "Merchant Signups": "+100", "App Downloads": "+5000", "Engagement": "High" },
+        challenges: "Explaining the gamified model clearly. Attracting local businesses to the platform. Driving app downloads from web traffic. Maintaining user interest.",
+        solution: "The Redemly website effectively communicates the value proposition through clear visuals and interactive elements. By showcasing success stories and providing easy access for both users and merchants, it acts as a powerful acquisition channel for the mobile app and the B2B merchant network.",
+        testimonial: { name: "Alex Chen", position: "Founder, Redemly", text: "The website perfectly complements our app!" },
+        screenshots: [
+            Redemly1,
+            Redemly2,
+            Redemly3,
+            Redemly4,
+            Redemly5,
+            Redemly6,
+            Redemly7,
+            Redemly8,
+            Redemly9,
+            Redemly10,
+            Redemly11
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 20, 
+        title: "EditEZY – Professional Design Services Website", 
+        type: "website",
+        description: "EditEZY is an easy-to-use poster and graphic design platform helping users create eye-catching posters, banners, and social media creatives.",
+        fullDescription: "This iteration of the EditEZY website focuses on its professional design services and enterprise solutions. While the app targets individual creators, the website highlights bulk editing services, API integrations for e-commerce platforms, and custom design packages for agencies. It showcases case studies, before-and-after examples, and detailed service descriptions for background removal, retouching, and product photography enhancement. The site is designed to convert B2B clients by demonstrating reliability, speed, and cost-effectiveness.",
+        image: "/assets/portfolio/editezy.png", 
+        icon: "/assets/portfolio/editezy.png",
+        websiteLink: "https://editezy.com/",
+        client: "EditEZY Studios",
+        category: "B2B Services, Photo Editing, E-commerce Solutions, Digital Agency",
+        year: "2024",
+        duration: "6 Months",
+        technologies: ["Next.js", "Node.js", "PostgreSQL", "AWS"],
+        features: [
+            "B2B service packages",
+            "API documentation",
+            "Case studies and portfolio",
+            "Bulk upload tool",
+            "Enterprise pricing",
+            "Client dashboard",
+            "Quality guarantee",
+            "Turnaround time SLA",
+            "Dedicated account manager",
+            "Integration guides",
+            "Testimonials from brands",
+            "Blog on e-commerce trends",
+            "Contact sales form",
+            "Live chat support",
+            "Secure file transfer"
+        ],
+        results: { "B2B Clients": "+50", "Revenue": "+40%", "Retention": "95%", "Satisfaction": "4.9/5" },
+        challenges: "Convincing enterprises of quality and security. Managing large volume requests. Integrating with diverse e-commerce platforms. Competitive pricing pressure.",
+        solution: "The EditEZY website builds credibility through transparent processes, robust security features, and proven case studies. By offering tailored enterprise solutions and dedicated support, it positions itself as a reliable partner for high-volume image editing needs.",
+        testimonial: { name: "Emily Davis", position: "Lead Designer", text: "Essential for our workflow!" },
+        screenshots: [
+            "/assets/portfolio/editezy.png",
+            "/assets/portfolio/veg.jpeg",
+            "/assets/portfolio/redemly.png",
+            "/assets/portfolio/carrentlogo.png"
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 21, 
+        title: "Varahi SelfDriveCars – Corporate & Fleet Solutions", 
+        type: "website",
+        description: "Varahi SelfDriveCars is a premier car rental service offering a wide range of self-drive vehicles for leisure and business travelers.",
+        fullDescription: "This specialized section of the Varahi website caters to corporate clients and fleet managers. It offers tailored solutions for business travel, employee transportation, and long-term leasing. The platform provides detailed reporting, centralized billing, and priority support for corporate accounts. It highlights the safety, maintenance, and variety of the fleet, ensuring businesses can rely on Varahi for their mobility needs. The site also features information on insurance, liability, and compliance for corporate rentals.",
+        image: "/assets/portfolio/carrentlogo.png", 
+        icon: "/assets/portfolio/carrentlogo.png",
+        websiteLink: "https://varahiselfdrivecars.com/",
+        client: "Varahi Cabs",
+        category: "Corporate Travel, Fleet Management, B2B Rental, Transportation",
+        year: "2024",
+        duration: "4 Months",
+        technologies: ["React", "Node.js", "MongoDB", "Excel Export"],
+        features: [
+            "Corporate account management",
+            "Centralized billing",
+            "Monthly usage reports",
+            "Priority booking",
+            "Dedicated support line",
+            "Long-term leasing options",
+            "Employee travel policy integration",
+            "Fleet customization",
+            "Invoice generation",
+            "Multi-user access",
+            "Safety and compliance docs",
+            "Vehicle maintenance logs",
+            "Cost-saving analysis",
+            "Contract management",
+            "24/7 emergency support"
+        ],
+        results: { "Corporate Clients": "+20", "Fleet Size": "+50", "Revenue": "+30%", "Efficiency": "High" },
+        challenges: "Meeting diverse corporate compliance requirements. Providing detailed reporting. Ensuring vehicle availability for bulk bookings. Managing complex billing structures.",
+        solution: "The Varahi corporate portal streamlines business rentals with automated reporting, flexible billing, and dedicated support. It ensures businesses have reliable, compliant, and cost-effective mobility solutions for their teams.",
+        testimonial: { name: "Rahul Patel", position: "CEO, Varahi Cabs", text: "A game-changer for corporate clients!" },
+        screenshots: [
+            Varahi1,
+            Varahi2,
+            Varahi3,
+            Varahi4,
+            Varahi5,
+            Varahi6,
+            Varahi7,
+            Varahi8,
+            Varahi9,
+            Varahi10
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 24, 
+        title: "Nupura Car Service – Official Website", 
+        type: "website",
+        description: "Nupura Car Service is a reliable and affordable car service provider offering a wide range of automotive services.",
+        fullDescription: "The Nupura Car Service website provides a comprehensive overview of its automotive services, including self-drive rentals, chauffeur-driven cars, and maintenance packages. Designed for ease of use, the site allows customers to view the fleet, check service areas, read about safety protocols, and book services online. It emphasizes reliability, affordability, and customer satisfaction, featuring testimonials, FAQs, and detailed service descriptions. The website serves as a key touchpoint for building trust and converting visitors into loyal customers.",
+        image: "/assets/portfolio/carservicelogo.png", 
+        icon: "/assets/portfolio/carservicelogo.png",
+        websiteLink: "https://nupuraselfdrivecars.vercel.app/",
+        client: "Nupura Motors",
+        category: "Car Service, Auto Rental, Transportation, Web Portal",
+        year: "2024",
+        duration: "3 Months",
+        technologies: ["React", "Vercel", "Node.js", "MongoDB"],
+        features: [
+            "Service catalog",
+            "Online booking system",
+            "Fleet gallery",
+            "Pricing transparency",
+            "Customer reviews",
+            "Safety guidelines",
+            "FAQ section",
+            "Contact forms",
+            "Location maps",
+            "Mobile-responsive design",
+            "Fast loading speed",
+            "SEO optimization",
+            "Blog on car care",
+            "Promotional offers",
+            "Support ticket system"
+        ],
+        results: { "Traffic": "+150%", "Bookings": "+100%", "Inquiries": "+200", "Rating": "4.6/5" },
+        challenges: "Standing out in a crowded market. Building trust for new customers. Providing clear service information. Ensuring mobile compatibility.",
+        solution: "The Nupura website offers a clean, professional, and informative platform that highlights the company's strengths. By making booking easy and information accessible, it enhances customer confidence and drives conversions.",
+        testimonial: { name: "Vikram Singh", position: "CEO, Nupura Motors", text: "Our online presence is stronger than ever!" },
+        screenshots: [
+            "/assets/portfolio/carservicelogo.png",
+            "/assets/portfolio/veg.jpeg",
+            "/assets/portfolio/redemly.png",
+            "/assets/portfolio/editezy.png"
+        ],
+        BackgroundImage: bannerImage,
+    },
+    {
+        id: 25, 
+        title: "Dharmadwajam – News & Media Website", 
+        type: "website",
+        description: "Dharmadwajam is a digital platform providing news, informative articles, and creative posters focused on culture, society, and awareness.",
+        fullDescription: "The Dharmadwajam website is a digital news portal that delivers timely updates on culture, society, politics, and current affairs. With a focus on meaningful content, the site features articles, opinion pieces, video reports, and visually engaging posters. It serves as a hub for readers seeking unbiased, fact-based journalism with a regional focus on Telangana and Andhra Pradesh. The website offers a seamless reading experience with categories, search functionality, and subscription options for premium content. It aims to inform, inspire, and engage the community through high-quality storytelling.",
+        image: "/assets/portfolio/news.png", 
+        icon: "/assets/portfolio/news.png",
+        websiteLink: "https://dharmadhwajam.vercel.app/",
+        client: "Dharmadwajam Media",
+        category: "News Portal, Media, Journalism, Content Publishing",
+        year: "2024",
+        duration: "3 Months",
+        technologies: ["Next.js", "Firebase", "Node.js", "MongoDB"],
+        features: [
+            "Breaking news feed",
+            "Category-based browsing",
+            "Video news section",
+            "Poster and infographic gallery",
+            "Search functionality",
+            "User comments",
+            "Subscription plans",
+            "Newsletter signup",
+            "Social media sharing",
+            "Mobile-responsive layout",
+            "Fast content delivery",
+            "Ad management system",
+            "Editorial team profiles",
+            "Contact us page",
+            "Privacy policy"
+        ],
+        results: { "Page Views": "+50000", "Subscribers": "+2000", "Engagement": "High", "Shares": "+15000" },
+        challenges: "Maintaining editorial integrity. Keeping up with real-time news. Engaging readers in a digital age. Monetizing content effectively.",
+        solution: "The Dharmadwajam website provides a robust, fast, and engaging platform for news consumption. By focusing on quality content, visual storytelling, and user experience, it builds a loyal readership and establishes itself as a trusted source of information.",
+        testimonial: { name: "Ananya Reddy", position: "Editor", text: "A vital platform for our voice!" },
+        screenshots: [
+            Narada1,
+            Narada2,
+            Narada3,
+            Narada4,
+            Narada5,
+            Narada6,
+            Narada7,
+            Narada8,
+            Narada9,
+            Narada10,
+            Narada11
         ],
         BackgroundImage: bannerImage,
     }

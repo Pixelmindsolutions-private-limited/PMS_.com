@@ -19,12 +19,6 @@ function Portfolio() {
             image: "/assets/images/banner/pixelmind.jpg", icon: "/assets/images/logo/pixelmind.jpg",
             websiteLink: "https://www.pixelmindsolutions.com/",
         },
-        // {
-        //     id: 2, title: "QR AND CARDS", type: "website",
-        //     description: "QRandCards.com lets users design and personalize QR code cards for events, businesses, and private use. The website provides secure online ordering, real-time previews, and a smooth design experience—bridging traditional cards with digital interactivity using QR technology.",
-        //     image: "/assets/images/banner/qrandcards.jpg", icon: "/assets/images/logo/qrandcards.jpg",
-        //     websiteLink: "https://qrandcards.com/",
-        // },
         {
             id: 3, title: "BINGENJOY", type: "website",
             description: "Bingenjoy.com transforms private theater events into custom celebrations in a lavish, stage-inspired atmosphere—anniversaries, birthdays, proposals, and cake unveilings. Choose from gourmet meals, custom cakes, and live performances by musicians, actors, and interactive spectacles.",
@@ -37,19 +31,6 @@ function Portfolio() {
             image: "/assets/images/banner/carnival.jpg", icon: "/assets/images/logo/carnival.png",
             websiteLink: "https://carnivalcastle.com/",
         },
-        // {
-        //     id: 5, title: "1 SQUARE", type: "app",
-        //     description: "1Square is a clever and safe community marketplace platform created especially for Hyderabad. It facilitates the discovery, listing, and trading of goods within the community by bringing together local consumers and sellers with smooth listing, transparent communication, and secure transactions.",
-        //     image: "/assets/images/banner/onesquare.png", icon: "/assets/images/logo/onesquare.png",
-        //     playstoreLink: "https://play.google.com/store/apps/details?id=com.onesquare.onesquare",
-        //     appstoreLink: "https://apps.apple.com/app/1-square/com.onesquare.onesquare",
-        // },
-        // {
-        //     id: 6, title: "ATOZ KEY SOLUTION", type: "website",
-        //     description: "Atoz Key Solution is a modern social media and digital platform designed to connect people, businesses, and creators in one ecosystem. It enables users to share posts, run ads, manage campaigns, and interact with communities while offering powerful tools for digital growth and brand promotion.",
-        //     image: "/assets/portfolio/atoz.png", icon: "/assets/portfolio/atozlogo.png",
-        //     websiteLink: "https://atozkeysolution.com/",
-        // },
         {
             id: 7, title: "Vegiffyy", type: "app",
             description: "Vegiffyy is a cutting-edge mobile food delivery application focused on fresh, hygienic, and delicious vegetarian meals. It connects users with trusted local restaurants and home kitchens, offering easy ordering, quick delivery, and a seamless experience for healthy food lovers.",
@@ -155,8 +136,8 @@ function Portfolio() {
             //appstoreLink: "https://apps.apple.com/app/clynix/id0000000007",
         },
         {
-            id: 23, title: "Clynix", type: "website",
-            description: "Clynix is a smart medicine booking and delivery application allowing users to order prescribed and OTC medicines from nearby pharmacies. Digital prescription uploads, real-time order tracking, secure payments, and fast doorstep delivery make healthcare access simple and reliable.",
+            id: 23, title: "SimcuraRX", type: "website",
+            description: "SimcuraRX is a smart medicine booking and delivery application allowing users to order prescribed and OTC medicines from nearby pharmacies. Digital prescription uploads, real-time order tracking, secure payments, and fast doorstep delivery make healthcare access simple and reliable.",
             image: "/assets/portfolio/clynixlogo.png", icon: "/assets/portfolio/clynixlogo.png",
             websiteLink: "https://www.simcurarx.com/",
         },

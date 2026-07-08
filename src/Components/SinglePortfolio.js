@@ -144,7 +144,7 @@ function SinglePortfolio() {
                         backgroundRepeat: "no-repeat",
                     }}
                 >
-                    
+
 
                     <div className="container position-relative" style={{ zIndex: 2 }}>
                         <div className="row align-items-center">
@@ -303,13 +303,14 @@ function SinglePortfolio() {
                                         </div>
                                     ) : (
                                         /* ── Generic Frame (Digital Marketing) ── */
-                                        <div className="generic-frame">
+                                        <div className="browser-screen position-relative">
                                             <img
                                                 key={activeImage}
                                                 src={screenshots[activeImage] || project.image}
                                                 alt={project.title}
-                                                className="generic-frame-img gallery-fade"
+                                                className="browser-screen-img gallery-fade"
                                             />
+
                                         </div>
                                     )}
 
