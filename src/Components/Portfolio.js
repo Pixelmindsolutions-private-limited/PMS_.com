@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
+import portfolioItems from '../Home/PortfolioData';
+
 
 function Portfolio() {
     const [expandedItems, setExpandedItems] = useState({});
@@ -12,148 +14,7 @@ function Portfolio() {
         setExpandedItems((prev) => ({ ...prev, [id]: !prev[id] }));
     };
 
-    const portfolioItems = [
-        {
-            id: 1, title: "PIXELMINDSOLUTIONS", type: "website",
-            description: "Pixelmind Solutions is a leading IT services provider, offering innovative solutions in website development, mobile application design, and digital marketing. Dedicated to helping businesses thrive in the digital world by delivering tailored, high-quality services that enhance user experiences, drive growth, and build a strong online presence.",
-            image: "/assets/images/banner/pixelmind.jpg", icon: "/assets/images/logo/pixelmind.jpg",
-            websiteLink: "https://www.pixelmindsolutions.com/",
-        },
-        {
-            id: 3, title: "BINGENJOY", type: "website",
-            description: "Bingenjoy.com transforms private theater events into custom celebrations in a lavish, stage-inspired atmosphere—anniversaries, birthdays, proposals, and cake unveilings. Choose from gourmet meals, custom cakes, and live performances by musicians, actors, and interactive spectacles.",
-            image: "/assets/images/banner/binenjoy.jpg", icon: "/assets/images/logo/binenjoy.png",
-            websiteLink: "https://bingenjoy.com/",
-        },
-        {
-            id: 4, title: "CARNIVAL CASTLE", type: "website",
-            description: "CarnivalCastle.com is a versatile private‑theater and events venue transforming every celebration into a theatrical experience. Immersive stage-like settings, vibrant decor themes, and a curated lineup of live entertainment with fully customizable packages.",
-            image: "/assets/images/banner/carnival.jpg", icon: "/assets/images/logo/carnival.png",
-            websiteLink: "https://carnivalcastle.com/",
-        },
-        {
-            id: 7, title: "Vegiffyy", type: "app",
-            description: "Vegiffyy is a cutting-edge mobile food delivery application focused on fresh, hygienic, and delicious vegetarian meals. It connects users with trusted local restaurants and home kitchens, offering easy ordering, quick delivery, and a seamless experience for healthy food lovers.",
-            image: "/assets/portfolio/veg.jpeg", icon: "/assets/portfolio/veglogo.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.veggify.veegify",
-            appstoreLink: "https://apps.apple.com/in/app/vegiffy/id6757138352",
-        },
-        {
-            id: 8, title: "Redemly", type: "app",
-            description: "Redemly simplifies redeeming rewards, discounts, and offers from various brands and retailers. It provides a seamless experience to discover, collect, and redeem points or vouchers directly from smartphones, enhancing customer loyalty and engagement.",
-            image: "/assets/portfolio/redemly.png", icon: "/assets/portfolio/redemlylogo.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.srikanth.redeemly",
-            appstoreLink: "https://apps.apple.com/in/app/redemly/id6755115759",
-        },
-        {
-            id: 9, title: "EditEZY", type: "app",
-            description: "EditEZY is an easy-to-use poster and graphic design platform that helps users create eye-catching posters, banners, and social media creatives in minutes. With ready-made templates, drag-and-drop editing, and powerful customization tools, professional design is accessible to everyone.",
-            image: "/assets/portfolio/editezy.png", icon: "/assets/portfolio/editezy.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.posternova.posternova",
-            appstoreLink: "https://apps.apple.com/in/app/editezy/id6753908761",
-        },
-        {
-            id: 10, title: "Varahi SelfDriveCars", type: "app",
-            description: "Varahi SelfDriveCars is a premier car rental service offering a wide range of self-drive vehicles for leisure and business travelers. Focus on convenience, affordability, and customer satisfaction with flexible rental options, easy booking, and well-maintained vehicles.",
-            image: "/assets/portfolio/carrentlogo.png", icon: "/assets/portfolio/carrentlogo.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.self_drive_cars",
-            appstoreLink: "https://apps.apple.com/in/app/varahi-self-drive-cars/id6753347255",
-        },
-        {
-            id: 11, title: "Techsterker", type: "website",
-            description: "Techsterker is an institute teaching coding to students and professionals. They provide courses on various programming languages and technologies, helping learners enhance their skills and advance their careers in the tech industry.",
-            image: "/assets/portfolio/tech.png", icon: "/assets/portfolio/techlogo.png",
-            websiteLink: "https://techsterker.com/",
-        },
-        {
-            id: 12, title: "Dharmadwajam", type: "app",
-            description: "Dharmadwajam is a digital platform providing news, informative articles, and creative posters focused on culture, society, and awareness. It serves as a hub for meaningful content, delivering timely updates and visually engaging designs to keep users informed and inspired.",
-            image: "/assets/portfolio/news.png", icon: "/assets/portfolio/news.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.dhama.dharmadhvajam",
-            appstoreLink: "https://apps.apple.com/in/app/dharmadhwajam/id6756093088",
-        },
-        {
-            id: 13, title: "BackUp Tickets", type: "app",
-            description: "BackUp Tickets is a secure ticket resale and exchange platform to buy and sell event tickets with ease. It connects verified buyers and sellers, ensuring transparent pricing, safe transactions, and a reliable way to transfer tickets for concerts, movies, sports, and live events.",
-            image: "/assets/portfolio/atoz.png", icon: "/assets/portfolio/atoz.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.backup.backup_ticket",
-            // appstoreLink: "https://apps.apple.com/app/backup-tickets/id0000000005",
-        },
-        {
-            id: 14, title: "SS Air Conditioners", type: "digital",
-            description: "SS Air Conditioners is a trusted provider of air conditioning solutions offering a wide range of products and services for residential and commercial needs. Focus on energy efficiency, reliability, and customer satisfaction with expert installation, maintenance, and repair services.",
-            image: "/assets/portfolio/ss.png", icon: "/assets/portfolio/sslogo.png",
-            websiteLink: "https://www.ssairconditioners.com/",
-        },
-        {
-            id: 15, title: "EditEZY", type: "digital",
-            description: "EditEZY is an easy-to-use poster and graphic design platform helping users create eye-catching posters, banners, and social media creatives in minutes. With ready-made templates, drag-and-drop editing, and powerful customization tools, professional design is accessible to everyone.",
-            image: "/assets/portfolio/editezy.png", icon: "/assets/portfolio/editezy.png",
-            websiteLink: "https://editezy.com/",
-        },
-        {
-            id: 16, title: "Varahi SelfDriveCars", type: "digital",
-            description: "Varahi SelfDriveCars is a premier car rental service offering a wide range of self-drive vehicles for leisure and business travelers. Focus on convenience, affordability, and customer satisfaction with flexible rental options, easy booking, and well-maintained vehicles.",
-            image: "/assets/portfolio/carrentlogo.png", icon: "/assets/portfolio/carrentlogo.png",
-            websiteLink: "https://varahiselfdrivecars.com/",
-        },
-        {
-            id: 17, title: "Nupura Car Service", type: "app",
-            description: "Nupura Car Service is a reliable and affordable car service provider offering a wide range of automotive services. With a commitment to quality and customer satisfaction, Nupura Car Service ensures your vehicle is well-maintained and ready for any journey.",
-            image: "/assets/portfolio/carservicelogo.png", icon: "/assets/portfolio/carservicelogo.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.nupura.nupura_cars",
-            appstoreLink: "https://apps.apple.com/in/app/nupura-cars/id6758536789",
-        },
-        {
-            id: 18, title: "Vegiffyy", type: "website",
-            description: "Vegiffyy is a cutting-edge mobile food delivery application focused on fresh, hygienic, and delicious vegetarian meals. It connects users with trusted local restaurants and home kitchens, offering easy ordering, quick delivery, and a seamless experience for healthy food lovers.",
-            image: "/assets/portfolio/veg.jpeg", icon: "/assets/portfolio/veglogo.png",
-            websiteLink: "https://vegiffy.com/",
-        },
-        {
-            id: 19, title: "Redemly", type: "website",
-            description: "Redemly simplifies redeeming rewards, discounts, and offers from various brands and retailers. It provides a seamless experience to discover, collect, and redeem points or vouchers directly from smartphones, enhancing customer loyalty and engagement.",
-            image: "/assets/portfolio/redemly.png", icon: "/assets/portfolio/redemlylogo.png",
-            websiteLink: "https://redemly.com/",
-        },
-        {
-            id: 20, title: "EditEZY", type: "website",
-            description: "EditEZY is an easy-to-use poster and graphic design platform helping users create eye-catching posters, banners, and social media creatives in minutes. With ready-made templates, drag-and-drop editing, and powerful customization tools, professional design is accessible to everyone.",
-            image: "/assets/portfolio/editezy.png", icon: "/assets/portfolio/editezy.png",
-            websiteLink: "https://editezy.com/",
-        },
-        {
-            id: 21, title: "Varahi SelfDriveCars", type: "website",
-            description: "Varahi SelfDriveCars is a premier car rental service offering a wide range of self-drive vehicles for leisure and business travelers. Focus on convenience, affordability, and customer satisfaction with flexible rental options, easy booking, and well-maintained vehicles.",
-            image: "/assets/portfolio/carrentlogo.png", icon: "/assets/portfolio/carrentlogo.png",
-            websiteLink: "https://varahiselfdrivecars.com/",
-        },
-        {
-            id: 22, title: "Clynix", type: "app",
-            description: "Clynix is a smart medicine booking and delivery application allowing users to order prescribed and OTC medicines from nearby pharmacies. Digital prescription uploads, real-time order tracking, secure payments, and fast doorstep delivery make healthcare access simple and reliable.",
-            image: "/assets/portfolio/clynixlogo.png", icon: "/assets/portfolio/clynixlogo.png",
-            playstoreLink: "https://play.google.com/store/apps/details?id=com.clynix.clynix",
-            //appstoreLink: "https://apps.apple.com/app/clynix/id0000000007",
-        },
-        {
-            id: 23, title: "SimcuraRX", type: "website",
-            description: "SimcuraRX is a smart medicine booking and delivery application allowing users to order prescribed and OTC medicines from nearby pharmacies. Digital prescription uploads, real-time order tracking, secure payments, and fast doorstep delivery make healthcare access simple and reliable.",
-            image: "/assets/portfolio/clynixlogo.png", icon: "/assets/portfolio/clynixlogo.png",
-            websiteLink: "https://www.simcurarx.com/",
-        },
-        {
-            id: 24, title: "Nupura Car Service", type: "website",
-            description: "Nupura Car Service is a reliable and affordable car service provider offering a wide range of automotive services. With a commitment to quality and customer satisfaction, Nupura Car Service ensures your vehicle is well-maintained and ready for any journey.",
-            image: "/assets/portfolio/carservicelogo.png", icon: "/assets/portfolio/carservicelogo.png",
-            websiteLink: "https://nupuraselfdrivecars.vercel.app/",
-        },
-        {
-            id: 25, title: "Dharmadwajam", type: "website",
-            description: "Dharmadwajam is a digital platform providing news, informative articles, and creative posters focused on culture, society, and awareness. It serves as a hub for meaningful content, delivering timely updates and visually engaging designs to keep users informed and inspired.",
-            image: "/assets/portfolio/news.png", icon: "/assets/portfolio/news.png",
-            websiteLink: "https://dharmadhwajam.vercel.app/",
-        },
-    ];
+   
 
     const filteredItems = activeFilter === 'all'
         ? portfolioItems
