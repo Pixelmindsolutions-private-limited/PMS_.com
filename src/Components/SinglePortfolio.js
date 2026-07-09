@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link, useParams } from 'react-router-dom';
@@ -13,6 +13,8 @@ function SinglePortfolio() {
     const [project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isPaused, setIsPaused] = useState(false);
+    const [relatedProjects, setRelatedProjects] = useState([]);
+    const scrollContainerRef = useRef(null);
 
     useEffect(() => {
         const foundProject = portfolioItems.find(
@@ -22,6 +24,17 @@ function SinglePortfolio() {
         setProject(foundProject || null);
         setLoading(false);
         setActiveImage(0);
+
+        // Find related projects of the same type
+        if (foundProject) {
+            const related = portfolioItems
+                .filter(item => 
+                    item.id !== foundProject.id && 
+                    item.type === foundProject.type
+                )
+                .slice(0, 6); // Get up to 6 related projects
+            setRelatedProjects(related);
+        }
     }, [id]);
 
     const typeMeta = {
@@ -33,6 +46,7 @@ function SinglePortfolio() {
             lightBg: "#eff6ff",
             emoji: "🌐",
             screenshotLabel: "Website Screenshots",
+            videoLabel: "Website Demo"
         },
         app: {
             label: "Mobile App",
@@ -42,6 +56,7 @@ function SinglePortfolio() {
             lightBg: "#eff6ff",
             emoji: "📱",
             screenshotLabel: "App Screenshots",
+            videoLabel: "App Demo Video"
         },
         digital: {
             label: "Digital Marketing",
@@ -51,6 +66,7 @@ function SinglePortfolio() {
             lightBg: "#fdf2f8",
             emoji: "📊",
             screenshotLabel: "Marketing Materials",
+            videoLabel: "Campaign Video"
         },
     };
 
@@ -96,6 +112,25 @@ function SinglePortfolio() {
         setActiveImage(index);
     };
 
+    // Scroll functions
+    const scrollLeft = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({
+                left: -320,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const scrollRight = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({
+                left: 320,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     if (loading) {
         return (
             <div
@@ -122,7 +157,6 @@ function SinglePortfolio() {
         );
     }
 
-
     return (
         <div>
             <Helmet>
@@ -136,24 +170,27 @@ function SinglePortfolio() {
 
                 {/* ── Premium Hero Banner ── */}
                 <section
-                    className="hero-banner position-relative overflow-hidden"
+                    className="position-relative overflow-hidden"
                     style={{
                         backgroundImage: `url(${project.BackgroundImage || bannerImage})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
+                        minHeight: "380px",
+                        paddingTop: "80px",
+                        paddingBottom: "60px"
                     }}
                 >
-
+                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: "rgba(0, 0, 0, 0.2)", zIndex: 1 }}></div>
 
                     <div className="container position-relative" style={{ zIndex: 2 }}>
                         <div className="row align-items-center">
                             <div className="col-lg-8">
                                 <div className="hero-content">
 
-                                    <span className="badge-glass d-inline-flex align-items-center rounded-pill px-4 py-2 mb-3">
-                                        <i className={`fa-solid ${meta.icon} me-2 text-teal`}></i>
-                                        <span className="text-white fw-semibold">
+                                    <span className="d-inline-flex align-items-center rounded-pill px-4 py-2 mb-3" style={{ background: "rgba(255,255,255,0.18)", color: "#fff", border: "1px solid rgba(255,255,255,0.25)" }}>
+                                        <i className={`fa-solid ${meta.icon} me-2`} style={{ color: "#06cabc" }}></i>
+                                        <span className="fw-semibold">
                                             {meta.label}
                                         </span>
                                     </span>
@@ -170,51 +207,46 @@ function SinglePortfolio() {
 
                                     <div className="d-flex flex-wrap gap-3 mb-3">
                                         <span className="text-white-50">
-                                            <i className="fa-regular fa-user me-2 text-teal"></i>
+                                            <i className="fa-regular fa-user me-2" style={{ color: "#06cabc" }}></i>
                                             {project.client}
                                         </span>
 
                                         <span className="text-white-50">
-                                            <i className="fa-regular fa-folder me-2 text-teal"></i>
+                                            <i className="fa-regular fa-folder me-2" style={{ color: "#06cabc" }}></i>
                                             {project.category}
                                         </span>
 
                                         <span className="text-white-50">
-                                            <i className="fa-regular fa-calendar me-2 text-teal"></i>
+                                            <i className="fa-regular fa-calendar me-2" style={{ color: "#06cabc" }}></i>
                                             {project.year}
                                         </span>
 
                                         <span className="text-white-50">
-                                            <i className="fa-regular fa-clock me-2 text-teal"></i>
+                                            <i className="fa-regular fa-clock me-2" style={{ color: "#06cabc" }}></i>
                                             {project.duration}
                                         </span>
                                     </div>
 
                                     <nav aria-label="breadcrumb">
                                         <div className="d-flex align-items-center flex-wrap">
-
                                             <Link
                                                 to="/"
                                                 className="text-white text-decoration-none fw-semibold"
                                             >
                                                 Home
                                             </Link>
-
-                                            <span className="mx-2 text-teal">/</span>
-
+                                            <span className="mx-2" style={{ color: "#06cabc" }}>/</span>
                                             <Link
                                                 to="/portfolio"
-                                                className="text-white text-decoration-none fw-teal"
+                                                className="text-white text-decoration-none"
+                                                style={{ color: "#06cabc" }}
                                             >
                                                 Portfolio
                                             </Link>
-
-                                            <span className="mx-2 text-teal">/</span>
-
-                                            <span className="text-teal fw-bold">
+                                            <span className="mx-2" style={{ color: "#06cabc" }}>/</span>
+                                            <span className="fw-bold" style={{ color: "#06cabc" }}>
                                                 {project.title}
                                             </span>
-
                                         </div>
                                     </nav>
 
@@ -223,13 +255,13 @@ function SinglePortfolio() {
                         </div>
                     </div>
 
-                    <div className="hero-shape shape-1"></div>
-                    <div className="hero-shape shape-2"></div>
+                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "400px", height: "400px", background: "#fff", top: "-20%", right: "-10%", zIndex: 2 }}></div>
+                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "300px", height: "300px", background: "#fff", bottom: "-20%", left: "-10%", zIndex: 2 }}></div>
                 </section>
 
                 {/* ── Back Button ── */}
                 <div className="container mt-4">
-                    <Link to="/portfolio" className="btn btn-back rounded-pill px-4 py-2 shadow-sm">
+                    <Link to="/portfolio" className="btn rounded-pill px-4 py-2 shadow-sm" style={{ background: "#f8fafc", color: "#1e293b", border: "2px solid #e2e8f0" }}>
                         <i className="fa-solid fa-arrow-left me-2"></i>Back to Portfolio
                     </Link>
                 </div>
@@ -245,13 +277,13 @@ function SinglePortfolio() {
 
                                 {/* Type + Year badges sit above the frame — no overlap with the screenshot */}
                                 <div className="d-flex justify-content-between align-items-center mb-3">
-                                    <span className="badge-solid rounded-pill px-3 py-2" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})` }}>
+                                    <span className="rounded-pill px-3 py-2 text-white" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})`, fontSize: "13px", fontWeight: "600" }}>
                                         <i className={`fa-solid ${meta.icon} me-1`}></i>
                                         {meta.label}
                                     </span>
                                     <span className="d-flex align-items-center gap-2">
-                                        <span className="live-dot"></span>
-                                        <span className="badge-solid-dark rounded-pill px-3 py-2">
+                                        <span className="d-inline-block rounded-circle" style={{ width: "9px", height: "9px", background: "#22c55e", boxShadow: "0 0 0 rgba(34,197,94,0.6)", animation: "pulseDot 1.8s infinite" }}></span>
+                                        <span className="rounded-pill px-3 py-2" style={{ background: "#1e293b", color: "#fff", fontSize: "13px", fontWeight: "600" }}>
                                             <i className="fa-regular fa-calendar me-1"></i>{project.year}
                                         </span>
                                     </span>
@@ -259,80 +291,93 @@ function SinglePortfolio() {
 
                                 {/* Device Mockup */}
                                 <div
-                                    className={`preview-panel rounded-4 shadow-lg p-3 p-md-4 text-center ${isApp ? 'preview-panel-app' : 'preview-panel-web'}`}
+                                    className={`rounded-4 shadow-lg p-3 p-md-4 text-center ${isApp ? 'bg-gradient' : ''}`}
+                                    style={{
+                                        background: isApp ? 'radial-gradient(circle at 50% 15%, #eef2ff, #dbeafe 60%, #e0f2fe)' : 'linear-gradient(150deg, #f1f5f9, #e2e8f0)',
+                                        border: '1px solid rgba(15,23,42,0.05)',
+                                        transition: 'all 0.3s ease'
+                                    }}
                                     onMouseEnter={() => setIsPaused(true)}
                                     onMouseLeave={() => setIsPaused(false)}
                                 >
 
                                     {isApp ? (
                                         /* ── Mobile / App Mockup ── */
-                                        <div className="phone-frame mx-auto">
-                                            <div className="phone-notch"></div>
-                                            <div className="phone-screen">
+                                        <div className="mx-auto" style={{ width: "240px", height: "490px", background: "#111827", borderRadius: "38px", padding: "12px", boxShadow: "0 20px 45px rgba(15, 23, 42, 0.3)", position: "relative" }}>
+                                            <div className="position-absolute top-0 start-50 translate-middle-x" style={{ width: "90px", height: "18px", background: "#111827", borderBottomLeftRadius: "14px", borderBottomRightRadius: "14px", zIndex: 2, top: "12px" }}></div>
+                                            <div className="w-100 h-100 rounded-4 overflow-hidden" style={{ background: "#000" }}>
                                                 <img
                                                     key={activeImage}
                                                     src={screenshots[activeImage] || project.image}
                                                     alt={project.title}
-                                                    className="phone-screen-img gallery-fade"
+                                                    className="w-100 h-100"
+                                                    style={{ objectFit: "cover", objectPosition: "top" }}
                                                 />
                                             </div>
-                                            <div className="phone-home-indicator"></div>
+                                            <div className="position-absolute start-50 translate-middle-x" style={{ bottom: "14px", width: "80px", height: "4px", borderRadius: "4px", background: "rgba(255,255,255,0.6)" }}></div>
                                         </div>
                                     ) : isWebsite ? (
                                         /* ── Desktop / Website Mockup ── */
-                                        <div className="browser-frame">
-                                            <div className="browser-toolbar d-flex align-items-center gap-2 px-3 py-2">
-                                                <span className="browser-dot" style={{ background: '#ff5f57' }}></span>
-                                                <span className="browser-dot" style={{ background: '#febc2e' }}></span>
-                                                <span className="browser-dot" style={{ background: '#28c840' }}></span>
-                                                <div className="browser-address flex-grow-1 ms-2 px-3 py-1 rounded-pill small text-truncate d-flex align-items-center">
-                                                    <i className="fa-solid fa-lock me-2" style={{ fontSize: '10px' }}></i>
+                                        <div className="w-100 rounded-4 overflow-hidden" style={{ background: "#fff", boxShadow: "0 20px 45px rgba(15, 23, 42, 0.2)", border: "1px solid rgba(15,23,42,0.06)" }}>
+                                            <div className="d-flex align-items-center gap-2 px-3 py-2" style={{ background: "linear-gradient(180deg, #f4f6f8, #e9edf1)", borderBottom: "1px solid #e2e8f0" }}>
+                                                <span className="rounded-circle" style={{ width: "11px", height: "11px", background: "#ff5f57" }}></span>
+                                                <span className="rounded-circle" style={{ width: "11px", height: "11px", background: "#febc2e" }}></span>
+                                                <span className="rounded-circle" style={{ width: "11px", height: "11px", background: "#28c840" }}></span>
+                                                <div className="flex-grow-1 ms-2 px-3 py-1 rounded-pill small text-truncate d-flex align-items-center" style={{ background: "#fff", border: "1px solid #e2e8f0", color: "#64748b", fontSize: "12px" }}>
+                                                    <i className="fa-solid fa-lock me-2" style={{ fontSize: "10px" }}></i>
                                                     {displayUrl}
                                                 </div>
-
                                             </div>
-                                            <div className="browser-screen position-relative">
+                                            <div className="position-relative" style={{ width: "100%", height: "500px", overflowY: "auto", overflowX: "hidden", background: "#fff" }}>
                                                 <img
                                                     key={activeImage}
                                                     src={screenshots[activeImage] || project.image}
                                                     alt={project.title}
-                                                    className="browser-screen-img gallery-fade"
+                                                    className="w-100"
+                                                    style={{ display: "block", height: "auto", objectFit: "contain" }}
                                                 />
-
                                             </div>
                                         </div>
                                     ) : (
                                         /* ── Generic Frame (Digital Marketing) ── */
-                                        <div className="browser-screen position-relative">
+                                        <div className="position-relative" style={{ width: "100%", height: "500px", overflowY: "auto", overflowX: "hidden", background: "#fff" }}>
                                             <img
                                                 key={activeImage}
                                                 src={screenshots[activeImage] || project.image}
                                                 alt={project.title}
-                                                className="browser-screen-img gallery-fade"
+                                                className="w-100"
+                                                style={{ display: "block", height: "auto", objectFit: "contain" }}
                                             />
-
                                         </div>
                                     )}
 
                                     {/* ── Gallery Player Dots ── */}
                                     {screenshots.length > 1 && (
-                                        <div className="gallery-dots d-flex justify-content-center align-items-center gap-2 mt-3">
+                                        <div className="d-flex justify-content-center align-items-center gap-2 mt-3 flex-wrap">
                                             {screenshots.map((_, index) => (
                                                 <button
                                                     key={index}
                                                     type="button"
                                                     aria-label={`Go to slide ${index + 1}`}
-                                                    className={`gallery-dot ${activeImage === index ? 'gallery-dot-active' : ''}`}
-                                                    style={activeImage === index ? { background: meta.color } : undefined}
+                                                    className="border-0 p-0 rounded-pill position-relative overflow-hidden"
+                                                    style={{
+                                                        width: activeImage === index ? "34px" : "28px",
+                                                        height: "6px",
+                                                        background: activeImage === index ? meta.color : "rgba(15, 23, 42, 0.15)",
+                                                        cursor: "pointer",
+                                                        transition: "all 0.3s ease"
+                                                    }}
                                                     onClick={() => goToSlide(index)}
                                                 >
                                                     {activeImage === index && (
                                                         <span
                                                             key={`progress-${activeImage}-${isPaused}`}
-                                                            className="gallery-dot-progress"
+                                                            className="position-absolute top-0 start-0 h-100 rounded-pill"
                                                             style={{
                                                                 background: meta.color,
-                                                                animationPlayState: isPaused ? 'paused' : 'running',
+                                                                width: "0%",
+                                                                animation: `galleryProgress 3s linear ${isPaused ? 'paused' : 'forwards'}`,
+                                                                borderRadius: "6px"
                                                             }}
                                                         ></span>
                                                     )}
@@ -353,30 +398,55 @@ function SinglePortfolio() {
                                             <div className={isApp ? 'col-3 col-sm-2' : 'col-3'} key={index}>
                                                 {isApp ? (
                                                     <div
-                                                        className={`phone-thumb mx-auto ${activeImage === index ? 'active-thumb' : ''}`}
-                                                        style={{ borderColor: activeImage === index ? meta.color : 'transparent' }}
+                                                        className="mx-auto position-relative rounded-4"
+                                                        style={{
+                                                            aspectRatio: "9/17",
+                                                            background: "#111827",
+                                                            padding: "4px",
+                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                            borderRadius: "16px",
+                                                            cursor: "pointer",
+                                                            transition: "all 0.3s ease"
+                                                        }}
                                                         onClick={() => goToSlide(index)}
                                                     >
-                                                        <div className="phone-thumb-notch"></div>
-                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="phone-thumb-img" />
+                                                        <div className="position-absolute top-0 start-50 translate-middle-x" style={{ width: "26px", height: "5px", borderRadius: "4px", background: "#111827", zIndex: 2, top: "6px" }}></div>
+                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="w-100 h-100 rounded-3" style={{ objectFit: "cover", objectPosition: "top" }} />
                                                     </div>
                                                 ) : isWebsite ? (
                                                     <div
-                                                        className={`browser-thumb ${activeImage === index ? 'active-thumb' : ''}`}
-                                                        style={{ borderColor: activeImage === index ? meta.color : 'transparent' }}
+                                                        className="w-100 rounded-3 overflow-hidden"
+                                                        style={{
+                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                            borderRadius: "10px",
+                                                            cursor: "pointer",
+                                                            transition: "all 0.3s ease",
+                                                            background: "#fff",
+                                                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+                                                        }}
                                                         onClick={() => goToSlide(index)}
                                                     >
-                                                        <div className="browser-thumb-bar">
-                                                            <span></span><span></span><span></span>
+                                                        <div className="d-flex align-items-center gap-1 px-2" style={{ height: "12px", background: "#f1f5f9" }}>
+                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
                                                         </div>
-                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="browser-thumb-img" />
+                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="w-100" style={{ height: "58px", objectFit: "cover", objectPosition: "top" }} />
                                                     </div>
                                                 ) : (
                                                     <img
                                                         src={img}
                                                         alt={`${project.title} ${index + 1}`}
-                                                        className={`generic-thumb ${activeImage === index ? 'active-thumb' : ''}`}
-                                                        style={{ borderColor: activeImage === index ? meta.color : 'transparent' }}
+                                                        className="w-100 rounded-3"
+                                                        style={{
+                                                            height: "80px",
+                                                            objectFit: "cover",
+                                                            objectPosition: "top",
+                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                            borderRadius: "10px",
+                                                            cursor: "pointer",
+                                                            transition: "all 0.3s ease"
+                                                        }}
                                                         onClick={() => goToSlide(index)}
                                                     />
                                                 )}
@@ -388,15 +458,12 @@ function SinglePortfolio() {
                                 {/* ── Video Section (App Only) ── */}
                                 {isApp && project?.videoId && (
                                     <div className="card border-0 rounded-4 shadow-sm mt-3 overflow-hidden">
-                                        {/* Header */}
                                         <div className="px-3 pt-3">
                                             <h6 className="fw-bold mb-0" style={{ color: meta.color }}>
                                                 <i className="fa-solid fa-circle-play me-2"></i>
                                                 {meta.videoLabel}
                                             </h6>
                                         </div>
-
-                                        {/* Video */}
                                         <div className="ratio ratio-16x9 mt-3">
                                             <iframe
                                                 src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${project.videoId}&disablekb=1`}
@@ -417,43 +484,23 @@ function SinglePortfolio() {
                                     </h6>
                                     <div className="d-flex flex-wrap gap-2">
                                         {(project.technologies || []).map((tech, index) => (
-                                            <span key={index} className="badge-tech bg-light border rounded-pill px-3 py-2">
+                                            <span key={index} className="bg-light border rounded-pill px-3 py-2" style={{ fontSize: "13px", fontWeight: "500", borderColor: "#e2e8f0 !important" }}>
                                                 {tech}
                                             </span>
                                         ))}
                                     </div>
                                 </div>
-
-                                {/* Results */}
-                                {/* {project.results && Object.keys(project.results).length > 0 && (
-                                    <div className="card border-0 rounded-4 shadow-sm mt-3 p-3" style={{ background: meta.lightBg }}>
-                                        <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
-                                            <i className="fa-solid fa-chart-simple me-2"></i>
-                                            Project Results
-                                        </h6>
-                                        <div className="row g-2">
-                                            {Object.entries(project.results).map(([key, value], index) => (
-                                                <div className="col-6 col-md-3" key={index}>
-                                                    <div className="result-item text-center p-2 rounded-3">
-                                                        <h4 className="fw-bold mb-0" style={{ color: meta.color }}>{value}</h4>
-                                                        <small className="text-secondary">{key}</small>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )} */}
                             </div>
 
                             {/* ── Right Column: Project Details ── */}
                             <div className="col-lg-5">
-                                <div className="card details-card sticky-card border-0 rounded-4 shadow-lg p-4">
+                                <div className="card border-0 rounded-4 shadow-lg p-4" style={{ border: "1px solid #e8edf2" }}>
 
                                     <div className="d-flex align-items-start justify-content-between mb-2">
-                                        <h3 className="fw-bold mb-0" style={{ color: '#1e293b' }}>
+                                        <h3 className="fw-bold mb-0" style={{ color: "#1e293b" }}>
                                             {project.title}
                                         </h3>
-                                        <span className="rating-chip d-inline-flex align-items-center gap-1 rounded-pill px-2 py-1">
+                                        <span className="d-inline-flex align-items-center gap-1 rounded-pill px-2 py-1" style={{ background: "#fff7ed", color: "#d97706", fontWeight: "700", fontSize: "13px", border: "1px solid #fde68a" }}>
                                             <i className="fa-solid fa-star"></i> 4.9
                                         </span>
                                     </div>
@@ -472,17 +519,17 @@ function SinglePortfolio() {
                                         </span>
                                     </div>
 
-                                    <hr className="my-3" style={{ borderColor: '#e8edf2' }} />
+                                    <hr className="my-3" style={{ borderColor: "#e8edf2" }} />
 
                                     {/* Description */}
-                                    <div className="description-wrapper">
-                                        <p className="text-secondary" style={{ fontSize: '15px', lineHeight: '1.8' }}>
+                                    <div className="overflow-auto" style={{ maxHeight: "200px" }}>
+                                        <p className="text-secondary" style={{ fontSize: "15px", lineHeight: "1.8" }}>
                                             {expanded ? (project.fullDescription || project.description) : project.description}
                                             {(project.fullDescription && project.fullDescription.length > project.description.length) && (
                                                 <button
                                                     onClick={() => setExpanded(!expanded)}
                                                     className="btn btn-link p-0 ms-1 text-decoration-none"
-                                                    style={{ color: meta.color, fontWeight: '600', fontSize: '14px' }}
+                                                    style={{ color: meta.color, fontWeight: "600", fontSize: "14px" }}
                                                 >
                                                     {expanded ? 'Show Less' : 'Read More'}
                                                 </button>
@@ -494,7 +541,7 @@ function SinglePortfolio() {
                                     {(project.challenges || project.solution) && (
                                         <div className="mt-3">
                                             {project.challenges && (
-                                                <div className="timeline-item mb-2">
+                                                <div className="mb-2" style={{ paddingLeft: "12px", borderLeft: "2px solid #e2e8f0" }}>
                                                     <h6 className="fw-bold text-uppercase small text-secondary mb-1">
                                                         <i className="fa-solid fa-triangle-exclamation me-2" style={{ color: meta.color }}></i>
                                                         Challenges
@@ -503,7 +550,7 @@ function SinglePortfolio() {
                                                 </div>
                                             )}
                                             {project.solution && (
-                                                <div className="timeline-item">
+                                                <div style={{ paddingLeft: "12px", borderLeft: "2px solid #e2e8f0" }}>
                                                     <h6 className="fw-bold text-uppercase small text-secondary mb-1">
                                                         <i className="fa-solid fa-lightbulb me-2" style={{ color: meta.color }}></i>
                                                         Solution
@@ -524,8 +571,8 @@ function SinglePortfolio() {
                                             <div className="row g-1">
                                                 {project.features.map((feature, index) => (
                                                     <div className="col-6" key={index}>
-                                                        <span className="d-flex align-items-center gap-1 small text-secondary feature-item">
-                                                            <i className="fa-solid fa-check-circle" style={{ color: meta.color, fontSize: '12px' }}></i>
+                                                        <span className="d-flex align-items-center gap-1 small text-secondary" style={{ transition: "all 0.3s ease" }}>
+                                                            <i className="fa-solid fa-check-circle" style={{ color: meta.color, fontSize: "12px" }}></i>
                                                             {feature}
                                                         </span>
                                                     </div>
@@ -535,14 +582,15 @@ function SinglePortfolio() {
                                     )}
 
                                     {/* Action Buttons */}
-                                    <div className="mt-4 pt-3 border-top" style={{ borderColor: '#e8edf2' }}>
+                                    <div className="mt-4 pt-3 border-top" style={{ borderColor: "#e8edf2" }}>
                                         <div className="d-flex flex-wrap gap-2">
                                             {project.websiteLink && (
                                                 <a
                                                     href={project.websiteLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="btn btn-primary-gradient rounded-pill px-4"
+                                                    className="btn rounded-pill px-4 text-white border-0"
+                                                    style={{ background: "linear-gradient(135deg, #06cabc, #2e77b0)" }}
                                                 >
                                                     <i className="fa-solid fa-globe me-2"></i>Visit Website
                                                 </a>
@@ -570,10 +618,10 @@ function SinglePortfolio() {
                                         </div>
                                         <div className="share-buttons mt-3 d-flex align-items-center">
                                             <span className="small text-secondary me-2">Share:</span>
-                                            <a href="#" className="share-link me-2"><i className="fa-brands fa-facebook"></i></a>
-                                            <a href="#" className="share-link me-2"><i className="fa-brands fa-twitter"></i></a>
-                                            <a href="#" className="share-link me-2"><i className="fa-brands fa-linkedin"></i></a>
-                                            <a href="#" className="share-link"><i className="fa-regular fa-envelope"></i></a>
+                                            <a href="#" className="me-2 d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: "32px", height: "32px", background: "#f1f5f9", color: "#64748b", fontSize: "15px", transition: "all 0.3s ease" }}><i className="fa-brands fa-facebook"></i></a>
+                                            <a href="#" className="me-2 d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: "32px", height: "32px", background: "#f1f5f9", color: "#64748b", fontSize: "15px", transition: "all 0.3s ease" }}><i className="fa-brands fa-twitter"></i></a>
+                                            <a href="#" className="me-2 d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: "32px", height: "32px", background: "#f1f5f9", color: "#64748b", fontSize: "15px", transition: "all 0.3s ease" }}><i className="fa-brands fa-linkedin"></i></a>
+                                            <a href="#" className="d-inline-flex align-items-center justify-content-center rounded-circle" style={{ width: "32px", height: "32px", background: "#f1f5f9", color: "#64748b", fontSize: "15px", transition: "all 0.3s ease" }}><i className="fa-regular fa-envelope"></i></a>
                                         </div>
                                     </div>
 
@@ -581,16 +629,16 @@ function SinglePortfolio() {
                             </div>
 
                         </div>
-
+                        
                         {/* ── Testimonial ── */}
                         {project.testimonial && (
-                            <div className="testimonial-wrapper mt-4 p-4 p-md-5 rounded-4 text-center position-relative">
-                                <i className="fa-solid fa-quote-left mb-3" style={{ color: meta.color, fontSize: '40px', opacity: 0.25 }}></i>
-                                <p className="fs-5 fst-italic text-secondary mb-4" style={{ maxWidth: '700px', margin: '0 auto' }}>
+                            <div className="mt-4 p-4 p-md-5 rounded-4 text-center position-relative" style={{ background: "linear-gradient(135deg, #f8fafc, #f1f5f9)", border: "1px solid #e2e8f0" }}>
+                                <i className="fa-solid fa-quote-left mb-3" style={{ color: meta.color, fontSize: "40px", opacity: 0.25 }}></i>
+                                <p className="fs-5 fst-italic text-secondary mb-4" style={{ maxWidth: "700px", margin: "0 auto" }}>
                                     "{project.testimonial.text}"
                                 </p>
                                 <div className="d-flex align-items-center justify-content-center gap-3">
-                                    <span className="avatar-circle" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})` }}>
+                                    <span className="d-inline-flex align-items-center justify-content-center rounded-circle text-white fw-bold" style={{ width: "46px", height: "46px", background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})`, fontSize: "15px", letterSpacing: "0.5px", boxShadow: "0 6px 16px rgba(0,0,0,0.15)" }}>
                                         {initials}
                                     </span>
                                     <div className="text-start">
@@ -601,13 +649,177 @@ function SinglePortfolio() {
                             </div>
                         )}
 
+                        {/* ── Related Projects Section with Horizontal Scroll ── */}
+                        {relatedProjects.length > 0 && (
+                            <section className="mt-5 pt-4" style={{ borderTop: "2px solid #e8edf2" }}>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="d-flex align-items-center justify-content-between mb-4">
+                                            <div>
+                                                <h4 className="fw-bold mb-1" style={{ color: "#1e293b" }}>
+                                                    <i className={`fa-solid ${meta.icon} me-2`} style={{ color: meta.color }}></i>
+                                                    Related {meta.label} Projects
+                                                </h4>
+                                                <p className="text-secondary small mb-0">Explore more projects in the same category</p>
+                                            </div>
+                                            <div className="d-flex gap-2">
+                                                <button 
+                                                    onClick={scrollLeft}
+                                                    className="btn rounded-circle border-0 d-flex align-items-center justify-content-center"
+                                                    style={{ 
+                                                        width: "40px", 
+                                                        height: "40px", 
+                                                        background: "#f1f5f9",
+                                                        color: "#1e293b",
+                                                        transition: "all 0.3s ease"
+                                                    }}
+                                                    aria-label="Scroll left"
+                                                >
+                                                    <i className="fa-solid fa-chevron-left"></i>
+                                                </button>
+                                                <button 
+                                                    onClick={scrollRight}
+                                                    className="btn rounded-circle border-0 d-flex align-items-center justify-content-center"
+                                                    style={{ 
+                                                        width: "40px", 
+                                                        height: "40px", 
+                                                        background: meta.color,
+                                                        color: "#fff",
+                                                        transition: "all 0.3s ease"
+                                                    }}
+                                                    aria-label="Scroll right"
+                                                >
+                                                    <i className="fa-solid fa-chevron-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div 
+                                    ref={scrollContainerRef}
+                                    className="d-flex gap-4 overflow-auto pb-3"
+                                    style={{
+                                        scrollbarWidth: "thin",
+                                        scrollbarColor: `${meta.color} #e2e8f0`,
+                                        overflowX: "auto",
+                                        overflowY: "hidden",
+                                        WebkitOverflowScrolling: "touch",
+                                        scrollSnapType: "x mandatory",
+                                        msOverflowStyle: "none"
+                                    }}
+                                >
+                                    {relatedProjects.map((related, index) => (
+                                        <div 
+                                            key={related.id} 
+                                            className="flex-shrink-0"
+                                            style={{ 
+                                                width: "280px",
+                                                scrollSnapAlign: "start"
+                                            }}
+                                        >
+                                            <Link 
+                                                to={`/portfolio/${related.id}`} 
+                                                className="text-decoration-none"
+                                            >
+                                                <div className="card border-0 rounded-4 overflow-hidden shadow-sm h-100" style={{ border: "1px solid rgba(15,23,42,0.06)", transition: "all 0.3s ease" }}>
+                                                    <div className="position-relative overflow-hidden" style={{ background: "#f8fafc" }}>
+                                                        <img 
+                                                            src={related.image} 
+                                                            alt={related.title}
+                                                            className="w-100"
+                                                            style={{ 
+                                                                height: "180px", 
+                                                                objectFit: "cover", 
+                                                                transition: "transform 0.5s ease" 
+                                                            }}
+                                                        />
+                                                        <span 
+                                                            className="position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1"
+                                                            style={{ 
+                                                                background: `linear-gradient(135deg, ${typeMeta[related.type]?.color || '#06cabc'}, ${typeMeta[related.type]?.colorDark || '#06cabc'})`,
+                                                                color: "#fff",
+                                                                fontSize: "11px",
+                                                                fontWeight: "600",
+                                                                boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+                                                            }}
+                                                        >
+                                                            <i className={`fa-solid ${typeMeta[related.type]?.icon || 'fa-folder'} me-1`}></i>
+                                                            {typeMeta[related.type]?.label || related.type}
+                                                        </span>
+                                                    </div>
+                                                    <div className="card-body p-3">
+                                                        <h6 className="fw-bold mb-2" style={{ color: "#1e293b", fontSize: "14px" }}>
+                                                            {related.title}
+                                                        </h6>
+                                                        <p className="text-secondary small mb-3" style={{ fontSize: "13px" }}>
+                                                            {related.description.substring(0, 60)}...
+                                                        </p>
+                                                        <div className="d-flex flex-wrap gap-1 mb-2">
+                                                            {(related.technologies || []).slice(0, 2).map((tech, idx) => (
+                                                                <span 
+                                                                    key={idx} 
+                                                                    className="badge bg-light text-secondary border rounded-pill px-2 py-1"
+                                                                    style={{ fontSize: "9px" }}
+                                                                >
+                                                                    {tech}
+                                                                </span>
+                                                            ))}
+                                                            {(related.technologies || []).length > 2 && (
+                                                                <span className="badge bg-light text-secondary border rounded-pill px-2 py-1" style={{ fontSize: "9px" }}>
+                                                                    +{related.technologies.length - 2}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                        <span className="text-primary small fw-semibold" style={{ color: meta.color }}>
+                                                            View Project <i className="fa-solid fa-arrow-right ms-1"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Custom scrollbar styling */}
+                                <style jsx>{`
+                                    .d-flex::-webkit-scrollbar {
+                                        height: 6px;
+                                    }
+                                    .d-flex::-webkit-scrollbar-track {
+                                        background: #e2e8f0;
+                                        border-radius: 10px;
+                                    }
+                                    .d-flex::-webkit-scrollbar-thumb {
+                                        background: ${meta.color};
+                                        border-radius: 10px;
+                                    }
+                                    .d-flex::-webkit-scrollbar-thumb:hover {
+                                        background: ${meta.colorDark};
+                                    }
+                                    .btn:hover {
+                                        transform: scale(1.1);
+                                    }
+                                    .card:hover {
+                                        transform: translateY(-5px);
+                                        box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+                                        border-color: ${meta.color} !important;
+                                    }
+                                    .card:hover img {
+                                        transform: scale(1.05);
+                                    }
+                                `}</style>
+                            </section>
+                        )}
+
+
                     </div>
                 </section>
 
                 {/* ── Counter Section ── */}
                 <section className="py-5">
                     <div className="container">
-                        <div className="counter-wrapper p-4 p-md-5 rounded-4 position-relative overflow-hidden">
+                        <div className="p-4 p-md-5 rounded-4 position-relative overflow-hidden" style={{ background: "linear-gradient(135deg, #06cabc 0%, #2e77b0 100%)" }}>
                             <div className="text-center mb-4">
                                 <h3 className="text-white fw-bold">Our Achievements</h3>
                                 <p className="text-white-50">Delivering excellence across all projects</p>
@@ -620,8 +832,8 @@ function SinglePortfolio() {
                                     { count: '30', label: 'Media Posts', icon: 'fa-bullhorn' },
                                 ].map((c, idx) => (
                                     <div className="col-6 col-sm-6 col-md-3" key={idx}>
-                                        <div className="counter-item text-center p-3 rounded-3">
-                                            <i className={`fa-solid ${c.icon} text-white-50 mb-2`} style={{ fontSize: '24px' }}></i>
+                                        <div className="text-center p-3 rounded-3" style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(5px)", transition: "all 0.3s ease" }}>
+                                            <i className={`fa-solid ${c.icon} text-white-50 mb-2`} style={{ fontSize: "24px" }}></i>
                                             <h3 className="text-white fw-bold mb-1 display-6">{c.count}+</h3>
                                             <p className="text-white-50 mb-0 small">{c.label}</p>
                                         </div>
@@ -636,305 +848,12 @@ function SinglePortfolio() {
 
             <Footer />
 
-            {/* Styles */}
+            {/* Only keyframe animations needed */}
             <style jsx>{`
-                /* ── Hero Banner ── */
-                .text-teal { 
-                    color: #06cabc !important; 
-                }
-
-                .hero-banner {
-                    position: relative;
-                    min-height: 380px;
-                    padding-top: 80px;
-                    padding-bottom: 60px;
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                }
-
-                .hero-banner::before {
-                    content: "";
-                    position: absolute;
-                    inset: 0;
-                    background: rgba(0, 0, 0, 0.2);
-                    z-index: 1;
-                }
-
-                .hero-banner .container {
-                    position: relative;
-                    z-index: 2;
-                }
-
-                .hero-shape {
-                    z-index: 2;
-                }
-
-                .hero-content { animation: fadeInDown 0.8s ease; }
-
-                .badge-glass {
-                    background: rgba(255,255,255,0.18);
-                    color: #fff;
-                    font-size: 14px;
-                    border: 1px solid rgba(255,255,255,0.25);
-                }
-
-                .stat-glass {
-                    background: rgba(255,255,255,0.12);
-                    border: 1px solid rgba(255,255,255,0.15);
-                    backdrop-filter: blur(10px);
-                    transition: all 0.3s ease;
-                }
-
-                .stat-glass:hover { transform: scale(1.05); background: rgba(255,255,255,0.2); }
-
-                .hero-shape { position: absolute; border-radius: 50%; opacity: 0.1; }
-                .shape-1 { width: 400px; height: 400px; background: #fff; top: -20%; right: -10%; }
-                .shape-2 { width: 300px; height: 300px; background: #fff; bottom: -20%; left: -10%; }
-
-                @keyframes fadeInDown {
-                    from { opacity: 0; transform: translateY(-30px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-
-                /* ── Back Button ── */
-                .btn-back {
-                    background: #f8fafc;
-                    color: #1e293b;
-                    border: 2px solid #e2e8f0;
-                    transition: all 0.3s ease;
-                }
-
-                .btn-back:hover {
-                    background: #06cabc;
-                    color: #fff;
-                    border-color: #06cabc;
-                    transform: translateX(-5px);
-                    box-shadow: 0 8px 25px rgba(6,202,188,0.2);
-                }
-
-                /* ── Badges above the frame ── */
-                .badge-solid { color: #fff; font-size: 13px; font-weight: 600; }
-                .badge-solid-dark { color: #fff; font-size: 13px; font-weight: 600; background: #1e293b; }
-
-                .live-dot {
-                    width: 9px;
-                    height: 9px;
-                    border-radius: 50%;
-                    background: #22c55e;
-                    box-shadow: 0 0 0 rgba(34,197,94,0.6);
-                    animation: pulseDot 1.8s infinite;
-                }
-
                 @keyframes pulseDot {
                     0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); }
                     70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
                     100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
-                }
-
-                /* ── Preview Panel ── */
-                .preview-panel {
-                    transition: all 0.3s ease;
-                    border: 1px solid rgba(15,23,42,0.05);
-                }
-
-                .preview-panel:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.12) !important; }
-
-                .preview-panel-web { background: linear-gradient(150deg, #f1f5f9, #e2e8f0); }
-                .preview-panel-app { background: radial-gradient(circle at 50% 15%, #eef2ff, #dbeafe 60%, #e0f2fe); }
-
-                /* ── Browser Frame (Website) — width now always fills the panel ── */
-                .browser-frame {
-                    width: 100%;
-                    border-radius: 14px;
-                    overflow: hidden;
-                    background: #fff;
-                    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2);
-                    border: 1px solid rgba(15,23,42,0.06);
-                }
-
-                .browser-toolbar {
-                    background: linear-gradient(180deg, #f4f6f8, #e9edf1);
-                    border-bottom: 1px solid #e2e8f0;
-                }
-
-                .browser-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-
-                .browser-address {
-                    background: #fff;
-                    border: 1px solid #e2e8f0;
-                    color: #64748b;
-                    font-size: 12px;
-                    min-width: 0;
-                }
-
-                .browser-visit-icon {
-                    width: 24px;
-                    height: 24px;
-                    background: #fff;
-                    border: 1px solid #e2e8f0;
-                    color: #64748b;
-                    transition: all 0.25s ease;
-                    flex-shrink: 0;
-                }
-
-                .browser-visit-icon:hover { background: #06cabc; border-color: #06cabc; color: #fff; }
-
-                .browser-screen {
-                    position: relative;
-                    width: 100%;
-                    height: 500px;
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    background: #fff;
-                    scroll-behavior: smooth;
-                }
-
-                .browser-screen-img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    object-fit: contain;
-                }
-
-                .browser-screen-overlay {
-                    position: absolute;
-                    inset: 0;
-                    background: rgba(15, 23, 42, 0);
-                    opacity: 0;
-                    transition: all 0.3s ease;
-                }
-
-                .browser-screen:hover .browser-screen-overlay {
-                    background: rgba(15, 23, 42, 0.45);
-                    opacity: 1;
-                }
-
-                .btn-view-live {
-                    background: #fff;
-                    color: #1e293b;
-                    font-weight: 600;
-                    font-size: 14px;
-                    transform: translateY(10px);
-                    opacity: 0;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-                }
-
-                .browser-screen:hover .btn-view-live { transform: translateY(0); opacity: 1; }
-
-                /* ── Phone Frame (App) ── */
-                .phone-frame {
-                    width: 240px;
-                    height: 490px;
-                    background: #111827;
-                    border-radius: 38px;
-                    padding: 12px;
-                    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.3);
-                    position: relative;
-                }
-
-                .phone-notch {
-                    position: absolute;
-                    top: 12px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 90px;
-                    height: 18px;
-                    background: #111827;
-                    border-bottom-left-radius: 14px;
-                    border-bottom-right-radius: 14px;
-                    z-index: 2;
-                }
-
-                .phone-screen {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 26px;
-                    overflow: hidden;
-                    background: #000;
-                }
-
-                .phone-screen-img {
-                    display: block;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: top;
-                }
-
-                .phone-home-indicator {
-                    position: absolute;
-                    bottom: 14px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 80px;
-                    height: 4px;
-                    border-radius: 4px;
-                    background: rgba(255,255,255,0.6);
-                }
-
-                /* ── Generic Frame (Digital Marketing) ── */
-                .generic-frame {
-                    width: 100%;
-                    border-radius: 16px;
-                    overflow: hidden;
-                    background: #fff;
-                    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
-                    border: 1px solid rgba(15,23,42,0.06);
-                }
-
-                .generic-frame-img {
-                    display: block;
-                    width: 100%;
-                    height: 440px;
-                    object-fit: cover;
-                    object-position: top;
-                }
-
-                /* ── Gallery Player fade transition ── */
-                .gallery-fade {
-                    animation: gallerySlideFade 0.6s ease;
-                }
-
-                @keyframes gallerySlideFade {
-                    from { opacity: 0; transform: scale(1.02); }
-                    to { opacity: 1; transform: scale(1); }
-                }
-
-                /* ── Gallery Player Dots ── */
-                .gallery-dots {
-                    flex-wrap: wrap;
-                }
-
-                .gallery-dot {
-                    position: relative;
-                    width: 28px;
-                    height: 6px;
-                    border-radius: 6px;
-                    background: rgba(15, 23, 42, 0.15);
-                    border: none;
-                    padding: 0;
-                    cursor: pointer;
-                    overflow: hidden;
-                    transition: all 0.3s ease;
-                }
-
-                .gallery-dot:hover { background: rgba(15, 23, 42, 0.3); }
-
-                .gallery-dot-active {
-                    width: 34px;
-                    background: rgba(15, 23, 42, 0.15) !important;
-                }
-
-                .gallery-dot-progress {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    width: 0%;
-                    border-radius: 6px;
-                    animation: galleryProgress 3s linear forwards;
                 }
 
                 @keyframes galleryProgress {
@@ -942,238 +861,24 @@ function SinglePortfolio() {
                     to { width: 100%; }
                 }
 
-                /* ── Screenshot Gallery Thumbnails ── */
-                .browser-thumb, .phone-thumb, .generic-thumb {
-                    cursor: pointer;
-                    border: 3px solid transparent;
-                    border-radius: 10px;
-                    overflow: hidden;
-                    transition: all 0.3s ease;
-                    background: #fff;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-                    width: 100%;
+                .hero-content {
+                    animation: fadeInDown 0.8s ease;
                 }
 
-                .browser-thumb:hover, .phone-thumb:hover, .generic-thumb:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-                }
-
-                .browser-thumb-bar {
-                    height: 12px;
-                    background: #f1f5f9;
-                    display: flex;
-                    align-items: center;
-                    gap: 3px;
-                    padding: 0 6px;
-                }
-
-                .browser-thumb-bar span { width: 4px; height: 4px; border-radius: 50%; background: #cbd5e1; }
-
-                .browser-thumb-img { display: block; width: 100%; height: 58px; object-fit: cover; object-position: top; }
-
-                .phone-thumb {
-                    position: relative;
-                    aspect-ratio: 9 / 17;
-                    border-radius: 16px;
-                    background: #111827;
-                    padding: 4px;
-                }
-
-                .phone-thumb-img { display: block; width: 100%; height: 100%; border-radius: 12px; object-fit: cover; object-position: top; }
-
-                .phone-thumb-notch {
-                    position: absolute;
-                    top: 6px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 26px;
-                    height: 5px;
-                    border-radius: 4px;
-                    background: #111827;
-                    z-index: 2;
-                }
-
-                .generic-thumb { display: block; height: 80px; object-fit: cover; object-position: top; }
-
-                .active-thumb { border-width: 3px !important; }
-
-                /* ── Tech Stack ── */
-                .badge-tech {
-                    font-size: 13px;
-                    font-weight: 500;
-                    border-color: #e2e8f0 !important;
-                    transition: all 0.3s ease;
-                }
-
-                .badge-tech:hover {
-                    transform: scale(1.05);
-                    background: #f0fdfb !important;
-                    border-color: #06cabc !important;
-                    color: #06cabc !important;
-                }
-
-                /* ── Results ── */
-                .result-item { background: rgba(255,255,255,0.7); transition: all 0.3s ease; }
-                .result-item:hover { transform: scale(1.05); background: #fff !important; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-                .result-item h4 { font-size: 1.3rem; }
-
-                /* ── Details Card ── */
-                .details-card { border: 1px solid #e8edf2; transition: all 0.3s ease; animation: slideInRight 0.6s ease; }
-                .details-card:hover { box-shadow: 0 20px 60px rgba(6,202,188,0.08) !important; }
-
-                @media (min-width: 992px) {
-                    .sticky-card { position: sticky; top: 24px; }
-                }
-
-                @keyframes slideInRight {
-                    from { opacity: 0; transform: translateX(30px); }
-                    to { opacity: 1; transform: translateX(0); }
-                }
-
-                .rating-chip {
-                    background: #fff7ed;
-                    color: #d97706;
-                    font-weight: 700;
-                    font-size: 13px;
-                    border: 1px solid #fde68a;
-                    flex-shrink: 0;
-                }
-
-                .description-wrapper { max-height: 200px; overflow-y: auto; }
-                .description-wrapper::-webkit-scrollbar { width: 4px; }
-                .description-wrapper::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-                .description-wrapper::-webkit-scrollbar-thumb { background: #06cabc; border-radius: 10px; }
-
-                .timeline-item {
-                    padding-left: 12px;
-                    border-left: 2px solid #e2e8f0;
-                }
-
-                .feature-item { transition: all 0.3s ease; }
-                .feature-item:hover { transform: translateX(5px); color: #06cabc !important; }
-
-                .btn-primary-gradient {
-                    background: linear-gradient(135deg, #06cabc, #2e77b0);
-                    color: #fff;
-                    border: none;
-                    transition: all 0.3s ease;
-                }
-
-                .btn-primary-gradient:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(6,202,188,0.3); color: #fff; }
-
-                .btn-outline-success { border-color: #16a34a !important; color: #16a34a !important; transition: all 0.3s ease; }
-                .btn-outline-success:hover { background: #16a34a !important; color: #fff !important; transform: scale(1.05); box-shadow: 0 8px 25px rgba(22,163,74,0.2); }
-
-                .btn-outline-dark { border-color: #334155 !important; color: #334155 !important; transition: all 0.3s ease; }
-                .btn-outline-dark:hover { background: #1e293b !important; color: #fff !important; transform: scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-
-                .share-link {
-                    transition: all 0.3s ease;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 50%;
-                    background: #f1f5f9;
-                    color: #64748b;
-                    font-size: 15px;
-                }
-
-                .share-link:hover { transform: translateY(-3px); color: #fff !important; background: #06cabc; }
-
-                .testimonial-wrapper {
-                    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-                    border: 1px solid #e2e8f0;
-                    animation: fadeInUp 0.6s ease;
-                }
-
-                .avatar-circle {
-                    width: 46px;
-                    height: 46px;
-                    border-radius: 50%;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #fff;
-                    font-weight: 700;
-                    font-size: 15px;
-                    letter-spacing: 0.5px;
-                    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-                }
-
-                @keyframes fadeInUp {
-                    from { opacity: 0; transform: translateY(30px); }
+                @keyframes fadeInDown {
+                    from { opacity: 0; transform: translateY(-30px); }
                     to { opacity: 1; transform: translateY(0); }
                 }
 
-                .counter-wrapper { background: linear-gradient(135deg, #06cabc 0%, #2e77b0 100%); animation: scaleIn 0.6s ease; }
-
-                @keyframes scaleIn {
-                    from { opacity: 0; transform: scale(0.95); }
-                    to { opacity: 1; transform: scale(1); }
+                .share-link:hover {
+                    transform: translateY(-3px);
+                    color: #fff !important;
+                    background: #06cabc;
                 }
 
-                .counter-item { background: rgba(255,255,255,0.1); backdrop-filter: blur(5px); transition: all 0.3s ease; }
-                .counter-item:hover { transform: scale(1.05); background: rgba(255,255,255,0.18); }
-
-                /* ── Responsive ── */
-                @media (max-width: 992px) {
-                    .browser-screen-img, .generic-frame-img { height: 340px; }
-                    .phone-frame { width: 210px; height: 430px; }
-                }
-
-                @media (max-width: 768px) {
-                    .display-4 { font-size: 2rem !important; }
-                    .display-6 { font-size: 1.3rem !important; }
-                    .browser-screen-img, .generic-frame-img { height: 280px; }
-                    .hero-shape { display: none; }
-                    .testimonial-wrapper { padding: 20px !important; }
-                    .phone-frame { width: 190px; height: 390px; }
-                    .browser-address { font-size: 11px; }
-                }
-
-                @media (max-width: 576px) {
-                    .browser-screen {
-                        height: 220px;
-                    }
-
-                    .browser-screen-img {
-                        width: 100%;
-                        height: auto;
-                        display: block;
-                    }
-
-                    .generic-frame {
-                        height: 220px;
-                    }
-
-                    .generic-frame-img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-
-                    .badge-glass {
-                        font-size: 12px;
-                        padding: 4px 12px;
-                    }
-
-                    .phone-frame {
-                        width: 170px;
-                        height: 350px;
-                        padding: 8px;
-                    }
-
-                    .phone-notch {
-                        width: 70px;
-                        height: 14px;
-                    }
-
-                    .browser-visit-icon {
-                        display: none !important;
-                    }
+                .feature-item:hover {
+                    transform: translateX(5px);
+                    color: #06cabc !important;
                 }
             `}</style>
         </div>
