@@ -106,13 +106,36 @@ import ss7 from '../assets/ss/7.png';
 import ss8 from '../assets/ss/8.png';
 import editweb1 from '../assets/EditEZY/web1.png';
 import editweb2 from '../assets/EditEZY/web2.png';
+import Nupura1 from '../assets/Nupura/1.jpeg';
+import Nupura2 from '../assets/Nupura/2.jpeg';
 import Nupuraweb from '../assets/Nupura/web.png';
 import Simcurax1 from '../assets/Clynix/web1.png';
 import Simcurax2 from '../assets/Clynix/web2.png';
 import Simcurax3 from '../assets/Clynix/web3.png';
 import Simcurax4 from '../assets/Clynix/web4.png';
 import Simcurax5 from '../assets/Clynix/web5.png';
-
+import Cynix1 from '../assets/Clynix/1.jpeg';
+import Cynix2 from '../assets/Clynix/2.jpeg';
+import Cynix3 from '../assets/Clynix/3.jpeg';
+import Cynix4 from '../assets/Clynix/4.jpeg';
+import Cynix5 from '../assets/Clynix/5.jpeg';
+import Cynix6 from '../assets/Clynix/6.jpeg';
+import Cynix7 from '../assets/Clynix/7.jpeg';
+import Cynix8 from '../assets/Clynix/8.jpeg';
+import EditEZY1 from '../assets/EditEZY/1.jpeg';
+import EditEZY2 from '../assets/EditEZY/2.jpeg';
+import EditEZY3 from '../assets/EditEZY/3.jpeg';
+import EditEZY4 from '../assets/EditEZY/4.jpeg';
+import EditEZY5 from '../assets/EditEZY/5.jpeg';
+import EditEZY6 from '../assets/EditEZY/6.jpeg';
+import EditEZY7 from '../assets/EditEZY/7.jpeg';
+import EditEZY8 from '../assets/EditEZY/8.jpeg';
+import EditEZY9 from '../assets/EditEZY/9.jpeg';
+import EditEZY10 from '../assets/EditEZY/10.jpeg';
+import EditEZY11 from '../assets/EditEZY/11.jpeg';
+import EditEZY12 from '../assets/EditEZY/12.jpeg';
+import EditEZY13 from '../assets/EditEZY/13.jpeg';
+import EditEZY14 from '../assets/EditEZY/14.jpeg';
  
 
 
@@ -396,10 +419,20 @@ const portfolioItems = [
         solution: "Editesy solves these challenges by providing expert human-powered photo editing services with fast turnaround times and consistent quality. Businesses can outsource their image editing requirements to experienced professionals, ensuring visually appealing product images that improve brand presentation, enhance customer confidence, and increase eCommerce sales while reducing operational costs.",
         testimonial: { name: "Emily Davis", position: "Lead Designer", text: "Best design app on mobile!" },
         screenshots: [
-            "/assets/portfolio/editezy.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/carrentlogo.png"
+            EditEZY1,
+            EditEZY2,
+            EditEZY3,
+            EditEZY4,
+            EditEZY5,
+            EditEZY6,
+            EditEZY7,
+            EditEZY8,
+            EditEZY9,
+            EditEZY10,
+            EditEZY11,
+            EditEZY12,
+            EditEZY13,
+            EditEZY14
         ],
         videoId: "QcvN_Pc4ue8",
         BackgroundImage: bannerImage,
@@ -649,10 +682,8 @@ const portfolioItems = [
         solution: "Nupura Self Drive Cars simplifies vehicle rentals by offering a digital self-drive booking platform with flexible rental plans, transparent pricing, and a diverse fleet of well-maintained vehicles. Customers can book cars quickly, enjoy complete driving freedom, and experience a hassle-free travel solution for personal, business, and leisure trips.",
         testimonial: { name: "Vikram Singh", position: "CEO, Nupura Motors", text: "Best car service platform!" },
         screenshots: [
-            "/assets/portfolio/carservicelogo.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Nupura1,
+            Nupura2
         ],
         BackgroundImage: bannerImage,
     },
@@ -694,10 +725,14 @@ const portfolioItems = [
         solution: "CLYNIX addresses these challenges by connecting users with verified pharmacies through a secure digital platform. Customers can upload prescriptions, order medicines online, schedule recurring deliveries, choose convenient payment options, and receive medicines at their doorstep. The platform simplifies medication management while ensuring prescription verification and safe delivery through licensed pharmacy partners.",
         testimonial: { name: "Dr. Mehta", position: "Medical Director", text: "Revolutionary healthcare platform!" },
         screenshots: [
-            "/assets/portfolio/clynixlogo.png",
-            "/assets/portfolio/veg.jpeg",
-            "/assets/portfolio/redemly.png",
-            "/assets/portfolio/editezy.png"
+            Cynix1,
+            Cynix2,
+            Cynix3,
+            Cynix4,
+            Cynix5,
+            Cynix6,
+            Cynix7,
+            Cynix8,
         ],
         BackgroundImage: bannerImage,
     },
