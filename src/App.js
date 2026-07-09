@@ -22,6 +22,10 @@ import Portfolio from './Components/Portfolio';
 import GlobalTracker from './utils/GlobalTracker';
 import AdminVisitors from './utils/AdminVisitors';
 import SinglePortfolio from './Components/SinglePortfolio';
+import BlogDetails from './Components/blogDetail';
+import Blog4 from './blogs/Blog4';
+import Blog5 from './blogs/Blog5';
+import Blog6 from './blogs/Blog6';
 
 
 function App() {
@@ -30,7 +34,7 @@ function App() {
       <HelmetProvider>
         {/* <GlobalTracker /> */}
         <Routes>
-          
+
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
@@ -46,8 +50,11 @@ function App() {
           <Route path="/blog/empowering-businesses-through-it-services" element={<Blog1 />} />
           <Route path="/blog/professional-it-consulting-and-app-development" element={<Blog2 />} />
           <Route path="/blog/application-maintainence-and-digital-growth-strategy" element={<Blog3 />} />
+          <Route path="/blog/digital-marketing-services-india" element={<Blog4 />} />
+          <Route path="/blog/app-development-services-india" element={<Blog5 />} />
+          <Route path="/blog/website-development-services-india" element={<Blog6 />} />
 
-          {/* <Route path="/data" element={<AdminVisitors />} /> */}
+          <Route path="/data" element={<AdminVisitors />} />
 
           {/* <Route path="/" element={<Home />} /> */}
         </Routes>

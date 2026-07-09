@@ -5,8 +5,70 @@ import Header from "./Header";
 import { Helmet } from "react-helmet";
 
 function Blog() {
+  const blogPosts = [
+    {
+      id: 1,
+      slug: "empowering-businesses-through-it-services",
+      title: "PIXELMINDSOLUTIONS: Empowering Businesses Through Innovative IT Services",
+      image: "/assets/images/blog/blog-image1.jpg",
+      date: "2024-07-01",
+      author: "Admin",
+      comments: 0
+    },
+    {
+      id: 2,
+      slug: "professional-it-consulting-and-app-development",
+      title: "PIXELMINDSOLUTIONS: Driving Innovation Through Smart IT Services",
+      image: "/assets/images/blog/blog-image2.jpg",
+      date: "2024-07-02",
+      author: "Admin",
+      comments: 0
+    },
+    {
+      id: 3,
+      slug: "application-maintainence-and-digital-growth-strategy",
+      title: "How PIXELMINDSOLUTIONS is Shaping the Future of Digital Transformation",
+      image: "/assets/images/blog/blog-image3.jpg",
+      date: "2024-07-03",
+      author: "Admin",
+      comments: 0
+    },
+    {
+      id: 4,
+      slug: "digital-marketing-services-india",
+      title: "Digital Marketing: The Smartest Investment for Business Growth in India",
+      image: "/assets/images/blog/digital-marketing-blog.jpg",
+      date: "2024-07-05",
+      author: "Admin",
+      comments: 0
+    },
+    {
+      id: 5,
+      slug: "app-development-services-india",
+      title: "App Development: Transform Your Business with Powerful Mobile Applications",
+      image: "/assets/images/blog/app-development-blog.jpg",
+      date: "2024-07-06",
+      author: "Admin",
+      comments: 0
+    },
+    {
+      id: 6,
+      slug: "website-development-services-india",
+      title: "Website Development: Build a Powerful Online Presence for Your Business",
+      image: "/assets/images/blog/website-development-blog.jpg",
+      date: "2024-07-07",
+      author: "Admin",
+      comments: 0
+    }
+  ];
 
-  console.log("Blog Page Loaded");
+  const getDateParts = (dateStr) => {
+    const dateObj = new Date(dateStr);
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = dateObj.toLocaleString('default', { month: 'short' });
+    return { day, month };
+  };
+
   return (
     <>
       <div>
@@ -31,88 +93,41 @@ function Blog() {
               </h2>
             </div>
             <div className="row g-4">
-
-              {/* Blog Card 1 */}
-              <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                <div className="blog__item">
-                  <Link to="/blog/empowering-businesses-through-it-services" className="blog__image d-block image">
-                    <img src="/assets/images/blog/blog-image1.jpg" alt="blog preview" />
-                    <div className="blog-tag">
-                      <h3 className="text-white">01</h3>
-                      <span className="text-white">Jul</span>
-                    </div>
-                  </Link>
-                  <div className="blog__content">
-                    <ul className="blog-info pb-20 bor-bottom mb-20">
-                      <li><a href="#0">By Admin</a></li>
-                      <li><a href="#0">0 Comments</a></li>
-                    </ul>
-                    <h3>
-                      <Link to="/blog/empowering-businesses-through-it-services" className="primary-hover">
-                        PIXELMINDSOLUTIONS: Empowering Businesses Through Innovative IT Services
+              {blogPosts.map((post, index) => {
+                const { day, month } = getDateParts(post.date);
+                return (
+                  <div 
+                    key={post.id}
+                    className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" 
+                    data-wow-delay={`${index * 200}ms`} 
+                    data-wow-duration="1500ms"
+                  >
+                    <div className="blog__item">
+                      <Link to={`/blog/${post.slug}`} className="blog__image d-block image">
+                        <img src={post.image} alt={post.title} />
+                        <div className="blog-tag">
+                          <h3 className="text-white">{day}</h3>
+                          <span className="text-white">{month}</span>
+                        </div>
                       </Link>
-                    </h3>
-                    <Link className="mt-25 read-more-btn" to="/blog/empowering-businesses-through-it-services">
-                      Read More <i className="fa-regular fa-arrow-right-long" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Blog Card 2 */}
-              <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
-                <div className="blog__item">
-                  <Link to="/blog/professional-it-consulting-and-app-development" className="blog__image d-block image">
-                    <img src="/assets/images/blog/blog-image2.jpg" alt="blog preview" />
-                    <div className="blog-tag">
-                      <h3 className="text-white">02</h3>
-                      <span className="text-white">Jul</span>
+                      <div className="blog__content">
+                        <ul className="blog-info pb-20 bor-bottom mb-20">
+                          <li><a href="#0">By {post.author}</a></li>
+                          <li><a href="#0">{post.comments} Comments</a></li>
+                        </ul>
+                        <h3>
+                          <Link to={`/blog/${post.slug}`} className="primary-hover">
+                            {post.title}
+                          </Link>
+                        </h3>
+                        <Link className="mt-25 read-more-btn" to={`/blog/${post.slug}`}>
+                          Read More <i className="fa-regular fa-arrow-right-long" />
+                        </Link>
+                      </div>
                     </div>
-                  </Link>
-                  <div className="blog__content">
-                    <ul className="blog-info pb-20 bor-bottom mb-20">
-                      <li><a href="#0">By Admin</a></li>
-                      <li><a href="#0">0 Comments</a></li>
-                    </ul>
-                    <h3>
-                      <Link to="/blog/professional-it-consulting-and-app-development" className="primary-hover">
-                        PIXELMINDSOLUTIONS: Driving Innovation Through Smart IT Services
-                      </Link>
-                    </h3>
-                    <Link className="mt-25 read-more-btn" to="/blog/professional-it-consulting-and-app-development">
-                      Read More <i className="fa-regular fa-arrow-right-long" />
-                    </Link>
                   </div>
-                </div>
-              </div>
-
-              {/* Blog Card 3 */}
-              <div className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="400ms" data-wow-duration="1500ms">
-                <div className="blog__item">
-                  <Link to="/blog/application-maintainence-and-digital-growth-strategy" className="blog__image d-block image">
-                    <img src="/assets/images/blog/blog-image3.jpg" alt="blog preview" />
-                    <div className="blog-tag">
-                      <h3 className="text-white">03</h3>
-                      <span className="text-white">Jul</span>
-                    </div>
-                  </Link>
-                  <div className="blog__content">
-                    <ul className="blog-info pb-20 bor-bottom mb-20">
-                      <li><a href="#0">By Admin</a></li>
-                      <li><a href="#0">0 Comments</a></li>
-                    </ul>
-                    <h3>
-                      <Link to="/blog/application-maintainence-and-digital-growth-strategy" className="primary-hover">
-                        How PIXELMINDSOLUTIONS is Shaping the Future of Digital Transformation
-                      </Link>
-                    </h3>
-                    <Link className="mt-25 read-more-btn" to="/blog/application-maintainence-and-digital-growth-strategy">
-                      Read More <i className="fa-regular fa-arrow-right-long" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
+                );
+              })}
             </div>
           </div>
         </section>
