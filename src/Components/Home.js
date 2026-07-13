@@ -9,6 +9,15 @@ import { Helmet } from "react-helmet";
 import WhyUs from "../Home/WhyUs";
 import Testimonials from "../Home/Testimonials";
 import Founder from "../Home/Founder";
+import PopupImage from "../Home/PopupImage";
+import BannerVideo from '../assets/Home/Banner-video.mp4';
+import About1 from '../assets/Home/about1.jpg';
+import About2 from '../assets/Home/about2.jpg';
+import Testimonial from '../assets/Home/Testimonial.png';
+import Step1 from "../assets/Home/step1.png";
+import Step2 from "../assets/Home/step2.png";
+import Step3 from "../assets/Home/step3.png";
+
 
 
 function Home() {
@@ -32,6 +41,7 @@ function Home() {
       </Helmet>
 
       <>
+        <PopupImage />
         <Header />
 
         <main>
@@ -143,12 +153,26 @@ function Home() {
                       alt="shape"
                     />
                   </div>
-                  <div
-                    className="slide-bg"
-                    style={{
-                      backgroundImage: `url(${"/assets/images/banner/banner-image.jpg"})`,
-                    }}
-                  />
+                  <div className="slide-bg">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="slide-video"
+                    >
+                      <source
+                        src={BannerVideo}
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    {/* Dark Overlay */}
+                    <div
+                      className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"
+                    ></div>
+                  </div>
                   <div className="container">
                     <div className="banner__content">
                       <h4
@@ -428,7 +452,7 @@ function Home() {
               data-wow-delay="400ms"
               data-wow-duration="1500ms"
             >
-              <img src="/assets/images/shape/about-line.png" alt="shape" />
+              <img src={"/assets/images/shape/about-line.png"} alt="shape" />
             </div>
             <div className="container">
               <div className="row g-4">
@@ -440,7 +464,7 @@ function Home() {
                   <div className="about__left-item">
                     <div className="image big-image">
                       <img
-                        src="/assets/images/about/about-image1.jpg"
+                        src={About1}
                         alt="image"
                       />
                     </div>
@@ -456,7 +480,7 @@ function Home() {
                         </div>
                       </div> */}
                       <img
-                        src="/assets/images/about/about-image2.png"
+                        src={About2}
                         alt="image"
                       />
                     </div>
@@ -1360,7 +1384,7 @@ function Home() {
                     </div>
                     <div className="process__image">
                       <img
-                        src="/assets/images/process/process-image1.png"
+                        src={Step1}
                         alt="image"
                       />
                       <span className="process-number">1</span>
@@ -1389,7 +1413,7 @@ function Home() {
                     </div>
                     <div className="process__image">
                       <img
-                        src="/assets/images/process/process-image2.png"
+                        src={Step2}
                         alt="image"
                       />
                       <span className="process-number">2</span>
@@ -1412,7 +1436,7 @@ function Home() {
                   <div className="process__item">
                     <div className="process__image">
                       <img
-                        src="/assets/images/process/process-image3.png"
+                        src={Step3}
                         alt="image"
                       />
                       <span className="process-number">3</span>
@@ -1434,8 +1458,8 @@ function Home() {
 
           <Testimonials />
 
-          <Founder/>
-          
+          <Founder />
+
           {/* Testimonial area start here */}
           <Contactform />
           {/* Testimonial area end here */}
