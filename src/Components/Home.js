@@ -1438,7 +1438,7 @@ function Home() {
                       <img
                         src={Step3}
                         alt="image"
-                      />
+                      />  
                       <span className="process-number">3</span>
                     </div>
                     <div className="process__content">

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
-import offerimage from '../assets/offer.png';
-import offerimage1 from '../assets/offer1.png';
-
+import offerimage from '../assets/Home/Offer.png';
 // Array of images - add your images here
 const popupImages = [
     {
@@ -11,11 +9,11 @@ const popupImages = [
         src: offerimage,
         alt: "Special Offer 1"
     },
-    {
-        id: 2,
-        src: offerimage1,
-        alt: "Special Offer 2"
-    }
+    // {
+    //     id: 2,
+    //     src: offerimage1,
+    //     alt: "Special Offer 2"
+    // }
 ];
 
 const PopupImage = () => {
@@ -84,7 +82,7 @@ const PopupImage = () => {
         let popupCount = parseInt(sessionStorage.getItem("popupImageCount") || "0");
 
         // Check if we've shown it less than 3 times
-        if (popupCount < 3) {
+        if (popupCount < 5) {
             const timer = setTimeout(() => {
                 setIsOpen(true);
                 // Increment the count

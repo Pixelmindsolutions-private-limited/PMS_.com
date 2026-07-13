@@ -77,7 +77,10 @@ function Contactform() {
             <section
                 className="contact-form-area pt-60 pb-60"
                 style={{
-                    backgroundImage: `url(${"/assets/images/bg/testimonial-bg.png"})`,
+                    backgroundImage: `url(${Testimonial})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
                 }}
             >
                 <div className="container">
@@ -118,7 +121,7 @@ function Contactform() {
                                     </h5>
                                     <h2 className="text-white">Let's Start Your Project Today</h2>
                                     <p className="text-white opacity-75 mt-15">
-                                        Have a project in mind? Fill out the form below and we'll get back to you 
+                                        Have a project in mind? Fill out the form below and we'll get back to you
                                         within 24 hours with a detailed proposal.
                                     </p>
                                 </div>
@@ -210,7 +213,7 @@ function Contactform() {
                 </div>
             </section>
 
-            <ToastContainer 
+            <ToastContainer
                 position="top-right"
                 autoClose={3000}
                 hideProgressBar={false}
