@@ -4,6 +4,12 @@ import Footer from './Footer'
 import { Link } from 'react-router-dom'
 import Contactform from './Contactform'
 import { Helmet } from "react-helmet";
+import About1 from '../assets/Home/about1.jpg';
+import About2 from '../assets/Home/about2.jpg';
+import Testimonial from '../assets/Home/Testimonial.png';
+import Step1 from "../assets/Home/step1.png";
+import Step2 from "../assets/Home/step2.png";
+import Step3 from "../assets/Home/step3.png";
 
 function About() {
   return (
@@ -97,10 +103,10 @@ function About() {
                     />
                   </div>
                   <div className="image big-image">
-                    <img src="/assets/images/about/about-two-image1.jpg" alt="image" />
+                    <img src={About1} alt="image" />
                   </div>
                   <div className="image sm-image">
-                    <img src="/assets/images/about/about-two-image2.png" alt="image" />
+                    <img src={About2} alt="image" />
                   </div>
                   <div className="circle-shape">
                     <img
@@ -515,7 +521,7 @@ function About() {
               >
                 <img
                   className="me-1"
-                  src="/assets/images/icon/section-title.png"
+                  src={"/assets/images/icon/section-title.png"}
                   alt="icon"
                 />
                 Work Process
@@ -543,7 +549,7 @@ function About() {
                   </div>
                   <div className="process__image">
                     <img
-                      src="/assets/images/process/process-image1.png"
+                      src={Step1}
                       alt="image"
                     />
                     <span className="process-number">1</span>
@@ -572,7 +578,7 @@ function About() {
                   </div>
                   <div className="process__image">
                     <img
-                      src="/assets/images/process/process-image2.png"
+                      src={Step2}
                       alt="image"
                     />
                     <span className="process-number">2</span>
@@ -595,7 +601,7 @@ function About() {
                 <div className="process__item">
                   <div className="process__image">
                     <img
-                      src="/assets/images/process/process-image3.png"
+                      src={Step3}
                       alt="image"
                     />
                     <span className="process-number">3</span>
