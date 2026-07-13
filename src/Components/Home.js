@@ -31,6 +31,8 @@ function Home() {
     autoplaySpeed: 1000,
   };
 
+  const Offeropen = sessionStorage.getItem('openOffer');
+
   return (
     <div>
       <Helmet>
@@ -41,7 +43,7 @@ function Home() {
       </Helmet>
 
       <>
-        <PopupImage />
+        {Offeropen && <PopupImage />}
         <Header />
 
         <main>

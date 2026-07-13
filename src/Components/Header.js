@@ -1,41 +1,64 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ContactModal from "./ContactModal";
 import ChatbotModal from "./ChatBotModal";
+import PopupImage from "../Home/PopupImage";
 
 function Header() {
   const [sticky, setSticky] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [chatModal, setChatModal] = useState(false);
   const [showChatMessage, setShowChatMessage] = useState(false);
+  const [hasShownChatOnHome, setHasShownChatOnHome] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    // Check if message has been shown before (using localStorage)
-    const hasShownMessage = localStorage.getItem('chatMessageShown1');
+    // Check if current route is home page
+    const isHomePage = location.pathname === '/';
 
-    if (!hasShownMessage) {
-      // Show message after a short delay for better UX
+    // Check if chatbot has been shown on home page in this session
+    const chatShownOnHome = sessionStorage.getItem('chatShownOnHome');
+
+    // Auto-open chatbot on home page
+    if (isHomePage && !chatShownOnHome && !hasShownChatOnHome) {
       const timer = setTimeout(() => {
-        setShowChatMessage(true);
-        localStorage.setItem('chatMessageShown', 'true');
-
-        // Hide message after 10 seconds
-        const hideTimer = setTimeout(() => {
-          setShowChatMessage(false);
-        }, 10000);
-
-        return () => clearTimeout(hideTimer);
-      }, 2000); // 2 second delay before showing message
+        setChatModal(true);
+        setHasShownChatOnHome(true);
+        sessionStorage.setItem('chatShownOnHome', 'true');
+        // Hide the floating message when chatbot opens
+        setShowChatMessage(false);
+      }, 1500); // 1.5 second delay for smooth UX
 
       return () => clearTimeout(timer);
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    window.addEventListener("scroll", isSticky);
-    return () => {
-      window.removeEventListener("scroll", isSticky);
-    };
-  }, []);
+    // Close chatbot when navigating away from home
+    if (!isHomePage && chatModal) {
+      setChatModal(false);
+    }
+  }, [location.pathname, chatModal, hasShownChatOnHome]);
+
+  useEffect(() => {
+    const isHomePage = location.pathname === "/";
+
+    if (!isHomePage) return;
+
+    let count = Number(sessionStorage.getItem("chatShownCount") || "0");
+
+    if (count >= 3) return;
+
+    const timer = setTimeout(() => {
+      setChatModal(true);
+      setShowChatMessage(false);
+
+      sessionStorage.setItem(
+        "chatShownCount",
+        String(count + 1)
+      );
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   const isSticky = () => {
     const scrollTop = window.scrollY;
@@ -59,9 +82,20 @@ function Header() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Handle chatbot option selection
+  const handleChatbotOptionSelect = (option) => {
+    console.log('Selected option:', option);
+    // You can add analytics tracking here
+    // trackEvent('chatbot_option_selected', { option: option.id });
+
+    // Close chatbot after selection
+    setChatModal(false);
+  };
+
   return (
     <>
       <div>
+        <PopupImage/>
         {/* PRELOADER */}
         <div id="preloader" className={loading ? "" : "isdone"}></div>
 
@@ -308,9 +342,9 @@ function Header() {
 
         {/* Chat with AI floating button with message */}
         <div className="ai-chat-float">
-          {showChatMessage && (
+          {showChatMessage && !chatModal && (
             <div className="ai-chat-message">
-              <span>Ask AI for Help</span>
+              <span>🤖 Ask Pixie for Help</span>
               <div className="ai-chat-arrow"></div>
             </div>
           )}
@@ -338,7 +372,11 @@ function Header() {
         </div>
       </div>
       <ContactModal show={showModal} onClose={() => setShowModal(false)} />
-      <ChatbotModal show={chatModal} onClose={() => setChatModal(false)} />
+      <ChatbotModal
+        show={chatModal}
+        onClose={() => setChatModal(false)}
+        onOptionSelect={handleChatbotOptionSelect}
+      />
 
       <style jsx>{`
         .ai-chat-float {
@@ -353,13 +391,13 @@ function Header() {
         
         .ai-chat-message {
           position: relative;
-          background: linear-gradient(135deg, #fff 0%, #fff 100%);
+          background: linear-gradient(135deg, #128C7E 0%, #0f6b5e 100%);
           color: white;
           padding: 12px 20px;
           border-radius: 25px;
           font-size: 14px;
           font-weight: 600;
-          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
           animation: fadeInSlide 0.5s ease-out;
           white-space: nowrap;
           animation: pulse 2s infinite;
@@ -379,13 +417,13 @@ function Header() {
           height: 0;
           border-top: 8px solid transparent;
           border-bottom: 8px solid transparent;
-          border-left: 8px solid #764ba2;
+          border-left: 8px solid #128C7E;
         }
         
         .ai-chat-link {
           width: 60px;
           height: 60px;
-          background: linear-gradient(135deg, #fff 0%, #fff 100%);
+          background: linear-gradient(135deg, #128C7E 0%, #0f6b5e 100%);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -394,17 +432,30 @@ function Header() {
           font-size: 28px;
           border: none;
           cursor: pointer;
-          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
           transition: all 0.3s ease;
+          position: relative;
+        }
+        
+        .ai-chat-link::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background: rgba(18, 140, 126, 0.2);
+          animation: ripple 2s infinite;
         }
         
         .ai-chat-link:hover {
           transform: scale(1.1);
-          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+          box-shadow: 0 6px 20px rgba(18, 140, 126, 0.6);
         }
         
         .ai-chat-icon {
           animation: float 3s ease-in-out infinite;
+          position: relative;
+          z-index: 1;
         }
         
         .whatsapp-float {
@@ -426,11 +477,13 @@ function Header() {
           font-size: 30px;
           box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
           transition: all 0.3s ease;
+          text-decoration: none;
         }
         
         .whatsapp-link:hover {
           transform: scale(1.1);
           box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+          color: white;
         }
         
         @keyframes fadeInSlide {
@@ -445,14 +498,11 @@ function Header() {
         }
         
         @keyframes pulse {
-          0% {
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          0%, 100% {
+            box-shadow: 0 4px 15px rgba(18, 140, 126, 0.4);
           }
           50% {
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6);
-          }
-          100% {
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 20px rgba(18, 140, 126, 0.6);
           }
         }
         
@@ -474,6 +524,17 @@ function Header() {
           }
           50% {
             transform: translateY(-5px);
+          }
+        }
+        
+        @keyframes ripple {
+          0% {
+            transform: scale(1);
+            opacity: 0.6;
+          }
+          100% {
+            transform: scale(1.5);
+            opacity: 0;
           }
         }
         
@@ -505,9 +566,30 @@ function Header() {
             font-size: 26px;
           }
         }
+
+        @media (max-width: 480px) {
+          .ai-chat-message {
+            font-size: 10px;
+            padding: 8px 12px;
+            white-space: normal;
+            max-width: 150px;
+          }
+          
+          .ai-chat-link {
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+          }
+          
+          .whatsapp-link {
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+          }
+        }
       `}</style>
     </>
   )
 }
 
-export default Header
+export default Header;

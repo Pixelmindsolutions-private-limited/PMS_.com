@@ -90,7 +90,7 @@ const PopupImage = () => {
                 sessionStorage.setItem("popupImageCount", popupCount.toString());
                 // Also set a flag for current session
                 sessionStorage.setItem("popupImageShown", "true");
-            }, 2000); // Show after 2 seconds
+            }, 5000); // Show after 2 seconds
             return () => clearTimeout(timer);
         }
     }, [isHomeRoute]);
