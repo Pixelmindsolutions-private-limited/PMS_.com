@@ -117,7 +117,8 @@ function Contactform() {
                                                 fill="white"
                                             />
                                         </svg>
-                                        GET IN TOUCH
+                                        
+                                        {" "}GET IN TOUCH
                                     </h5>
                                     <h2 className="text-white">Let's Start Your Project Today</h2>
                                     <p className="text-white opacity-75 mt-15">

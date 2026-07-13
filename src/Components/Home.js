@@ -365,6 +365,13 @@ function Home() {
                   className="col-lg-4 col-md-6 wow bounceInUp"
                   data-wow-delay="00ms"
                   data-wow-duration="1000ms"
+                  onClick={() => {
+                    window.open(
+                      "https://www.pixelmindsolutions.in",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
                 >
                   <div className="service__item">
                     <div className="service-shape">
@@ -1440,7 +1447,7 @@ function Home() {
                       <img
                         src={Step3}
                         alt="image"
-                      />  
+                      />
                       <span className="process-number">3</span>
                     </div>
                     <div className="process__content">
