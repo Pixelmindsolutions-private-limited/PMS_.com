@@ -213,9 +213,14 @@ function Services() {
                     <p>
                       Our expert team employs a data-driven approach, using the latest tools and techniques...
                     </p>
-                    <Link className="read-more-btn" to="/digitalmarketing">
+                    <a
+                      href="https://www.pixelmindsolutions.in/digitalmarketing"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="read-more-btn"
+                    >
                       Read More <i className="fa-regular fa-arrow-right-long" />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

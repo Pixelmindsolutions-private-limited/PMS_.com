@@ -4,489 +4,376 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Testimonials = () => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        pauseOnHover: true,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
-    const testimonials = [
-        {
-            id: 1,
-            name: "Rajesh K.",
-            position: "Founder, TechStart India",
-            rating: 5,
-            text: "PixelMindSolutions transformed our vision into a robust platform. Their team's attention to detail and technical expertise is unmatched in Hyderabad.",
-        },
-        {
-            id: 2,
-            name: "Priya S.",
-            position: "CTO, RetailMax",
-            rating: 5,
-            text: "We've worked with several agencies, but none matched the professionalism and speed of PixelMindSolutions. Highly recommend for any software project.",
-        },
-        {
-            id: 3,
-            name: "Anil M.",
-            position: "Director, FinServe Solutions",
-            rating: 5,
-            text: "The mobile app they built for us has received incredible feedback from our customers. Great UX, rock-solid performance, and delivered ahead of schedule.",
-        },
-        {
-            id: 4,
-            name: "Sneha R.",
-            position: "CEO, HealthCare Plus",
-            rating: 5,
-            text: "PixelMindSolutions delivered an exceptional healthcare management system. Their understanding of our industry needs was impressive and the execution was flawless.",
-        },
-        {
-            id: 5,
-            name: "Vikram P.",
-            position: "Co-Founder, EduTech India",
-            rating: 5,
-            text: "The e-learning platform they developed has helped us scale our business 3x. Their innovative approach and commitment to quality sets them apart.",
-        },
-        {
-            id: 6,
-            name: "Meera D.",
-            position: "Marketing Director, BrandBox",
-            rating: 5,
-            text: "Working with PixelMindSolutions was a game-changer for our digital presence. Their team is responsive, creative, and truly cares about delivering results.",
-        },
-    ];
+  const testimonials = [
+    {
+      id: 1,
+      name: "Abdul Malik Mohammad",
+      position: "Client",
+      rating: 5,
+      text: "Great experience with pixelmindsolutions for our website project. Their team is one of the reliable choices for web development in Kukatpally with quality service and good communication.",
+    },
+    {
+      id: 2,
+      name: "Service Provider",
+      position: "Client",
+      rating: 5,
+      text: "Very satisfied with their digital marketing services in Kukatpally. Their team understands online growth strategies and helped improve our brand visibility with effective campaigns.",
+    },
+    {
+      id: 3,
+      name: "Raju Kumar",
+      position: "Client",
+      rating: 5,
+      text: "Excellent experience with their app development services in Kukatpally. The team is creative, professional, and focused on delivering a user-friendly application as per requirements.",
+    },
+    {
+      id: 4,
+      name: "Mehrun Nisa",
+      position: "Client",
+      rating: 5,
+      text: "Really happy with the service and support provided by this team. They are a professional software company in Kukatpally offering reliable solutions for website and application requirements. Great experience overall.",
+    },
+    {
+      id: 5,
+      name: "Md Faizur Rahman",
+      position: "Client",
+      rating: 5,
+      text: "Great experience with pixelmindsolutions. The team provides excellent software solutions with professional support and a clear understanding of customer requirements.",
+    },
+    {
+      id: 6,
+      name: "Waheda Begum",
+      position: "Client",
+      rating: 5,
+      text: "Great experience with their team! They provide quality web development services in Kukatpally with modern designs and smooth functionality. The entire process was easy and well managed.",
+    },
+    {
+      id: 7,
+      name: "Abdul Pasha",
+      position: "Client",
+      rating: 5,
+      text: "A good choice for businesses looking for application development at low cost in Kukatpally. They provide professional solutions, understand requirements clearly, and deliver quality results.",
+    },
+    {
+      id: 8,
+      name: "Arigala Rakesh",
+      position: "Client",
+      rating: 5,
+      text: "Very impressed with their work and dedication. Their application development services in Kukatpally are well planned, affordable, and delivered with excellent customer support. Highly recommended!",
+    },
+    {
+      id: 9,
+      name: "Sailaja Reddy Chennu",
+      position: "Client",
+      rating: 5,
+      text: "Great experience working with this team! They provide professional technology solutions with a strong focus on quality. A reliable software company in Kukatpally for businesses looking for modern digital solutions.",
+    },
+    {
+      id: 11,
+      name: "Salauddin Mahammad",
+      position: "Client",
+      rating: 5,
+      text: "Very happy with the service from Pixelmind Solutions. They designed a clean and responsive website for my business. The team was friendly and always available to help. Highly recommended.",
+    },
+    {
+      id: 14,
+      name: "RASHEDIN",
+      position: "Client",
+      rating: 5,
+      text: "Highly professional team. One of the best software company in Kukatpally for website and application development. They delivered my project on time with great support. Recommended for anyone looking for best app development services in Kukatpally.",
+    },
+  ];
 
-    const renderStars = (rating) => {
-        return "★".repeat(rating) + "☆".repeat(5 - rating);
-    };
+  const renderStars = (rating) => {
+    return "★".repeat(rating) + "☆".repeat(5 - rating);
+  };
 
-    return (
-        <section className="testimonials-area pt-120 pb-120 sub-bg">
-            <div className="container">
-                {/* Section Header */}
-                <div className="section-header text-center mb-60">
-                    <h5
-                        className="wow fadeInUp"
-                        data-wow-delay="00ms"
-                        data-wow-duration="1500ms"
-                    >
-                        <img
-                            className="me-1"
-                            src="/assets/images/icon/section-title.png"
-                            alt="icon"
-                        />
-                        TESTIMONIALS
-                    </h5>
-                    <h2
-                        className="wow fadeInUp"
-                        data-wow-delay="200ms"
-                        data-wow-duration="1500ms"
-                    >
-                        Trusted by Businesses in Hyderabad
-                    </h2>
+  return (
+    <section className="py-5 py-lg-6 bg-light position-relative overflow-hidden">
+      <div className="container">
+        {/* Section Header */}
+        <div className="text-center mb-4 mb-lg-5">
+          <h5 className="text-uppercase textcolor fw-semibold mb-2">
+            <img
+              className="me-2"
+              src="/assets/images/icon/section-title.png"
+              alt="icon"
+            />
+            TESTIMONIALS
+          </h5>
+          <h2 className="display-6 fw-bold">
+            Trusted by Businesses in Kukatpally
+          </h2>
+        </div>
+
+        {/* Testimonials Slider */}
+        <div className="testimonials-slider-wrapper mx-n2 mx-sm-n3">
+          <Slider {...settings}>
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="px-2 px-sm-3">
+                <div className="card h-100 border-0 shadow-sm position-relative testimonial-card">
+                  <div className="card-body p-3 p-sm-4 d-flex flex-column">
+                    {/* Rating Stars */}
+                    <div className="mb-3">
+                      <span className="text-warning fs-4" style={{ letterSpacing: "2px" }}>
+                        {renderStars(testimonial.rating)}
+                      </span>
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-secondary fst-italic mb-3 flex-grow-1" style={{ fontSize: "0.95rem", lineHeight: "1.7" }}>
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Author Info */}
+                    <div className="d-flex align-items-center pt-3 border-top">
+                      <div className="rounded-circle bgcolor d-flex align-items-center justify-content-center flex-shrink-0 text-white fw-bold text-uppercase"
+                        style={{ width: "48px", height: "48px", fontSize: "18px" }}>
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div className="ms-3">
+                        <h6 className="fw-bold mb-0">{testimonial.name}</h6>
+                        <span className="textcolor small fw-medium">{testimonial.position}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
 
-                {/* Testimonials Slider */}
-                <div className="testimonials__slider-wrapper">
-                    <Slider {...settings}>
-                        {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="testimonials__slide">
-                                <div className="testimonials__card">
-                                    {/* Rating Stars */}
-                                    <div className="testimonials__rating">
-                                        <span className="stars">{renderStars(testimonial.rating)}</span>
-                                    </div>
+      {/* Custom Styles for Slick Slider */}
+      <style jsx>{`
 
-                                    {/* Testimonial Text */}
-                                    <p className="testimonials__text">
-                                        "{testimonial.text}"
-                                    </p>
+            .textcolor {
+              color: #06cabc;
+            }
 
-                                    {/* Author Info */}
-                                    <div className="testimonials__author">
-                                        <div className="testimonials__avatar">
-                                            <span className="avatar-text">
-                                                {testimonial.name.charAt(0)}
-                                            </span>
-                                        </div>
-                                        <div className="testimonials__info">
-                                            <h4 className="testimonials__name">{testimonial.name}</h4>
-                                            <span className="testimonials__position">
-                                                {testimonial.position}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
-            </div>
+            .bgcolor {
+              background-color: #06cabc;
+            }
+                /* Testimonial Card Hover Effect */
+                .testimonial-card {
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    border-color: rgba(0,0,0,0.04) !important;
+                }
+                
+                .testimonial-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.08) !important;
+                }
 
-            {/* Styles */}
-            <style jsx>{`
-        .testimonials-area {
-          position: relative;
-          overflow: hidden;
-        }
+                .testimonial-card::before {
+                    content: '"';
+                    position: absolute;
+                    top: 15px;
+                    right: 25px;
+                    font-size: 72px;
+                    color: var(--bs-primary, #0d6efd);
+                    opacity: 0.08;
+                    font-family: Georgia, serif;
+                    line-height: 1;
+                }
 
-        /* Slider Wrapper */
-        .testimonials__slider-wrapper {
-          margin: 0 -15px;
-        }
+                /* Slick Custom Styles */
+                .testimonials-slider-wrapper :global(.slick-dots) {
+                    bottom: -50px;
+                    display: flex !important;
+                    justify-content: center;
+                    gap: 8px;
+                }
 
-        .testimonials__slide {
-          padding: 0 15px;
-        }
+                .testimonials-slider-wrapper :global(.slick-dots li) {
+                    width: auto;
+                    height: auto;
+                    margin: 0;
+                }
 
-        /* Testimonial Card */
-        .testimonials__card {
-          background: var(--white);
-          padding: 35px 30px 30px;
-          border-radius: 12px;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-          transition: var(--transition);
-          border: 1px solid rgba(0, 0, 0, 0.04);
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-        }
+                .testimonials-slider-wrapper :global(.slick-dots li button) {
+                    width: 12px;
+                    height: 12px;
+                    padding: 0;
+                    border-radius: 50%;
+                    background: rgba(13, 110, 253, 0.25);
+                    transition: all 0.3s ease;
+                }
 
-        .testimonials__card::before {
-          content: '"';
-          position: absolute;
-          top: 15px;
-          right: 25px;
-          font-size: 72px;
-          color: var(--primary-color);
-          opacity: 0.08;
-          font-family: Georgia, serif;
-          line-height: 1;
-        }
+                .testimonials-slider-wrapper :global(.slick-dots li button::before) {
+                    display: none;
+                }
 
-        .testimonials__card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-          border-color: var(--primary-color);
-        }
+                .testimonials-slider-wrapper :global(.slick-dots li.slick-active button) {
+                    background: var(--bs-primary, #0d6efd);
+                    width: 36px;
+                    border-radius: 6px;
+                }
 
-        /* Rating Stars */
-        .testimonials__rating {
-          margin-bottom: 16px;
-        }
+                .testimonials-slider-wrapper :global(.slick-prev),
+                .testimonials-slider-wrapper :global(.slick-next) {
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 50%;
+                    background: #fff;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                    z-index: 2;
+                    transition: all 0.3s ease;
+                }
 
-        .testimonials__rating .stars {
-          color: #f59e0b;
-          font-size: 20px;
-          letter-spacing: 2px;
-        }
+                .testimonials-slider-wrapper :global(.slick-prev:hover),
+                .testimonials-slider-wrapper :global(.slick-next:hover) {
+                    background: var(--bs-primary, #0d6efd);
+                }
 
-        /* Testimonial Text */
-        .testimonials__text {
-          font-size: 16px;
-          line-height: 28px;
-          color: var(--paragraph);
-          margin-bottom: 22px;
-          flex-grow: 1;
-          font-style: italic;
-        }
+                .testimonials-slider-wrapper :global(.slick-prev:hover::before),
+                .testimonials-slider-wrapper :global(.slick-next:hover::before) {
+                    color: #fff;
+                }
 
-        /* Author Section */
-        .testimonials__author {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-          padding-top: 18px;
-          border-top: 1px solid rgba(0, 0, 0, 0.06);
-        }
+                .testimonials-slider-wrapper :global(.slick-prev::before),
+                .testimonials-slider-wrapper :global(.slick-next::before) {
+                    font-family: "Font Awesome 6 Free";
+                    font-weight: 900;
+                    font-size: 16px;
+                    color: var(--bs-dark, #212529);
+                    opacity: 1;
+                }
 
-        .testimonials__avatar {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--gradient-bg);
-          color: var(--white);
-          font-weight: 700;
-          font-size: 18px;
-          flex-shrink: 0;
-        }
+                .testimonials-slider-wrapper :global(.slick-prev::before) {
+                    content: "\\f104";
+                }
 
-        .avatar-text {
-          text-transform: uppercase;
-          color: var(--white);
-          font-weight: 700;
-        }
+                .testimonials-slider-wrapper :global(.slick-next::before) {
+                    content: "\\f105";
+                }
 
-        .testimonials__info {
-          flex: 1;
-        }
+                .testimonials-slider-wrapper :global(.slick-prev) {
+                    left: -60px;
+                }
 
-        .testimonials__name {
-          font-size: 16px;
-          font-weight: 700;
-          color: var(--heading-color);
-          margin-bottom: 2px;
-          line-height: 1.3;
-        }
+                .testimonials-slider-wrapper :global(.slick-next) {
+                    right: -60px;
+                }
 
-        .testimonials__position {
-          font-size: 14px;
-          color: var(--primary-color);
-          font-weight: 500;
-          display: block;
-        }
+                /* Dark Theme Support */
+                :root[data-theme="dark"] .testimonial-card {
+                    background: var(--bs-dark, #212529);
+                    border-color: rgba(255,255,255,0.06) !important;
+                }
 
-        /* Slick Custom Styles */
-        .testimonials__slider-wrapper :global(.slick-dots) {
-          bottom: -50px;
-          display: flex !important;
-          justify-content: center;
-          gap: 8px;
-        }
+                :root[data-theme="dark"] .testimonial-card .text-secondary {
+                    color: rgba(255,255,255,0.8) !important;
+                }
 
-        .testimonials__slider-wrapper :global(.slick-dots li) {
-          width: auto;
-          height: auto;
-          margin: 0;
-        }
+                :root[data-theme="dark"] .testimonial-card .text-dark {
+                    color: #fff !important;
+                }
 
-        .testimonials__slider-wrapper :global(.slick-dots li button) {
-          width: 12px;
-          height: 12px;
-          padding: 0;
-          border-radius: 50%;
-          background: rgba(6, 202, 188, 0.25);
-          transition: var(--transition);
-        }
+                :root[data-theme="dark"] .testimonials-slider-wrapper :global(.slick-prev),
+                :root[data-theme="dark"] .testimonials-slider-wrapper :global(.slick-next) {
+                    background: var(--bs-dark, #212529);
+                }
 
-        .testimonials__slider-wrapper :global(.slick-dots li button::before) {
-          display: none;
-        }
+                :root[data-theme="dark"] .testimonials-slider-wrapper :global(.slick-prev::before),
+                :root[data-theme="dark"] .testimonials-slider-wrapper :global(.slick-next::before) {
+                    color: #fff;
+                }
 
-        .testimonials__slider-wrapper :global(.slick-dots li.slick-active button) {
-          background: var(--primary-color);
-          width: 36px;
-          border-radius: 6px;
-        }
+                /* Responsive Adjustments */
+                @media (max-width: 1199px) {
+                    .testimonials-slider-wrapper :global(.slick-prev) {
+                        left: -40px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-next) {
+                        right: -40px;
+                    }
+                }
 
-        .testimonials__slider-wrapper :global(.slick-prev),
-        .testimonials__slider-wrapper :global(.slick-next) {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: var(--white);
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-          z-index: 2;
-          transition: var(--transition);
-        }
+                @media (max-width: 991px) {
+                    .testimonials-slider-wrapper :global(.slick-prev) {
+                        left: -30px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-next) {
+                        right: -30px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-prev),
+                    .testimonials-slider-wrapper :global(.slick-next) {
+                        width: 38px;
+                        height: 38px;
+                    }
+                }
 
-        .testimonials__slider-wrapper :global(.slick-prev:hover),
-        .testimonials__slider-wrapper :global(.slick-next:hover) {
-          background: var(--primary-color);
-        }
+                @media (max-width: 767px) {
+                    .testimonials-slider-wrapper :global(.slick-prev) {
+                        left: 10px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-next) {
+                        right: 10px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-prev),
+                    .testimonials-slider-wrapper :global(.slick-next) {
+                        width: 34px;
+                        height: 34px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-prev::before),
+                    .testimonials-slider-wrapper :global(.slick-next::before) {
+                        font-size: 14px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-dots) {
+                        bottom: -40px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-dots li button) {
+                        width: 10px;
+                        height: 10px;
+                    }
+                    .testimonials-slider-wrapper :global(.slick-dots li.slick-active button) {
+                        width: 30px;
+                    }
+                    .testimonial-card::before {
+                        font-size: 48px;
+                        top: 10px;
+                        right: 18px;
+                    }
+                }
 
-        .testimonials__slider-wrapper :global(.slick-prev:hover::before),
-        .testimonials__slider-wrapper :global(.slick-next:hover::before) {
-          color: var(--white);
-        }
-
-        .testimonials__slider-wrapper :global(.slick-prev::before),
-        .testimonials__slider-wrapper :global(.slick-next::before) {
-          font-family: "Font Awesome 6 Free";
-          font-weight: 900;
-          font-size: 16px;
-          color: var(--heading-color);
-          opacity: 1;
-        }
-
-        .testimonials__slider-wrapper :global(.slick-prev::before) {
-          content: "\\f104";
-        }
-
-        .testimonials__slider-wrapper :global(.slick-next::before) {
-          content: "\\f105";
-        }
-
-        .testimonials__slider-wrapper :global(.slick-prev) {
-          left: -60px;
-        }
-
-        .testimonials__slider-wrapper :global(.slick-next) {
-          right: -60px;
-        }
-
-        /* Dark Theme Support */
-        :root[data-theme="dark"] .testimonials__card {
-          background: var(--sub-bg);
-          border-color: rgba(255, 255, 255, 0.06);
-        }
-
-        :root[data-theme="dark"] .testimonials__text {
-          color: rgba(255, 255, 255, 0.8);
-        }
-
-        :root[data-theme="dark"] .testimonials__name {
-          color: var(--white);
-        }
-
-        :root[data-theme="dark"] .testimonials__slider-wrapper :global(.slick-prev),
-        :root[data-theme="dark"] .testimonials__slider-wrapper :global(.slick-next) {
-          background: var(--sub-bg);
-        }
-
-        :root[data-theme="dark"] .testimonials__slider-wrapper :global(.slick-prev::before),
-        :root[data-theme="dark"] .testimonials__slider-wrapper :global(.slick-next::before) {
-          color: var(--white);
-        }
-
-        /* Responsive */
-        @media (max-width: 1199px) {
-          .testimonials__slider-wrapper :global(.slick-prev) {
-            left: -40px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-next) {
-            right: -40px;
-          }
-        }
-
-        @media (max-width: 991px) {
-          .testimonials-area {
-            padding: 80px 0;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-prev) {
-            left: -30px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-next) {
-            right: -30px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-prev),
-          .testimonials__slider-wrapper :global(.slick-next) {
-            width: 38px;
-            height: 38px;
-          }
-
-          .testimonials__card {
-            padding: 28px 24px 24px;
-          }
-        }
-
-        @media (max-width: 767px) {
-          .testimonials-area {
-            padding: 60px 0;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-prev) {
-            left: 10px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-next) {
-            right: 10px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-prev),
-          .testimonials__slider-wrapper :global(.slick-next) {
-            width: 34px;
-            height: 34px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-prev::before),
-          .testimonials__slider-wrapper :global(.slick-next::before) {
-            font-size: 14px;
-          }
-
-          .testimonials__card {
-            padding: 24px 20px 20px;
-          }
-
-          .testimonials__text {
-            font-size: 15px;
-            line-height: 26px;
-          }
-
-          .testimonials__rating .stars {
-            font-size: 18px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-dots) {
-            bottom: -40px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-dots li button) {
-            width: 10px;
-            height: 10px;
-          }
-
-          .testimonials__slider-wrapper :global(.slick-dots li.slick-active button) {
-            width: 30px;
-          }
-        }
-
-        @media (max-width: 575px) {
-          .testimonials__card {
-            padding: 20px 16px 18px;
-          }
-
-          .testimonials__text {
-            font-size: 14px;
-            line-height: 24px;
-            margin-bottom: 16px;
-          }
-
-          .testimonials__rating .stars {
-            font-size: 16px;
-          }
-
-          .testimonials__avatar {
-            width: 40px;
-            height: 40px;
-            font-size: 15px;
-          }
-
-          .testimonials__name {
-            font-size: 14px;
-          }
-
-          .testimonials__position {
-            font-size: 12px;
-          }
-
-          .testimonials__card::before {
-            font-size: 48px;
-            top: 10px;
-            right: 18px;
-          }
-        }
-      `}</style>
-        </section>
-    );
+                @media (max-width: 575px) {
+                    .testimonial-card .rounded-circle {
+                        width: 40px !important;
+                        height: 40px !important;
+                        font-size: 15px !important;
+                    }
+                }
+            `}</style>
+    </section>
+  );
 };
 
 export default Testimonials;

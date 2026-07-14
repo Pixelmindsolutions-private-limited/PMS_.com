@@ -456,6 +456,7 @@ function Header() {
           animation: float 3s ease-in-out infinite;
           position: relative;
           z-index: 1;
+          color: white;
         }
         
         .whatsapp-float {

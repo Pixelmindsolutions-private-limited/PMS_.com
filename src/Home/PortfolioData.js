@@ -318,7 +318,7 @@ const portfolioItems = [
             veg10
         ],
         videoLabel: "Watch Demo",
-        videoId: "QcvN_Pc4ue8",
+        videoId: "TafWxd87uUs",
         BackgroundImage: bannerImage,
     },
     {
@@ -434,7 +434,7 @@ const portfolioItems = [
             EditEZY13,
             EditEZY14
         ],
-        videoId: "QcvN_Pc4ue8",
+        videoId: "F_8uNhi-_n4",
         BackgroundImage: bannerImage,
     },
     {
@@ -599,6 +599,7 @@ const portfolioItems = [
             Narada11
         ],
         BackgroundImage: bannerImage,
+        videoId: "ObYJ9K53HEA"
     },
     {
         id: 13, 
@@ -643,50 +644,51 @@ const portfolioItems = [
             "/assets/portfolio/clynixlogo.png"
         ],
         BackgroundImage: bannerImage,
+        videoId: "fPOW_YzYiIc"
     },
-    {
-        id: 17, 
-        title: "Nupura Self Drive Cars – Self-Drive Car Rental Platform", 
-        type: "app",
-        description: "Nupura Self Drive Cars is a self-drive car rental platform that provides affordable, reliable, and flexible vehicle rental services. Customers can book well-maintained cars for personal, business, weekend, and outstation travel through a simple online booking system with transparent pricing and convenient rental options.",
-        fullDescription: "Nupura Self Drive Cars is a modern mobility platform designed to offer a seamless self-drive car rental experience. The platform enables users to browse available vehicles, select their preferred rental duration, and book cars online with minimal paperwork. It offers a fleet of hatchbacks, sedans, SUVs, and premium vehicles suitable for city commuting, family trips, business travel, and long-distance journeys. With flexible rental plans, transparent pricing, secure bookings, and customer support, Nupura Self Drive Cars focuses on providing customers with complete driving freedom, convenience, and reliability while maintaining high standards of vehicle quality and safety.",
-        image: "/assets/portfolio/carservicelogo.png", 
-        icon: "/assets/portfolio/carservicelogo.png",
-        playstoreLink: "https://play.google.com/store/apps/details?id=com.nupura.nupura_cars",
-        appstoreLink: "https://apps.apple.com/in/app/nupura-cars/id6758536789",
-        client: "Nupura Motors",
-        category: "Car Rental, Self-Drive Car Rental, Travel & Transportation, Vehicle Rental, Mobility Services",
-        year: "2024",
-        duration: "3 Months",
-        technologies: ["React Native", "Node.js", "MongoDB", "Google Maps"],
-        features: [
-            "Online self-drive car booking",
-            "Wide range of vehicles (Hatchbacks, Sedans, SUVs, Premium Cars)",
-            "Daily, weekly, and monthly rental options",
-            "Flexible rental durations",
-            "Affordable and transparent pricing",
-            "Easy online reservation",
-            "Well-maintained vehicles",
-            "Secure booking process",
-            "Business and leisure travel support",
-            "Weekend and outstation rentals",
-            "Real-time vehicle availability",
-            "Customer support",
-            "Convenient pickup and return",
-            "Minimal paperwork",
-            "Mobile-friendly booking platform",
-            "Safe and reliable travel experience"
-        ],
-        results: { "Services": "+5000", "Customers": "+7000", "Satisfaction": "96%", "Response": "10min" },
-        challenges: "Limited flexibility with traditional chauffeur-driven rentals. Difficulty finding reliable self-drive rental services. Hidden charges and complex rental procedures. Limited vehicle availability during peak periods. Time-consuming offline booking processes.",
-        solution: "Nupura Self Drive Cars simplifies vehicle rentals by offering a digital self-drive booking platform with flexible rental plans, transparent pricing, and a diverse fleet of well-maintained vehicles. Customers can book cars quickly, enjoy complete driving freedom, and experience a hassle-free travel solution for personal, business, and leisure trips.",
-        testimonial: { name: "Vikram Singh", position: "CEO, Nupura Motors", text: "Best car service platform!" },
-        screenshots: [
-            Nupura1,
-            Nupura2
-        ],
-        BackgroundImage: bannerImage,
-    },
+    // {
+    //     id: 17, 
+    //     title: "Nupura Self Drive Cars – Self-Drive Car Rental Platform", 
+    //     type: "app",
+    //     description: "Nupura Self Drive Cars is a self-drive car rental platform that provides affordable, reliable, and flexible vehicle rental services. Customers can book well-maintained cars for personal, business, weekend, and outstation travel through a simple online booking system with transparent pricing and convenient rental options.",
+    //     fullDescription: "Nupura Self Drive Cars is a modern mobility platform designed to offer a seamless self-drive car rental experience. The platform enables users to browse available vehicles, select their preferred rental duration, and book cars online with minimal paperwork. It offers a fleet of hatchbacks, sedans, SUVs, and premium vehicles suitable for city commuting, family trips, business travel, and long-distance journeys. With flexible rental plans, transparent pricing, secure bookings, and customer support, Nupura Self Drive Cars focuses on providing customers with complete driving freedom, convenience, and reliability while maintaining high standards of vehicle quality and safety.",
+    //     image: "/assets/portfolio/carservicelogo.png", 
+    //     icon: "/assets/portfolio/carservicelogo.png",
+    //     playstoreLink: "https://play.google.com/store/apps/details?id=com.nupura.nupura_cars",
+    //     appstoreLink: "https://apps.apple.com/in/app/nupura-cars/id6758536789",
+    //     client: "Nupura Motors",
+    //     category: "Car Rental, Self-Drive Car Rental, Travel & Transportation, Vehicle Rental, Mobility Services",
+    //     year: "2024",
+    //     duration: "3 Months",
+    //     technologies: ["React Native", "Node.js", "MongoDB", "Google Maps"],
+    //     features: [
+    //         "Online self-drive car booking",
+    //         "Wide range of vehicles (Hatchbacks, Sedans, SUVs, Premium Cars)",
+    //         "Daily, weekly, and monthly rental options",
+    //         "Flexible rental durations",
+    //         "Affordable and transparent pricing",
+    //         "Easy online reservation",
+    //         "Well-maintained vehicles",
+    //         "Secure booking process",
+    //         "Business and leisure travel support",
+    //         "Weekend and outstation rentals",
+    //         "Real-time vehicle availability",
+    //         "Customer support",
+    //         "Convenient pickup and return",
+    //         "Minimal paperwork",
+    //         "Mobile-friendly booking platform",
+    //         "Safe and reliable travel experience"
+    //     ],
+    //     results: { "Services": "+5000", "Customers": "+7000", "Satisfaction": "96%", "Response": "10min" },
+    //     challenges: "Limited flexibility with traditional chauffeur-driven rentals. Difficulty finding reliable self-drive rental services. Hidden charges and complex rental procedures. Limited vehicle availability during peak periods. Time-consuming offline booking processes.",
+    //     solution: "Nupura Self Drive Cars simplifies vehicle rentals by offering a digital self-drive booking platform with flexible rental plans, transparent pricing, and a diverse fleet of well-maintained vehicles. Customers can book cars quickly, enjoy complete driving freedom, and experience a hassle-free travel solution for personal, business, and leisure trips.",
+    //     testimonial: { name: "Vikram Singh", position: "CEO, Nupura Motors", text: "Best car service platform!" },
+    //     screenshots: [
+    //         Nupura1,
+    //         Nupura2
+    //     ],
+    //     BackgroundImage: bannerImage,
+    // },
     {
         id: 22, 
         title: "CLYNIX – Online Medicine Delivery & Pharmacy Platform", 

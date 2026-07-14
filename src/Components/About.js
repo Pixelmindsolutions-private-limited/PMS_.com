@@ -136,14 +136,22 @@ function About() {
                     data-wow-delay="200ms"
                     data-wow-duration="1500ms"
                   >
-                    Transforming Businesses Through Intelligent Innovation
+                    Empowering Businesses Through Digital Innovation
                   </h2>
                   <p
                     className="wow fadeInUp"
                     data-wow-delay="400ms"
                     data-wow-duration="1500ms"
                   >
-                    Pixelmind Solutions is a trusted IT services partner, delivering cutting-edge solutions in web development, mobile app design, and digital marketing.We help businesses succeed in the digital age by providing them with specialized, high-performing services that enhance user experience, promote expansion, and strengthen their digital identity.
+                    At Pixelmindsolutions, we help businesses transform their ideas into powerful digital
+                    experiences. We are a technology-driven company focused on creating innovative, reliable, and
+                    scalable solutions that help businesses grow in the digital world.
+                    With expertise in modern technologies, creative thinking, and a customer-first approach, we
+                    deliver solutions that are designed around your unique goals. From concept to completion, our
+                    team works closely with clients to build digital products that create real impact.
+                    Whether you are a startup looking to build your first digital product or an established business
+                    aiming to improve your online presence, we provide the right technology solutions to help you
+                    move forward with confidence.
                   </p>
                 </div>
                 <div
@@ -154,21 +162,21 @@ function About() {
                   <ul>
                     <li>
                       <i className="fa-solid fa-check" />
-                      Technology Consultancy
+                      Building Digital Solutions That Drive Business Growth
                     </li>
                     <li>
                       <i className="fa-solid fa-check" />
-                      We Provide best services
+                      Where Innovation Meets Technology
                     </li>
                   </ul>
                   <ul>
                     <li>
                       <i className="fa-solid fa-check" />
-                      Maintenance And Support
+                      Turning Ideas Into Powerful Digital Experiences
                     </li>
                     <li>
                       <i className="fa-solid fa-check" />
-                      Requirements Gathering
+                      Your Trusted Partner For Digital Transformation
                     </li>
                   </ul>
                 </div>

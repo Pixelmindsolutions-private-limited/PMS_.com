@@ -26,12 +26,14 @@ import BlogDetails from './Components/blogDetail';
 import Blog4 from './blogs/Blog4';
 import Blog5 from './blogs/Blog5';
 import Blog6 from './blogs/Blog6';
+import ScrollToTop from './utils/ScrollToTop';
 
 
 function App() {
   return (
     <>
       <HelmetProvider>
+        <ScrollToTop />
         {/* <GlobalTracker /> */}
         <Routes>
 

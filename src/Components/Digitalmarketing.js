@@ -1,3 +1,4 @@
+// Digitalmarketing.js
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -5,194 +6,282 @@ import { Link } from 'react-router-dom';
 
 function Digitalmarketing() {
   const styles = {
-    highlight: { color: '#06cabc', fontWeight: '600' },
-    heading: { fontSize: '2rem', fontWeight: '700', marginBottom: '20px', color: '#1a1a2e' },
-    subheading: { fontSize: '1.5rem', fontWeight: '600', marginBottom: '15px', color: '#1a1a2e' },
-    paragraph: { fontSize: '1rem', lineHeight: '1.6', color: '#555', marginBottom: '20px' },
-    card: { backgroundColor: '#f8f9fa', borderRadius: '10px', padding: '25px', marginBottom: '30px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)' },
-    listItem: { marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' },
-    techBadge: { display: 'inline-block', padding: '8px 18px', margin: '0 10px 10px 0', backgroundColor: '#06cabc', borderRadius: '30px', fontSize: '0.9rem' },
-    testimonialCard: { backgroundColor: '#fff', borderRadius: '10px', padding: '20px', boxShadow: '0 5px 20px rgba(0,0,0,0.05)', marginBottom: '20px', height: '100%' },
-    faqItem: { border: '1px solid #dee2e6', borderRadius: '8px', marginBottom: '15px', overflow: 'hidden' },
-    faqQuestion: { padding: '15px 20px', backgroundColor: '#f8f9fa', fontWeight: '600', margin: 0 },
-    faqAnswer: { padding: '15px 20px', borderTop: '1px solid #dee2e6' },
-    processStep: { textAlign: 'center', marginBottom: '30px' },
-    industryCard: { textAlign: 'center', padding: '20px', backgroundColor: '#fff', borderRadius: '10px', boxShadow: '0 3px 10px rgba(0,0,0,0.05)', marginBottom: '20px', height: '100%' }
+    highlight: { color: '#06cabc', fontWeight: 600 },
+    heading: {
+      fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+      fontWeight: 700,
+      marginBottom: '20px',
+      color: '#1a1a2e',
+      lineHeight: 1.25,
+    },
+    subheading: {
+      fontSize: 'clamp(1.15rem, 2.2vw, 1.4rem)',
+      fontWeight: 600,
+      marginBottom: '12px',
+      color: '#1a1a2e',
+    },
+    paragraph: {
+      fontSize: 'clamp(0.95rem, 1.2vw, 1rem)',
+      lineHeight: 1.8,
+      color: '#5a5f6e',
+      marginBottom: '18px',
+    },
+    card: {
+      backgroundColor: '#fff',
+      borderRadius: '16px',
+      padding: '32px 24px',
+      border: '1px solid #eef0f3',
+    },
+    testimonialCard: {
+      backgroundColor: '#fff',
+      borderRadius: '16px',
+      padding: '28px',
+      boxShadow: '0 6px 24px rgba(15,23,42,0.06)',
+      height: '100%',
+      border: '1px solid rgba(6,202,188,0.12)',
+      display: 'flex',
+      flexDirection: 'column',
+    },
   };
 
   const Highlight = ({ children }) => <span style={styles.highlight}>{children}</span>;
 
+  const features = [
+    { icon: 'fa-solid fa-bullseye', title: 'Goal-Oriented Strategies', desc: 'We understand your business objectives and create marketing plans focused on achieving real results.' },
+    { icon: 'fa-solid fa-pen-fancy', title: 'Creative Brand Promotion', desc: 'We develop engaging campaigns that help your brand stand out and connect with customers.' },
+    { icon: 'fa-solid fa-chart-simple', title: 'Data-Driven Approach', desc: 'Our decisions are backed by insights and performance analysis for better outcomes.' },
+    { icon: 'fa-solid fa-arrow-trend-up', title: 'Continuous Growth Support', desc: 'We monitor, improve, and optimize strategies to ensure consistent digital growth.' },
+  ];
+
+  const process = [
+    { step: '01', title: 'Research', desc: 'Understanding your industry, audience, and competition' },
+    { step: '02', title: 'Strategy', desc: 'Creating a customized marketing plan for your goals' },
+    { step: '03', title: 'Setup', desc: 'Setting up campaigns, landing pages, and tracking' },
+    { step: '04', title: 'Execution', desc: 'Launching campaigns and creating content' },
+    { step: '05', title: 'Monitor', desc: 'Continuous monitoring and performance analysis' },
+    { step: '06', title: 'Optimize', desc: 'Refining strategies for better results' },
+  ];
+
+  const testimonials = [
+    { name: 'Alisha Perween', text: 'A trusted IT company in Kukatpally with a skilled team and great technical knowledge. They delivered a smooth solution and provided excellent customer support throughout the project.' },
+    { name: 'Sai Kotte', text: 'One of the most dependable teams for website development in Kukatpally. They created a professional website that matched our expectations and provided smooth service throughout the process.' },
+    { name: 'Kadupudi Nimisha', text: 'Had a wonderful experience with their digital marketing service at low cost in Kukatpally. The team understands business goals, provides creative solutions, and maintains good communication.' },
+  ];
+
   return (
     <div>
+      <style>{`
+        .pms-dm-hero {
+          position: relative;
+          background-size: cover;
+          background-position: center;
+          padding: clamp(70px, 14vw, 130px) 0;
+        }
+        .pms-dm-hero::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(10,15,30,0.82) 0%, rgba(6,202,188,0.55) 100%);
+        }
+        .pms-dm-hero .container { position: relative; z-index: 2; }
+        .pms-dm-hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.2; }
+        .pms-dm-btn-solid, .pms-dm-btn-outline {
+          display: inline-block;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+        }
+        .pms-dm-btn-solid:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 24px rgba(6,202,188,0.35);
+          color: #fff;
+        }
+        .pms-dm-btn-outline:hover {
+          background-color: #06cabc !important;
+          color: #fff !important;
+          transform: translateY(-3px);
+        }
+        .pms-dm-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          height: 100%;
+        }
+        .pms-dm-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 16px 36px rgba(15,23,42,0.10);
+          border-color: rgba(6,202,188,0.35) !important;
+        }
+        .pms-dm-icon-wrap {
+          width: 60px;
+          height: 60px;
+          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(6,202,188,0.10);
+          margin: 0 auto 18px;
+        }
+        .pms-dm-process-wrap { position: relative; }
+        .pms-dm-process-line {
+          position: absolute;
+          top: 35px;
+          left: 8.33%;
+          right: 8.33%;
+          height: 2px;
+          background: repeating-linear-gradient(90deg, #06cabc 0, #06cabc 8px, transparent 8px, transparent 16px);
+          z-index: 0;
+        }
+        .pms-dm-process-circle {
+          position: relative;
+          z-index: 1;
+          transition: transform 0.3s ease;
+        }
+        .pms-dm-step:hover .pms-dm-process-circle {
+          transform: scale(1.1);
+          box-shadow: 0 8px 18px rgba(6,202,188,0.4);
+        }
+        .pms-dm-testimonial:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 16px 36px rgba(15,23,42,0.10);
+        }
+        .pms-dm-avatar {
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #06cabc, #1a1a2e);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          flex-shrink: 0;
+        }
+        @media (max-width: 991px) {
+          .pms-dm-process-line { display: none; }
+        }
+      `}</style>
+
       <Header />
       <main>
 
         {/* Hero Section */}
-        <section className="banner__inner-page py-5" style={{ backgroundImage: `url(${"/assets/images/banner/banner-inner-page.jpg"})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <section className="pms-dm-hero" style={{ backgroundImage: `url(${'/assets/images/banner/banner-inner-page.jpg'})` }}>
           <div className="container">
             <div className="row">
-              <div className="col-12 text-center">
-                <h1 className="wow fadeInUp display-4 fw-bold text-white"><Highlight>Best Digital Marketing Agency in Kukatpally</Highlight></h1>
-                <p className="wow fadeInUp fs-5 text-white mb-4">Result-Driven Digital Marketing Services to Grow Your Business Online</p>
-                <div className="wow fadeInUp">
-                  <Link to="/contact" className="btn btn-lg rounded-pill me-3 mb-2" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: '600' }}>Get Free Consultation</Link>
-                  <Link to="/quote" className="btn btn-lg rounded-pill mb-2" style={{ backgroundColor: 'transparent', color: '#06cabc', border: '2px solid #06cabc', fontWeight: '600' }}>Request a Quote</Link>
+              <div className="col-12 col-lg-9 mx-auto text-center">
+                <h1 className="wow fadeInUp fw-bold text-white mb-3">
+                  <Highlight>Best Digital Marketing Agency in Kukatpally, Hyderabad</Highlight>
+                </h1>
+                <p className="wow fadeInUp fs-5 text-white-50 mb-4">Growing Businesses Through Smart Digital Strategies</p>
+                <div className="wow fadeInUp d-flex flex-wrap justify-content-center gap-3">
+                  <Link to="/contact" className="pms-dm-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
+                    Get Free Consultation
+                  </Link>
+                  <Link to="/contact" className="pms-dm-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
+                    Request a Quote
+                  </Link>
                 </div>
-                <div className="breadcrumb-list wow fadeInUp mt-4" style={{ color: '#fff' }}>
-                  <Link to="/" className="text-white">Home</Link>
-                  <span><i className="fa-regular fa-angles-right mx-2" /> Digital Marketing</span>
-                </div>
+                {/* <div className="wow fadeInUp mt-4 d-flex justify-content-center align-items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
+                  <Link to="/" className="text-white text-decoration-none">Home</Link>
+                  <i className="fa-regular fa-angles-right" />
+                  <span>Digital Marketing</span>
+                </div> */}
               </div>
             </div>
           </div>
         </section>
 
         {/* Introduction Section */}
-        <section className="py-5" style={{ backgroundColor: '#fff' }}>
+        <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
+            <div className="row align-items-center g-5">
+              <div className="col-12 col-lg-6">
+                <h2 style={styles.heading}>Professional <Highlight>Digital Marketing Services in Kukatpally</Highlight>, Hyderabad</h2>
+                <p style={styles.paragraph}>In today's competitive digital world, having an online presence is not enough — businesses need the right strategy to reach the right audience and create meaningful connections. At <Highlight>PixelMind Solutions</Highlight>, we help businesses improve their online visibility and achieve measurable growth through effective digital solutions.</p>
+                <p style={styles.paragraph}>Our team combines creativity, data-driven insights, and modern marketing techniques to create strategies that strengthen your brand presence, attract potential customers, and support long-term business growth.</p>
+                <p style={{ ...styles.paragraph, marginBottom: 0 }}>From improving online reach and increasing engagement to building stronger brand awareness, we create customized marketing plans based on your business goals. Every strategy is carefully designed to deliver better performance and help your business stay ahead in the digital landscape.</p>
+              </div>
+              <div className="col-12 col-lg-6">
+                <img src="/assets/images/service/service-image2.jpg" alt="Digital Marketing" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Section */}
+        <section className="py-5" style={{ backgroundColor: '#f5f7fa', paddingTop: '70px', paddingBottom: '70px' }}>
+          <div className="container">
+            <div className="row mb-5">
+              <div className="col-12 col-lg-8 mx-auto text-center">
+                <h2 style={styles.heading}>Why Choose <Highlight>PixelMind Solutions</Highlight>?</h2>
+                <p style={styles.paragraph}>We combine creativity, data-driven insights, and modern techniques to deliver results that matter.</p>
+              </div>
+            </div>
+            <div className="row g-4">
+              {features.map((item, idx) => (
+                <div key={idx} className="col-12 col-sm-6 col-lg-3">
+                  <div style={styles.card} className="pms-dm-card text-center">
+                    <div className="pms-dm-icon-wrap">
+                      <i className={`${item.icon} fs-4`} style={{ color: '#06cabc' }}></i>
+                    </div>
+                    <h4 style={styles.subheading}>{item.title}</h4>
+                    <p style={{ ...styles.paragraph, marginBottom: 0 }}>{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Digital Marketing Process Diagram */}
+        <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
+          <div className="container">
+            <div className="row mb-5">
+              <div className="col-12 col-lg-8 mx-auto text-center">
+                <h2 style={styles.heading}>Our Digital <Highlight>Marketing Process</Highlight></h2>
+                <p style={styles.paragraph}>A structured approach to grow your business online</p>
+              </div>
+            </div>
             <div className="row">
               <div className="col-12">
-                <h2 style={styles.heading}>Professional <Highlight>Digital Marketing Services in Kukatpally</Highlight>, Hyderabad</h2>
-                <p style={styles.paragraph}>PixelMind Solutions is a leading <Highlight>Best Digital Marketing Agency in Kukatpally</Highlight> offering affordable, result-driven digital marketing services including SEO, Google Ads, Social Media Marketing, Content Marketing, Local SEO, and Lead Generation. We help businesses improve Google rankings, increase website traffic, build brand awareness, generate online leads, and boost customer engagement.</p>
-                <p style={styles.paragraph}>As a trusted <Highlight>Best IT Company in Kukatpally</Highlight>, we combine technical expertise with creative marketing strategies to deliver measurable results. Our data-driven approach ensures maximum ROI for your marketing investment. We also offer <Highlight>Digital Marketing Services at Low Cost in Kukatpally</Highlight> without compromising on quality.</p>
-                <p style={styles.paragraph}>Whether you're a startup, small business, or enterprise in Hyderabad and Telangana, our customized digital marketing solutions help you reach your target audience and achieve your business goals.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Detailed Services Section */}
-        <section className="py-5" style={{ backgroundColor: '#f5f7fa' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Our Comprehensive <Highlight>Digital Marketing Services</Highlight></h2>
-              </div>
-            </div>
-            <div className="row g-4">
-              {[
-                { title: 'SEO (Search Engine Optimization)', desc: 'We help your website rank higher on Google, Bing, and other search engines. Our SEO services include on-page optimization, off-page link building, technical SEO, local SEO, and content optimization to drive organic traffic.' },
-                { title: 'Google Ads (PPC) Management', desc: 'Get instant visibility with targeted Google Ads campaigns. We manage PPC campaigns across search, display, and YouTube to generate qualified leads and maximize your ad spend ROI.' },
-                { title: 'Social Media Marketing', desc: 'Build your brand presence on Facebook, Instagram, LinkedIn, and Twitter. We create engaging content, run targeted ads, and grow your social media following.' },
-                { title: 'Content Marketing', desc: 'Quality content drives engagement and SEO. We create blog posts, articles, infographics, videos, and eBooks that educate your audience and convert them into customers.' },
-                { title: 'Local SEO', desc: 'Dominate local search results in Kukatpally, Hyderabad, and Telangana. We optimize your Google My Business profile, local citations, and reviews to attract nearby customers.' },
-                { title: 'Email Marketing', desc: 'Nurture leads and retain customers with personalized email campaigns. We design and execute email sequences that drive repeat business and loyalty.' }
-              ].map((service, idx) => (
-                <div key={idx} className="col-lg-4 col-md-6 col-12">
-                  <div style={styles.card} className="h-100">
-                    <h3 style={styles.subheading}>{service.title}</h3>
-                    <p style={styles.paragraph}>{service.desc}</p>
+                <div className="pms-dm-process-wrap p-4 p-md-5" style={{ backgroundColor: '#f8f9fa', borderRadius: '20px' }}>
+                  <div className="pms-dm-process-line d-none d-lg-block" />
+                  <div className="row g-4 g-lg-0">
+                    {process.map((item, idx) => (
+                      <div key={idx} className="col-6 col-md-4 col-lg-2">
+                        <div className="pms-dm-step text-center">
+                          <div className="pms-dm-process-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '70px', height: '70px', backgroundColor: '#06cabc', borderRadius: '50%', color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>
+                            {item.step}
+                          </div>
+                          <h5 className="fw-bold mb-1" style={{ fontSize: '1rem' }}>{item.title}</h5>
+                          <p className="small text-secondary mb-0">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Why Businesses Need Digital Marketing */}
-        <section className="py-5" style={{ backgroundColor: '#fff' }}>
+        {/* Build Stronger Digital Presence */}
+        <section className="py-5" style={{ backgroundColor: '#f0fdfb', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-lg-6 col-md-12 mb-4 mb-lg-0">
-                <img src="/assets/images/service/service-image2.jpg" alt="Digital Marketing Growth" className="img-fluid rounded" />
-              </div>
-              <div className="col-lg-6 col-md-12">
-                <h2 style={styles.heading}>Why Your Business Needs Digital Marketing</h2>
-                <ul className="list-unstyled">
-                  <li style={styles.listItem}><i className="fa-solid fa-check" style={{ color: '#06cabc' }} /> <strong>Brand Awareness:</strong> Reach millions of potential customers online.</li>
-                  <li style={styles.listItem}><i className="fa-solid fa-check" style={{ color: '#06cabc' }} /> <strong>Lead Generation:</strong> Attract qualified leads actively searching for your products/services.</li>
-                  <li style={styles.listItem}><i className="fa-solid fa-check" style={{ color: '#06cabc' }} /> <strong>Better ROI:</strong> Digital marketing delivers higher ROI than traditional advertising.</li>
-                  <li style={styles.listItem}><i className="fa-solid fa-check" style={{ color: '#06cabc' }} /> <strong>Customer Engagement:</strong> Build relationships and loyalty through social media and email.</li>
-                  <li style={styles.listItem}><i className="fa-solid fa-check" style={{ color: '#06cabc' }} /> <strong>Measurable Results:</strong> Track every campaign's performance in real-time.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="py-5" style={{ backgroundColor: '#f0fdfb' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Benefits of Our Digital Marketing Services</h2>
-              </div>
-            </div>
-            <div className="row">
-              {['Increased Online Visibility', 'Targeted Traffic', 'Higher Conversion Rates', 'Cost-Effective Marketing', 'Brand Authority Building', '24/7 Lead Generation', 'Detailed Analytics & Reporting', 'Competitive Advantage'].map((benefit, i) => (
-                <div key={i} className="col-lg-3 col-md-6 col-12 mb-3">
-                  <div className="d-flex align-items-center gap-3"><i className="fa-solid fa-check-circle fs-3" style={{ color: '#06cabc' }} /><span>{benefit}</span></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="py-5" style={{ backgroundColor: '#fff' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Our Digital Marketing Process</h2>
-              </div>
-            </div>
-            <div className="row">
-              {['Discovery & Research', 'Strategy Development', 'Campaign Setup', 'Execution', 'Monitoring & Optimization', 'Reporting & Analysis'].map((step, idx) => (
-                <div key={idx} className="col-lg-2 col-md-4 col-6 mb-4">
-                  <div style={styles.processStep}>
-                    <div style={{ width: '60px', height: '60px', backgroundColor: '#06cabc', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 15px', color: '#fff', fontWeight: 'bold', fontSize: '1.5rem' }}>{idx+1}</div>
-                    <h5 className="fs-6">{step}</h5>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Industry-Specific Solutions */}
-        <section className="py-5" style={{ backgroundColor: '#f5f7fa' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Industry-Specific Digital Marketing</h2>
-              </div>
-            </div>
-            <div className="row g-4">
-              {['Healthcare Marketing', 'Real Estate Marketing', 'Ecommerce Marketing', 'Restaurant Marketing', 'Educational Marketing', 'Startup Marketing'].map((ind, i) => (
-                <div key={i} className="col-lg-4 col-md-6 col-12">
-                  <div style={styles.industryCard}>
-                    <i className="fa-solid fa-chart-line fs-1" style={{ color: '#06cabc', marginBottom: '15px' }} />
-                    <h5>{ind}</h5>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Case Studies */}
-        <section className="py-5" style={{ backgroundColor: '#fff' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Success Stories</h2>
-              </div>
-            </div>
-            <div className="row g-4">
-              <div className="col-lg-6 col-md-12">
-                <div style={styles.card} className="h-100">
-                  <h4>📈 Local Restaurant - SEO Success</h4>
-                  <p><strong>Problem:</strong> Low online visibility, minimal footfall.</p>
-                  <p><strong>Solution:</strong> Local SEO + Google Maps optimization + social media marketing.</p>
-                  <p><strong>Results:</strong> #1 ranking for "best restaurant in Kukatpally", 300% increase in online orders.</p>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-12">
-                <div style={styles.card} className="h-100">
-                  <h4>🏢 Real Estate Agency - Lead Generation</h4>
-                  <p><strong>Problem:</strong> Low quality leads, high ad spend.</p>
-                  <p><strong>Solution:</strong> Targeted Google Ads + landing page optimization + remarketing.</p>
-                  <p><strong>Results:</strong> 65% lower cost per lead, 200+ qualified leads per month.</p>
+              <div className="col-12 col-lg-8 mx-auto text-center">
+                <h2 style={styles.heading}>Build a <Highlight>Stronger Digital Presence</Highlight> With Us</h2>
+                <p style={styles.paragraph}>At PixelMind Solutions, we believe successful digital growth comes from the right combination of creativity, technology, and strategy. Our mission is to help businesses reach more customers and build a powerful online identity.</p>
+                <div className="row g-3 mt-3">
+                  {[
+                    { icon: 'fa-solid fa-lightbulb', label: 'Creativity' },
+                    { icon: 'fa-solid fa-microchip', label: 'Technology' },
+                    { icon: 'fa-solid fa-bullseye', label: 'Strategy' },
+                  ].map((s, i) => (
+                    <div className="col-4" key={i}>
+                      <div className="p-3 p-md-4 bg-white rounded-3 shadow-sm h-100">
+                        <i className={`${s.icon} fs-2`} style={{ color: '#06cabc' }}></i>
+                        <h6 className="mt-2 mb-0">{s.label}</h6>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -200,25 +289,26 @@ function Digitalmarketing() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-5" style={{ backgroundColor: '#f5f7fa' }}>
+        <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row mb-5">
               <div className="col-12 text-center">
-                <h2 style={styles.heading}>What Our Clients Say</h2>
+                <h2 style={styles.heading}>What Our <Highlight>Clients Say</Highlight></h2>
               </div>
             </div>
             <div className="row g-4">
-              {[
-                { name: 'Vikram Reddy', business: 'Restaurant Owner, Kukatpally', text: 'PixelMind transformed our online presence. Best <Highlight>Digital Marketing Agency in Kukatpally</Highlight> by far!' },
-                { name: 'Neha S.', business: 'E-commerce Store, Hyderabad', text: 'Our sales have doubled since we started working with them. Highly recommend their SEO services.' },
-                { name: 'Prakash Raj', business: 'Real Estate Agent, Telangana', text: 'Professional team, transparent reporting, and amazing results. Worth every rupee!' }
-              ].map((t, i) => (
-                <div key={i} className="col-lg-4 col-md-6 col-12">
-                  <div style={styles.testimonialCard}>
-                    <i className="fa-solid fa-quote-left fs-1 mb-3" style={{ color: '#06cabc', opacity: 0.3 }} />
-                    <p style={styles.paragraph} dangerouslySetInnerHTML={{ __html: `"${t.text}"` }} />
-                    <h5 className="mb-1">{t.name}</h5>
-                    <small style={{ color: '#06cabc' }}>{t.business}</small>
+              {testimonials.map((t, i) => (
+                <div key={i} className="col-12 col-md-6 col-lg-4">
+                  <div style={styles.testimonialCard} className="pms-dm-testimonial">
+                    <i className="fa-solid fa-quote-left fs-3 mb-3" style={{ color: '#06cabc', opacity: 0.3 }} />
+                    <p style={{ ...styles.paragraph, flexGrow: 1 }}>"{t.text}"</p>
+                    <div className="d-flex align-items-center gap-3 mt-2">
+                      <div className="pms-dm-avatar">{t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</div>
+                      <div>
+                        <h6 className="mb-0 fw-bold">{t.name}</h6>
+                        <div style={{ color: '#f5a623', fontSize: '0.8rem' }}>★★★★★</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -226,47 +316,19 @@ function Digitalmarketing() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="py-5" style={{ backgroundColor: '#fff' }}>
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12 text-center">
-                <h2 style={styles.heading}>Frequently Asked Questions</h2>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                {[
-                  { q: 'How much do digital marketing services cost in Kukatpally?', a: 'We offer <Highlight>Digital Marketing Services at Low Cost in Kukatpally</Highlight> starting from ₹15,000/month. Contact us for a customized quote.' },
-                  { q: 'Do you provide SEO services for local businesses?', a: 'Yes, we specialize in Local SEO for businesses in Kukatpally, Hyderabad, and Telangana.' },
-                  { q: 'How long does it take to see SEO results?', a: 'Typically 3-6 months for significant ranking improvements, but we deliver incremental wins along the way.' },
-                  { q: 'Do you also provide website development?', a: 'Yes, we are a <Highlight>Best Web Development Company in Kukatpally</Highlight> building SEO-friendly websites.' },
-                  { q: 'Do you provide app development too?', a: 'Yes, we are also a <Highlight>Best App Development Company in Kukatpally</Highlight>.' },
-                  { q: 'Which platforms do you advertise on?', a: 'We run campaigns on Google, Facebook, Instagram, LinkedIn, and YouTube based on your target audience.' },
-                  { q: 'Do you provide monthly reports?', a: 'Absolutely! We provide detailed monthly reports with KPIs, ROI analysis, and actionable insights.' },
-                  { q: 'Can you help with social media management?', a: 'Yes, we offer complete social media management including content creation, posting, and engagement.' }
-                ].map((faq, idx) => (
-                  <div key={idx} style={styles.faqItem} className="mb-3">
-                    <h4 style={styles.faqQuestion} className="mb-0">{faq.q}</h4>
-                    <div style={styles.faqAnswer}><p style={styles.paragraph} dangerouslySetInnerHTML={{ __html: faq.a }} /></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* CTA Section */}
-        <section className="py-5" style={{ backgroundColor: '#06cabc', color: '#fff' }}>
+        <section className="py-5" style={{ backgroundColor: '#06cabc', color: '#fff', paddingTop: '60px', paddingBottom: '60px' }}>
           <div className="container">
             <div className="row">
-              <div className="col-12 text-center">
-                <h2 style={{ ...styles.heading, color: '#fff' }}>Looking for the <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 8px', borderRadius: '8px' }}>Best Digital Marketing Agency in Kukatpally</span>?</h2>
-                <p style={{ ...styles.paragraph, color: '#fff', maxWidth: '700px', margin: '0 auto 30px' }}>Contact PixelMind Solutions today for affordable, result-driven digital marketing services. Let's grow your business online in Hyderabad and Telangana.</p>
-                <Link to="/contact" className="btn btn-light rounded-pill me-3 mb-2" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: '600' }}>Contact Us Today</Link>
-                <Link to="/portfolio" className="btn rounded-pill mb-2" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff' }}>View Portfolio</Link>
-                <div className="mt-4">
-                  <p>Related Services: <Link to="/webdevelopment" className="text-white text-decoration-underline">Web Development</Link> | <Link to="/appdevelopment" className="text-white text-decoration-underline">App Development</Link></p>
+              <div className="col-12 col-lg-9 mx-auto text-center">
+                <h2 style={{ ...styles.heading, color: '#fff' }}>
+                  Ready to Grow Your{' '}
+                  <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 12px', borderRadius: '8px', display: 'inline-block' }}>Business Online</span>?
+                </h2>
+                <p style={{ ...styles.paragraph, color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto 30px' }}>Let's create a powerful digital marketing strategy for your business. Contact PixelMind Solutions today for professional digital marketing services in Kukatpally, Hyderabad.</p>
+                <div className="d-flex flex-wrap justify-content-center gap-3">
+                  <Link to="/contact" className="pms-dm-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: 600, padding: '12px 32px' }}>Contact Us Today</Link>
+                  <Link to="/portfolio" className="pms-dm-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>View Portfolio</Link>
                 </div>
               </div>
             </div>

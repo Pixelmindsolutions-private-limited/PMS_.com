@@ -2829,7 +2829,7 @@ input.main-search-input::placeholder {
 }
 .banner__content, .banner-two__content, .banner-three__content {
   max-width: 770px;
-  padding: 110px 0;
+  padding: 60px 0;
   position: relative;
 }
 @media (max-width: 991px) {

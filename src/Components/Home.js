@@ -3,7 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 // import backgroundimg from "../../public/assets/images/banner/banner-image.jpg"
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Contactform from "./Contactform";
 import { Helmet } from "react-helmet";
 import WhyUs from "../Home/WhyUs";
@@ -32,6 +32,8 @@ function Home() {
   };
 
   const Offeropen = sessionStorage.getItem('openOffer');
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -182,6 +184,7 @@ function Home() {
                         data-duration="2s"
                         data-delay=".3s"
                         className="text-white mb-20"
+                        style={{ fontSize: "1.0rem" }}
                       >
                         <svg
                           className="me-1"
@@ -195,15 +198,15 @@ function Home() {
                             x="0.5"
                             y="0.500183"
                             width="25.6667"
-                            height={15}
+                            height={12}
                             rx="7.5"
                             stroke="white"
                           />
                           <rect
                             x="13.3334"
                             y="0.000183105"
-                            width="26.6667"
-                            height={16}
+                            width="23.6667"
+                            height={13}
                             rx={8}
                             fill="white"
                           />
@@ -215,6 +218,7 @@ function Home() {
                         data-duration="2s"
                         data-delay=".5s"
                         className="text-white"
+                        style={{ fontSize: "3.5rem" }}
                       >
                         Transforming Ideas into Powerful Digital Experiences
                       </h1>
@@ -260,7 +264,7 @@ function Home() {
                       </div>
 
                       {/* Stats Section */}
-                      <div
+                      {/* <div
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay="1.1s"
@@ -307,7 +311,7 @@ function Home() {
                             </p>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -400,6 +404,7 @@ function Home() {
                   className="col-lg-4 col-md-6 wow bounceInUp"
                   data-wow-delay="200ms"
                   data-wow-duration="1000ms"
+                  onClick={() => navigate('/appdevelopment')}
                 >
                   <div className="service__item active">
                     <div className="service-shape">
@@ -427,6 +432,7 @@ function Home() {
                   className="col-lg-4 col-md-6 wow bounceInUp"
                   data-wow-delay="400ms"
                   data-wow-duration="1000ms"
+                  onClick={() => navigate('/webdevelopment')}
                 >
                   <div className="service__item">
                     <div className="service-shape">
@@ -1399,11 +1405,11 @@ function Home() {
                       <span className="process-number">1</span>
                     </div>
                     <div className="process__content">
-                      <h4 className="mt-25 mb-10">Define Requirements</h4>
+                      <h4 className="mt-25 mb-10">Discover & Plan</h4>
                       <p>
-                        We start by understanding your business goals, target
-                        audience, and technical needs to ensure a clear and
-                        effective project roadmap.
+                        We understand your business goals, requirements,
+                        and challenges to create a clear project
+                        strategy and roadmap for successful execution.
                       </p>
                     </div>
                   </div>
@@ -1428,11 +1434,11 @@ function Home() {
                       <span className="process-number">2</span>
                     </div>
                     <div className="process__content">
-                      <h4 className="mt-25 mb-10">Design &amp; Prototyping</h4>
+                      <h4 className="mt-25 mb-10">Design & Develop</h4>
                       <p>
-                        Our team creates intuitive designs and prototypes,
-                        transforming concepts into visually engaging and
-                        functional layouts for seamless user experience.
+                        Our team transforms ideas into creative designs
+                        and develops scalable, high-quality solutions
+                        with modern technologies and best practices.
                       </p>
                     </div>
                   </div>
@@ -1451,11 +1457,11 @@ function Home() {
                       <span className="process-number">3</span>
                     </div>
                     <div className="process__content">
-                      <h4 className="mt-25 mb-10">Finial Solution</h4>
+                      <h4 className="mt-25 mb-10">Deliver & Support</h4>
                       <p>
-                        We deliver a fully developed, tested, and optimized
-                        solution, tailored to meet your objectives, ensuring
-                        high performance and scalability.
+                        We deliver a fully tested solution and provide
+                        continuous support to ensure smooth
+                        performance, growth, and long-term success.
                       </p>
                     </div>
                   </div>

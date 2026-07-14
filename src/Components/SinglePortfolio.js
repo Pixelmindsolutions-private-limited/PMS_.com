@@ -190,7 +190,7 @@ function SinglePortfolio() {
 
                                     <span className="d-inline-flex align-items-center rounded-pill px-4 py-2 mb-3" style={{ background: "rgba(255,255,255,0.18)", color: "#fff", border: "1px solid rgba(255,255,255,0.25)" }}>
                                         <i className={`fa-solid ${meta.icon} me-2`} style={{ color: "#06cabc" }}></i>
-                                        <span className="fw-semibold">
+                                        <span className="fw-semibold text-white">
                                             {meta.label}
                                         </span>
                                     </span>
@@ -255,8 +255,8 @@ function SinglePortfolio() {
                         </div>
                     </div>
 
-                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "400px", height: "400px", background: "#fff", top: "-20%", right: "-10%", zIndex: 2 }}></div>
-                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "300px", height: "300px", background: "#fff", bottom: "-20%", left: "-10%", zIndex: 2 }}></div>
+                    {/* <div className="position-absolute rounded-circle opacity-10" style={{ width: "400px", height: "400px", background: "#06cabc", top: "-20%", right: "-10%", zIndex: 2 }}></div>
+                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "300px", height: "300px", background: "#06cabc", bottom: "-20%", left: "-10%", zIndex: 2 }}></div> */}
                 </section>
 
                 {/* ── Back Button ── */}
@@ -281,12 +281,12 @@ function SinglePortfolio() {
                                         <i className={`fa-solid ${meta.icon} me-1`}></i>
                                         {meta.label}
                                     </span>
-                                    <span className="d-flex align-items-center gap-2">
+                                    {/* <span className="d-flex align-items-center gap-2">
                                         <span className="d-inline-block rounded-circle" style={{ width: "9px", height: "9px", background: "#22c55e", boxShadow: "0 0 0 rgba(34,197,94,0.6)", animation: "pulseDot 1.8s infinite" }}></span>
                                         <span className="rounded-pill px-3 py-2" style={{ background: "#1e293b", color: "#fff", fontSize: "13px", fontWeight: "600" }}>
                                             <i className="fa-regular fa-calendar me-1"></i>{project.year}
                                         </span>
-                                    </span>
+                                    </span> */}
                                 </div>
 
                                 {/* Device Mockup */}
@@ -630,7 +630,7 @@ function SinglePortfolio() {
 
                         </div>
                         
-                        {/* ── Testimonial ── */}
+                        {/* ── Testimonial ──
                         {project.testimonial && (
                             <div className="mt-4 p-4 p-md-5 rounded-4 text-center position-relative" style={{ background: "linear-gradient(135deg, #f8fafc, #f1f5f9)", border: "1px solid #e2e8f0" }}>
                                 <i className="fa-solid fa-quote-left mb-3" style={{ color: meta.color, fontSize: "40px", opacity: 0.25 }}></i>
@@ -647,7 +647,7 @@ function SinglePortfolio() {
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        )} */}
 
                         {/* ── Related Projects Section with Horizontal Scroll ── */}
                         {relatedProjects.length > 0 && (
