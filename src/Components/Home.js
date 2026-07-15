@@ -214,7 +214,7 @@ function Home() {
                       className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"
                     ></div>
                   </div>
-                  <div className="container">
+                  <div className="container vh-100">
                     <div className="banner__content">
                       <h4
                         data-animation="slideInRight"
@@ -266,7 +266,8 @@ function Home() {
                         className="mt-20"
                       >
                         Build smarter. Grow faster. Scale confidently. Pixelmindsolutions delivers custom web, app, and
-                        digital marketing solutions that create measurable business impact.
+                        digital marketing solutions that create measurable business impact.<br/>
+                        
                       </p>
 
                       {/* Button Group - Two Buttons Side by Side */}
