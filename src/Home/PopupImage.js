@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { X } from "lucide-react";
 import offerimage from '../assets/Home/Offer.png';
+
 // Array of images - add your images here
 const popupImages = [
     {
@@ -16,7 +17,7 @@ const popupImages = [
     // }
 ];
 
-const PopupImage = () => {
+const PopupImage = ({ onClose }) => { // Accept onClose prop from parent
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -37,7 +38,11 @@ const PopupImage = () => {
         if (autoRotateRef.current) {
             clearInterval(autoRotateRef.current);
         }
-    }, []);
+        // Call the parent's onClose callback when popup is closed
+        if (onClose) {
+            onClose();
+        }
+    }, [onClose]);
 
     // Handle outside click
     useEffect(() => {
@@ -81,7 +86,7 @@ const PopupImage = () => {
         // Get the current count from sessionStorage
         let popupCount = parseInt(sessionStorage.getItem("popupImageCount") || "0");
 
-        // Check if we've shown it less than 3 times
+        // Check if we've shown it less than 5 times
         if (popupCount < 5) {
             const timer = setTimeout(() => {
                 setIsOpen(true);
@@ -90,7 +95,9 @@ const PopupImage = () => {
                 sessionStorage.setItem("popupImageCount", popupCount.toString());
                 // Also set a flag for current session
                 sessionStorage.setItem("popupImageShown", "true");
-            }, 5000); // Show after 2 seconds
+            }, 3000); // Show after 5 seconds
+
+            timerRef.current = timer;
             return () => clearTimeout(timer);
         }
     }, [isHomeRoute]);
@@ -243,8 +250,6 @@ const PopupImage = () => {
                             }}
                             loading="lazy"
                         />
-
-
 
                         {/* Dot Indicators (if multiple images) */}
                         {isMultiple && (

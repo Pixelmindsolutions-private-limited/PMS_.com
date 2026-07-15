@@ -202,10 +202,7 @@ function Appdevelopment() {
               <div className="col-12 col-lg-6">
                 <div className="position-relative">
                   <img src="/assets/images/service/service-image5.jpg" alt="App Development" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
-                  <div className="position-absolute bottom-0 start-0 m-3 m-md-4 p-3 bg-white rounded-3 shadow-lg">
-                    <span className="d-block fs-2 fw-bold" style={{ color: '#06cabc' }}>50+</span>
-                    <span className="d-block text-secondary small">Apps Delivered</span>
-                  </div>
+                  
                 </div>
               </div>
             </div>

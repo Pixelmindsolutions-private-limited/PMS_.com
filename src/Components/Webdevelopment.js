@@ -1,10 +1,10 @@
-// Appdevelopment.js
+// Webdevelopment.js
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
-function Appdevelopment() {
+function Webdevelopment() {
   const styles = {
     highlight: { color: '#06cabc', fontWeight: 600 },
     heading: {
@@ -27,10 +27,9 @@ function Appdevelopment() {
       marginBottom: '18px',
     },
     card: {
-      backgroundColor: '#fff',
+      backgroundColor: '#f8f9fa',
       borderRadius: '16px',
       padding: '32px 24px',
-      marginBottom: '0',
       border: '1px solid #eef0f3',
     },
     testimonialCard: {
@@ -48,19 +47,19 @@ function Appdevelopment() {
   const Highlight = ({ children }) => <span style={styles.highlight}>{children}</span>;
 
   const features = [
-    { icon: 'fa-solid fa-puzzle-piece', title: 'Custom Solutions for Every Business', desc: 'We design and develop applications based on your unique requirements and business objectives.' },
-    { icon: 'fa-solid fa-mobile-screen-button', title: 'Modern & User-Friendly Experiences', desc: 'Our focus is on creating simple, engaging, and seamless experiences for your users.' },
-    { icon: 'fa-solid fa-shield-halved', title: 'Reliable Development Approach', desc: 'We follow quality-driven processes to ensure performance, security, and long-term reliability.' },
-    { icon: 'fa-solid fa-handshake', title: 'Complete Project Assistance', desc: 'From concept to launch and beyond, our team provides continuous guidance and support.' },
+    { icon: 'fa-solid fa-puzzle-piece', title: 'Customized Web Solutions', desc: 'We create websites that are designed according to your unique business needs and goals.' },
+    { icon: 'fa-solid fa-laptop', title: 'Modern & Responsive Design', desc: 'Our websites deliver smooth experiences across desktops, tablets, and mobile devices.' },
+    { icon: 'fa-solid fa-gauge-high', title: 'Performance-Driven Development', desc: 'We focus on speed, security, and reliability to ensure better user satisfaction.' },
+    { icon: 'fa-solid fa-headset', title: 'Complete Support & Maintenance', desc: 'From planning to launch and beyond, we provide continuous assistance for your digital growth.' },
   ];
 
   const process = [
-    { step: '01', title: 'Discovery', desc: 'Understanding your vision, goals, and user needs' },
-    { step: '02', title: 'Planning', desc: 'Creating project roadmap and technical architecture' },
-    { step: '03', title: 'Design', desc: 'Crafting intuitive UI/UX designs and prototypes' },
-    { step: '04', title: 'Development', desc: 'Building the app with agile methodology' },
-    { step: '05', title: 'Testing', desc: 'Rigorous quality assurance and user testing' },
-    { step: '06', title: 'Launch', desc: 'Deploying to app stores and post-launch support' },
+    { step: '01', title: 'Discovery', desc: 'Understanding your goals, audience, and requirements' },
+    { step: '02', title: 'Planning', desc: 'Creating sitemaps, wireframes, and technical architecture' },
+    { step: '03', title: 'Design', desc: 'Crafting modern UI/UX designs that engage users' },
+    { step: '04', title: 'Development', desc: 'Building with latest technologies and best practices' },
+    { step: '05', title: 'Testing', desc: 'Rigorous quality assurance and performance testing' },
+    { step: '06', title: 'Launch', desc: 'Deploying your website and ongoing support' },
   ];
 
   const testimonials = [
@@ -72,44 +71,44 @@ function Appdevelopment() {
   return (
     <div>
       <style>{`
-        .pms-appdev-hero {
+        .pms-webdev-hero {
           position: relative;
           background-size: cover;
           background-position: center;
           padding: clamp(70px, 14vw, 130px) 0;
         }
-        .pms-appdev-hero::before {
+        .pms-webdev-hero::before {
           content: '';
           position: absolute;
           inset: 0;
           background: linear-gradient(135deg, rgba(10,15,30,0.82) 0%, rgba(6,202,188,0.55) 100%);
         }
-        .pms-appdev-hero .container { position: relative; z-index: 2; }
-        .pms-appdev-hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.2; }
-        .pms-appdev-btn-solid, .pms-appdev-btn-outline {
+        .pms-webdev-hero .container { position: relative; z-index: 2; }
+        .pms-webdev-hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.2; }
+        .pms-webdev-btn-solid, .pms-webdev-btn-outline {
           display: inline-block;
           transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
         }
-        .pms-appdev-btn-solid:hover {
+        .pms-webdev-btn-solid:hover {
           transform: translateY(-3px);
           box-shadow: 0 10px 24px rgba(6,202,188,0.35);
           color: #fff;
         }
-        .pms-appdev-btn-outline:hover {
+        .pms-webdev-btn-outline:hover {
           background-color: #06cabc !important;
           color: #fff !important;
           transform: translateY(-3px);
         }
-        .pms-appdev-card {
+        .pms-webdev-card {
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           height: 100%;
         }
-        .pms-appdev-card:hover {
+        .pms-webdev-card:hover {
           transform: translateY(-8px);
           box-shadow: 0 16px 36px rgba(15,23,42,0.10);
           border-color: rgba(6,202,188,0.35) !important;
         }
-        .pms-appdev-icon-wrap {
+        .pms-webdev-icon-wrap {
           width: 60px;
           height: 60px;
           border-radius: 14px;
@@ -119,8 +118,8 @@ function Appdevelopment() {
           background: rgba(6,202,188,0.10);
           margin: 0 auto 18px;
         }
-        .pms-appdev-process-wrap { position: relative; }
-        .pms-appdev-process-line {
+        .pms-webdev-process-wrap { position: relative; }
+        .pms-webdev-process-line {
           position: absolute;
           top: 35px;
           left: 8.33%;
@@ -129,20 +128,20 @@ function Appdevelopment() {
           background: repeating-linear-gradient(90deg, #06cabc 0, #06cabc 8px, transparent 8px, transparent 16px);
           z-index: 0;
         }
-        .pms-appdev-process-circle {
+        .pms-webdev-process-circle {
           position: relative;
           z-index: 1;
           transition: transform 0.3s ease;
         }
-        .pms-appdev-step:hover .pms-appdev-process-circle {
+        .pms-webdev-step:hover .pms-webdev-process-circle {
           transform: scale(1.1);
           box-shadow: 0 8px 18px rgba(6,202,188,0.4);
         }
-        .pms-appdev-testimonial:hover {
+        .pms-webdev-testimonial:hover {
           transform: translateY(-6px);
           box-shadow: 0 16px 36px rgba(15,23,42,0.10);
         }
-        .pms-appdev-avatar {
+        .pms-webdev-avatar {
           width: 46px;
           height: 46px;
           border-radius: 50%;
@@ -155,7 +154,7 @@ function Appdevelopment() {
           flex-shrink: 0;
         }
         @media (max-width: 991px) {
-          .pms-appdev-process-line { display: none; }
+          .pms-webdev-process-line { display: none; }
         }
       `}</style>
 
@@ -163,50 +162,44 @@ function Appdevelopment() {
       <main>
 
         {/* Hero Section */}
-        <section className="pms-appdev-hero" style={{ backgroundImage: `url(${'/assets/images/banner/banner-inner-page.jpg'})` }}>
+        <section className="pms-webdev-hero" style={{ backgroundImage: `url(${'/assets/images/banner/banner-inner-page.jpg'})` }}>
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-9 mx-auto text-center">
                 <h1 className="wow fadeInUp fw-bold text-white mb-3">
-                  <Highlight>Best App Development Company in Kukatpally, Hyderabad</Highlight>
+                  <Highlight>Best Web Development Company in Kukatpally, Hyderabad</Highlight>
                 </h1>
-                <p className="wow fadeInUp fs-5 text-white-50 mb-4">Professional Mobile Solutions That Help Businesses Grow</p>
+                <p className="wow fadeInUp fs-5 text-white-50 mb-4">Building Powerful Websites That Help Businesses Grow</p>
                 <div className="wow fadeInUp d-flex flex-wrap justify-content-center gap-3">
-                  <Link to="/contact" className="pms-appdev-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
+                  <Link to="/contact" className="pms-webdev-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
                     Get Free Consultation
                   </Link>
-                  <Link to="/contact" className="pms-appdev-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
+                  <Link to="/quote" className="pms-webdev-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
                     Request a Quote
                   </Link>
                 </div>
-                {/* <div className="wow fadeInUp mt-4 d-flex justify-content-center align-items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
+                <div className="wow fadeInUp mt-4 d-flex justify-content-center align-items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
                   <Link to="/" className="text-white text-decoration-none">Home</Link>
                   <i className="fa-regular fa-angles-right" />
-                  <span>App Development</span>
-                </div> */}
+                  <span>Web Development</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Introduction Section */}
-        <section className="py-5 py-md-6" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
+        <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row align-items-center g-5">
               <div className="col-12 col-lg-6">
-                <h2 style={styles.heading}>Professional <Highlight>Mobile App Development Services in Kukatpally</Highlight>, Hyderabad</h2>
-                <p style={styles.paragraph}>In today's digital world, businesses need smart and reliable mobile experiences to stay connected with their customers. At <Highlight>PixelMind Solutions</Highlight>, we create powerful mobile solutions that help brands improve engagement, simplify processes, and build stronger connections with their audience.</p>
-                <p style={styles.paragraph}>Our team focuses on understanding your business goals and transforming your ideas into intuitive, secure, and high-performing applications. Whether you are a startup, growing business, or an established organization, we develop solutions that are designed around your specific needs.</p>
-                <p style={{ ...styles.paragraph, marginBottom: 0 }}>From initial planning and creative design to development and final deployment, we follow a structured approach to deliver applications that are smooth, scalable, and ready for future growth.</p>
+                <h2 style={styles.heading}>Professional <Highlight>Website Development Services in Kukatpally</Highlight>, Hyderabad</h2>
+                <p style={styles.paragraph}>A website is more than just an online presence — it is the foundation of your digital identity. At <Highlight>PixelMind Solutions</Highlight>, we create modern, responsive, and high-performing websites that help businesses connect with their customers and achieve their goals.</p>
+                <p style={styles.paragraph}>Our team focuses on creating websites that combine attractive design, smooth functionality, and strong performance. We understand your business requirements and develop digital solutions that are tailored to your brand, audience, and growth objectives.</p>
+                <p style={{ ...styles.paragraph, marginBottom: 0 }}>From business websites and eCommerce platforms to custom web applications, we build solutions using the latest technologies and industry practices. Every project is carefully planned, developed, and optimized to provide a seamless experience across all devices.</p>
               </div>
               <div className="col-12 col-lg-6">
-                <div className="position-relative">
-                  <img src="/assets/images/service/service-image5.jpg" alt="App Development" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
-                  <div className="position-absolute bottom-0 start-0 m-3 m-md-4 p-3 bg-white rounded-3 shadow-lg">
-                    <span className="d-block fs-2 fw-bold" style={{ color: '#06cabc' }}>50+</span>
-                    <span className="d-block text-secondary small">Apps Delivered</span>
-                  </div>
-                </div>
+                <img src="/assets/images/service/service-image6.jpg" alt="Web Development" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
               </div>
             </div>
           </div>
@@ -218,14 +211,14 @@ function Appdevelopment() {
             <div className="row mb-5">
               <div className="col-12 col-lg-8 mx-auto text-center">
                 <h2 style={styles.heading}>Why Choose <Highlight>PixelMind Solutions</Highlight>?</h2>
-                <p style={styles.paragraph}>We combine creativity, technology, and industry experience to build digital products that create real value for businesses.</p>
+                <p style={styles.paragraph}>We combine creativity, technology, and industry experience to build websites that create real value for businesses.</p>
               </div>
             </div>
             <div className="row g-4">
               {features.map((item, idx) => (
                 <div key={idx} className="col-12 col-sm-6 col-lg-3">
-                  <div style={styles.card} className="pms-appdev-card text-center">
-                    <div className="pms-appdev-icon-wrap">
+                  <div style={styles.card} className="pms-webdev-card text-center">
+                    <div className="pms-webdev-icon-wrap">
                       <i className={`${item.icon} fs-4`} style={{ color: '#06cabc' }}></i>
                     </div>
                     <h4 style={styles.subheading}>{item.title}</h4>
@@ -237,24 +230,24 @@ function Appdevelopment() {
           </div>
         </section>
 
-        {/* App Development Process Diagram */}
+        {/* Web Development Process Diagram */}
         <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row mb-5">
               <div className="col-12 col-lg-8 mx-auto text-center">
-                <h2 style={styles.heading}>Our App <Highlight>Development Process</Highlight></h2>
-                <p style={styles.paragraph}>A structured approach to turn your idea into a successful mobile application</p>
+                <h2 style={styles.heading}>Our Web <Highlight>Development Process</Highlight></h2>
+                <p style={styles.paragraph}>A structured approach to build powerful websites that drive business growth</p>
               </div>
             </div>
             <div className="row">
               <div className="col-12">
-                <div className="pms-appdev-process-wrap p-4 p-md-5" style={{ backgroundColor: '#f8f9fa', borderRadius: '20px' }}>
-                  <div className="pms-appdev-process-line d-none d-lg-block" />
+                <div className="pms-webdev-process-wrap p-4 p-md-5" style={{ backgroundColor: '#f8f9fa', borderRadius: '20px' }}>
+                  <div className="pms-webdev-process-line d-none d-lg-block" />
                   <div className="row g-4 g-lg-0">
                     {process.map((item, idx) => (
                       <div key={idx} className="col-6 col-md-4 col-lg-2">
-                        <div className="pms-appdev-step text-center">
-                          <div className="pms-appdev-process-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '70px', height: '70px', backgroundColor: '#06cabc', borderRadius: '50%', color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>
+                        <div className="pms-webdev-step text-center">
+                          <div className="pms-webdev-process-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '70px', height: '70px', backgroundColor: '#06cabc', borderRadius: '50%', color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>
                             {item.step}
                           </div>
                           <h5 className="fw-bold mb-1" style={{ fontSize: '1rem' }}>{item.title}</h5>
@@ -269,18 +262,18 @@ function Appdevelopment() {
           </div>
         </section>
 
-        {/* Transform Your Idea Section */}
+        {/* Transform Your Online Presence */}
         <section className="py-5" style={{ backgroundColor: '#f0fdfb', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row align-items-center">
               <div className="col-12 col-lg-8 mx-auto text-center">
-                <h2 style={styles.heading}>Transform Your Idea Into a Digital Experience</h2>
-                <p style={styles.paragraph}>At PixelMind Solutions, we believe every business has a unique vision. Our goal is to turn your ideas into impactful digital solutions that help you connect with customers, improve efficiency, and achieve sustainable growth.</p>
+                <h2 style={styles.heading}>Transform Your <Highlight>Online Presence</Highlight> With Us</h2>
+                <p style={styles.paragraph}>At PixelMind Solutions, we combine creativity and technology to build websites that represent your brand, engage your audience, and support your business growth.</p>
                 <div className="row g-3 mt-3">
                   {[
-                    { icon: 'fa-solid fa-lightbulb', label: 'Idea' },
-                    { icon: 'fa-solid fa-arrow-right-long', label: 'Process' },
-                    { icon: 'fa-solid fa-rocket', label: 'Impact' },
+                    { icon: 'fa-solid fa-paintbrush', label: 'Creativity' },
+                    { icon: 'fa-solid fa-code', label: 'Technology' },
+                    { icon: 'fa-solid fa-chart-line', label: 'Growth' },
                   ].map((s, i) => (
                     <div className="col-4" key={i}>
                       <div className="p-3 p-md-4 bg-white rounded-3 shadow-sm h-100">
@@ -306,11 +299,11 @@ function Appdevelopment() {
             <div className="row g-4">
               {testimonials.map((t, i) => (
                 <div key={i} className="col-12 col-md-6 col-lg-4">
-                  <div style={styles.testimonialCard} className="pms-appdev-testimonial">
+                  <div style={styles.testimonialCard} className="pms-webdev-testimonial">
                     <i className="fa-solid fa-quote-left fs-3 mb-3" style={{ color: '#06cabc', opacity: 0.3 }} />
                     <p style={{ ...styles.paragraph, flexGrow: 1 }}>"{t.text}"</p>
                     <div className="d-flex align-items-center gap-3 mt-2">
-                      <div className="pms-appdev-avatar">{t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</div>
+                      <div className="pms-webdev-avatar">{t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</div>
                       <div>
                         <h6 className="mb-0 fw-bold">{t.name}</h6>
                         <div style={{ color: '#f5a623', fontSize: '0.8rem' }}>★★★★★</div>
@@ -330,12 +323,12 @@ function Appdevelopment() {
               <div className="col-12 col-lg-9 mx-auto text-center">
                 <h2 style={{ ...styles.heading, color: '#fff' }}>
                   Ready to Build Your{' '}
-                  <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 12px', borderRadius: '8px', display: 'inline-block' }}>Mobile App</span>?
+                  <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 12px', borderRadius: '8px', display: 'inline-block' }}>Website</span>?
                 </h2>
-                <p style={{ ...styles.paragraph, color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto 30px' }}>Let's turn your app idea into reality. Contact PixelMind Solutions today for professional app development services in Kukatpally, Hyderabad.</p>
+                <p style={{ ...styles.paragraph, color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto 30px' }}>Let's create a powerful online presence for your business. Contact PixelMind Solutions today for professional web development services in Kukatpally, Hyderabad.</p>
                 <div className="d-flex flex-wrap justify-content-center gap-3">
-                  <Link to="/contact" className="pms-appdev-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: 600, padding: '12px 32px' }}>Contact Us Today</Link>
-                  <Link to="/portfolio" className="pms-appdev-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>View Portfolio</Link>
+                  <Link to="/contact" className="pms-webdev-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: 600, padding: '12px 32px' }}>Contact Us Today</Link>
+                  <Link to="/portfolio" className="pms-webdev-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>View Portfolio</Link>
                 </div>
               </div>
             </div>
@@ -348,4 +341,4 @@ function Appdevelopment() {
   );
 }
 
-export default Appdevelopment;
+export default Webdevelopment;

@@ -28,8 +28,8 @@ function SinglePortfolio() {
         // Find related projects of the same type
         if (foundProject) {
             const related = portfolioItems
-                .filter(item => 
-                    item.id !== foundProject.id && 
+                .filter(item =>
+                    item.id !== foundProject.id &&
                     item.type === foundProject.type
                 )
                 .slice(0, 6); // Get up to 6 related projects
@@ -629,7 +629,7 @@ function SinglePortfolio() {
                             </div>
 
                         </div>
-                        
+
                         {/* ── Testimonial ──
                         {project.testimonial && (
                             <div className="mt-4 p-4 p-md-5 rounded-4 text-center position-relative" style={{ background: "linear-gradient(135deg, #f8fafc, #f1f5f9)", border: "1px solid #e2e8f0" }}>
@@ -663,12 +663,12 @@ function SinglePortfolio() {
                                                 <p className="text-secondary small mb-0">Explore more projects in the same category</p>
                                             </div>
                                             <div className="d-flex gap-2">
-                                                <button 
+                                                <button
                                                     onClick={scrollLeft}
                                                     className="btn rounded-circle border-0 d-flex align-items-center justify-content-center"
-                                                    style={{ 
-                                                        width: "40px", 
-                                                        height: "40px", 
+                                                    style={{
+                                                        width: "40px",
+                                                        height: "40px",
                                                         background: "#f1f5f9",
                                                         color: "#1e293b",
                                                         transition: "all 0.3s ease"
@@ -677,12 +677,12 @@ function SinglePortfolio() {
                                                 >
                                                     <i className="fa-solid fa-chevron-left"></i>
                                                 </button>
-                                                <button 
+                                                <button
                                                     onClick={scrollRight}
                                                     className="btn rounded-circle border-0 d-flex align-items-center justify-content-center"
-                                                    style={{ 
-                                                        width: "40px", 
-                                                        height: "40px", 
+                                                    style={{
+                                                        width: "40px",
+                                                        height: "40px",
                                                         background: meta.color,
                                                         color: "#fff",
                                                         transition: "all 0.3s ease"
@@ -696,7 +696,7 @@ function SinglePortfolio() {
                                     </div>
                                 </div>
 
-                                <div 
+                                <div
                                     ref={scrollContainerRef}
                                     className="d-flex gap-4 overflow-auto pb-3"
                                     style={{
@@ -710,33 +710,33 @@ function SinglePortfolio() {
                                     }}
                                 >
                                     {relatedProjects.map((related, index) => (
-                                        <div 
-                                            key={related.id} 
+                                        <div
+                                            key={related.id}
                                             className="flex-shrink-0"
-                                            style={{ 
+                                            style={{
                                                 width: "280px",
                                                 scrollSnapAlign: "start"
                                             }}
                                         >
-                                            <Link 
-                                                to={`/portfolio/${related.id}`} 
+                                            <Link
+                                                to={`/portfolio/${related.id}`}
                                                 className="text-decoration-none"
                                             >
                                                 <div className="card border-0 rounded-4 overflow-hidden shadow-sm h-100" style={{ border: "1px solid rgba(15,23,42,0.06)", transition: "all 0.3s ease" }}>
                                                     <div className="position-relative overflow-hidden" style={{ background: "#f8fafc" }}>
-                                                        <img 
-                                                            src={related.image} 
+                                                        <img
+                                                            src={related.image}
                                                             alt={related.title}
                                                             className="w-100"
-                                                            style={{ 
-                                                                height: "180px", 
-                                                                objectFit: "cover", 
-                                                                transition: "transform 0.5s ease" 
+                                                            style={{
+                                                                height: "180px",
+                                                                objectFit: "cover",
+                                                                transition: "transform 0.5s ease"
                                                             }}
                                                         />
-                                                        <span 
+                                                        <span
                                                             className="position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1"
-                                                            style={{ 
+                                                            style={{
                                                                 background: `linear-gradient(135deg, ${typeMeta[related.type]?.color || '#06cabc'}, ${typeMeta[related.type]?.colorDark || '#06cabc'})`,
                                                                 color: "#fff",
                                                                 fontSize: "11px",
@@ -757,8 +757,8 @@ function SinglePortfolio() {
                                                         </p>
                                                         <div className="d-flex flex-wrap gap-1 mb-2">
                                                             {(related.technologies || []).slice(0, 2).map((tech, idx) => (
-                                                                <span 
-                                                                    key={idx} 
+                                                                <span
+                                                                    key={idx}
                                                                     className="badge bg-light text-secondary border rounded-pill px-2 py-1"
                                                                     style={{ fontSize: "9px" }}
                                                                 >
@@ -826,12 +826,11 @@ function SinglePortfolio() {
                             </div>
                             <div className="row g-4 justify-content-center">
                                 {[
-                                    { count: '25', label: 'Satisfied Clients', icon: 'fa-user-check' },
-                                    { count: '30', label: 'Finished Projects', icon: 'fa-check-circle' },
-                                    { count: '20', label: 'Skilled Experts', icon: 'fa-users' },
-                                    { count: '30', label: 'Media Posts', icon: 'fa-bullhorn' },
+                                    { count: '60', label: 'Satisfied Clients', icon: 'fa-user-check' },
+                                    { count: '50', label: 'Finished Projects', icon: 'fa-check-circle' },
+                                    { count: '20', label: 'Skilled Experts', icon: 'fa-users' }
                                 ].map((c, idx) => (
-                                    <div className="col-6 col-sm-6 col-md-3" key={idx}>
+                                    <div className="col-12 col-sm-4 col-md-4" key={idx}>
                                         <div className="text-center p-3 rounded-3" style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(5px)", transition: "all 0.3s ease" }}>
                                             <i className={`fa-solid ${c.icon} text-white-50 mb-2`} style={{ fontSize: "24px" }}></i>
                                             <h3 className="text-white fw-bold mb-1 display-6">{c.count}+</h3>

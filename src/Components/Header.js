@@ -10,61 +10,51 @@ function Header() {
   const [chatModal, setChatModal] = useState(false);
   const [showChatMessage, setShowChatMessage] = useState(false);
   const [hasShownChatOnHome, setHasShownChatOnHome] = useState(false);
+  const [popupClosed, setPopupClosed] = useState(false); // New state to track popup closure
   const location = useLocation();
-
-  useEffect(() => {
-    // Check if current route is home page
-    const isHomePage = location.pathname === '/';
-
-    // Check if chatbot has been shown on home page in this session
-    const chatShownOnHome = sessionStorage.getItem('chatShownOnHome');
-
-    // Auto-open chatbot on home page
-    if (isHomePage && !chatShownOnHome && !hasShownChatOnHome) {
-      const timer = setTimeout(() => {
-        setChatModal(true);
-        setHasShownChatOnHome(true);
-        sessionStorage.setItem('chatShownOnHome', 'true');
-        // Hide the floating message when chatbot opens
-        setShowChatMessage(false);
-      }, 1500); // 1.5 second delay for smooth UX
-
-      return () => clearTimeout(timer);
-    }
-
-    // Close chatbot when navigating away from home
-    if (!isHomePage && chatModal) {
-      setChatModal(false);
-    }
-  }, [location.pathname, chatModal, hasShownChatOnHome]);
 
   useEffect(() => {
     const isHomePage = location.pathname === "/";
 
-    if (!isHomePage) return;
+    if (!isHomePage || !popupClosed) return;
 
-    let count = Number(sessionStorage.getItem("chatShownCount") || "0");
+    // Get how many times chatbot has already been shown
+    const chatCount = Number(sessionStorage.getItem("chatShownOnHome") || 0);
 
-    if (count >= 3) return;
+    // Show only 4 times
+    if (chatCount < 3) {
+      const timer = setTimeout(() => {
+        setChatModal(true);
+        setShowChatMessage(false);
 
-    const timer = setTimeout(() => {
-      setChatModal(true);
-      setShowChatMessage(false);
+        // Increase count
+        sessionStorage.setItem(
+          "chatShownOnHome",
+          String(chatCount + 1)
+        );
+      }, 500);
 
-      sessionStorage.setItem(
-        "chatShownCount",
-        String(count + 1)
-      );
-    }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname, popupClosed]);
 
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+  // Handle popup close event
+  const handlePopupClose = () => {
+    setPopupClosed(true);
+    // Show chat message bubble after popup closes
+    setTimeout(() => {
+      const isHomePage = location.pathname === '/';
+      const chatShownOnHome = sessionStorage.getItem('chatShownOnHome');
+      if (isHomePage && !chatShownOnHome) {
+        setShowChatMessage(true);
+      }
+    }, 300);
+  };
 
   const isSticky = () => {
     const scrollTop = window.scrollY;
     const stickyClass = scrollTop >= 180 ? "header-area menu-fixed fadeInDown" : "";
     setSticky(stickyClass);
-    console.log(stickyClass);
   };
 
   const classes = `${sticky}`;
@@ -72,12 +62,9 @@ function Header() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // simulate page ready
-    console.log("started");
     const timer = setTimeout(() => {
       setLoading(false);
-      console.log("false");
-    }, 1800); // animation duration match
+    }, 1800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -85,17 +72,13 @@ function Header() {
   // Handle chatbot option selection
   const handleChatbotOptionSelect = (option) => {
     console.log('Selected option:', option);
-    // You can add analytics tracking here
-    // trackEvent('chatbot_option_selected', { option: option.id });
-
-    // Close chatbot after selection
     setChatModal(false);
   };
 
   return (
     <>
       <div>
-        <PopupImage/>
+        <PopupImage onClose={handlePopupClose} />
         {/* PRELOADER */}
         <div id="preloader" className={loading ? "" : "isdone"}></div>
 

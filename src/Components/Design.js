@@ -1,10 +1,10 @@
-// Digitalmarketing.js
+// Uiuxdesign.js
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
-function Digitalmarketing() {
+function Uiuxdesign() {
   const styles = {
     highlight: { color: '#06cabc', fontWeight: 600 },
     heading: {
@@ -27,7 +27,7 @@ function Digitalmarketing() {
       marginBottom: '18px',
     },
     card: {
-      backgroundColor: '#fff',
+      backgroundColor: '#f8f9fa',
       borderRadius: '16px',
       padding: '32px 24px',
       border: '1px solid #eef0f3',
@@ -47,19 +47,19 @@ function Digitalmarketing() {
   const Highlight = ({ children }) => <span style={styles.highlight}>{children}</span>;
 
   const features = [
-    { icon: 'fa-solid fa-bullseye', title: 'Goal-Oriented Strategies', desc: 'We understand your business objectives and create marketing plans focused on achieving real results.' },
-    { icon: 'fa-solid fa-pen-fancy', title: 'Creative Brand Promotion', desc: 'We develop engaging campaigns that help your brand stand out and connect with customers.' },
-    { icon: 'fa-solid fa-chart-simple', title: 'Data-Driven Approach', desc: 'Our decisions are backed by insights and performance analysis for better outcomes.' },
-    { icon: 'fa-solid fa-arrow-trend-up', title: 'Continuous Growth Support', desc: 'We monitor, improve, and optimize strategies to ensure consistent digital growth.' },
+    { icon: 'fa-solid fa-users', title: 'User-Focused Design Approach', desc: 'We create experiences based on real user needs, making every interaction simple and effective.' },
+    { icon: 'fa-solid fa-pen-ruler', title: 'Creative & Modern Interfaces', desc: 'Our designs combine fresh ideas with modern trends to create a strong digital presence.' },
+    { icon: 'fa-solid fa-bullseye', title: 'Business-Oriented Solutions', desc: 'Every design decision is made to support your brand goals and improve customer engagement.' },
+    { icon: 'fa-solid fa-handshake', title: 'Complete Design Support', desc: 'From the first idea to the final product, we guide you through every stage of the design journey.' },
   ];
 
   const process = [
-    { step: '01', title: 'Research', desc: 'Understanding your industry, audience, and competition' },
-    { step: '02', title: 'Strategy', desc: 'Creating a customized marketing plan for your goals' },
-    { step: '03', title: 'Setup', desc: 'Setting up campaigns, landing pages, and tracking' },
-    { step: '04', title: 'Execution', desc: 'Launching campaigns and creating content' },
-    { step: '05', title: 'Monitor', desc: 'Continuous monitoring and performance analysis' },
-    { step: '06', title: 'Optimize', desc: 'Refining strategies for better results' },
+    { step: '01', title: 'Research', desc: 'Understanding users, goals, and requirements' },
+    { step: '02', title: 'Strategy', desc: 'Defining user flows and information architecture' },
+    { step: '03', title: 'Wireframing', desc: 'Creating low-fidelity layouts and structures' },
+    { step: '04', title: 'UI Design', desc: 'Crafting visually appealing interfaces' },
+    { step: '05', title: 'Prototyping', desc: 'Building interactive prototypes for testing' },
+    { step: '06', title: 'Handoff', desc: 'Delivering designs for development' },
   ];
 
   const testimonials = [
@@ -71,44 +71,44 @@ function Digitalmarketing() {
   return (
     <div>
       <style>{`
-        .pms-dm-hero {
+        .pms-uiux-hero {
           position: relative;
           background-size: cover;
           background-position: center;
           padding: clamp(70px, 14vw, 130px) 0;
         }
-        .pms-dm-hero::before {
+        .pms-uiux-hero::before {
           content: '';
           position: absolute;
           inset: 0;
           background: linear-gradient(135deg, rgba(10,15,30,0.82) 0%, rgba(6,202,188,0.55) 100%);
         }
-        .pms-dm-hero .container { position: relative; z-index: 2; }
-        .pms-dm-hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); line-height: 1.2; }
-        .pms-dm-btn-solid, .pms-dm-btn-outline {
+        .pms-uiux-hero .container { position: relative; z-index: 2; }
+        .pms-uiux-hero h1 { font-size: clamp(1.8rem, 4.6vw, 3rem); line-height: 1.2; }
+        .pms-uiux-btn-solid, .pms-uiux-btn-outline {
           display: inline-block;
           transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
         }
-        .pms-dm-btn-solid:hover {
+        .pms-uiux-btn-solid:hover {
           transform: translateY(-3px);
           box-shadow: 0 10px 24px rgba(6,202,188,0.35);
           color: #fff;
         }
-        .pms-dm-btn-outline:hover {
+        .pms-uiux-btn-outline:hover {
           background-color: #06cabc !important;
           color: #fff !important;
           transform: translateY(-3px);
         }
-        .pms-dm-card {
+        .pms-uiux-card {
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
           height: 100%;
         }
-        .pms-dm-card:hover {
+        .pms-uiux-card:hover {
           transform: translateY(-8px);
           box-shadow: 0 16px 36px rgba(15,23,42,0.10);
           border-color: rgba(6,202,188,0.35) !important;
         }
-        .pms-dm-icon-wrap {
+        .pms-uiux-icon-wrap {
           width: 60px;
           height: 60px;
           border-radius: 14px;
@@ -118,8 +118,8 @@ function Digitalmarketing() {
           background: rgba(6,202,188,0.10);
           margin: 0 auto 18px;
         }
-        .pms-dm-process-wrap { position: relative; }
-        .pms-dm-process-line {
+        .pms-uiux-process-wrap { position: relative; }
+        .pms-uiux-process-line {
           position: absolute;
           top: 35px;
           left: 8.33%;
@@ -128,20 +128,20 @@ function Digitalmarketing() {
           background: repeating-linear-gradient(90deg, #06cabc 0, #06cabc 8px, transparent 8px, transparent 16px);
           z-index: 0;
         }
-        .pms-dm-process-circle {
+        .pms-uiux-process-circle {
           position: relative;
           z-index: 1;
           transition: transform 0.3s ease;
         }
-        .pms-dm-step:hover .pms-dm-process-circle {
+        .pms-uiux-step:hover .pms-uiux-process-circle {
           transform: scale(1.1);
           box-shadow: 0 8px 18px rgba(6,202,188,0.4);
         }
-        .pms-dm-testimonial:hover {
+        .pms-uiux-testimonial:hover {
           transform: translateY(-6px);
           box-shadow: 0 16px 36px rgba(15,23,42,0.10);
         }
-        .pms-dm-avatar {
+        .pms-uiux-avatar {
           width: 46px;
           height: 46px;
           border-radius: 50%;
@@ -154,7 +154,7 @@ function Digitalmarketing() {
           flex-shrink: 0;
         }
         @media (max-width: 991px) {
-          .pms-dm-process-line { display: none; }
+          .pms-uiux-process-line { display: none; }
         }
       `}</style>
 
@@ -162,26 +162,26 @@ function Digitalmarketing() {
       <main>
 
         {/* Hero Section */}
-        <section className="pms-dm-hero" style={{ backgroundImage: `url(${'/assets/images/banner/banner-inner-page.jpg'})` }}>
+        <section className="pms-uiux-hero" style={{ backgroundImage: `url(${'/assets/images/banner/banner-inner-page.jpg'})` }}>
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-9 mx-auto text-center">
                 <h1 className="wow fadeInUp fw-bold text-white mb-3">
-                  <Highlight>Best Digital Marketing Agency in Kukatpally, Hyderabad</Highlight>
+                  <Highlight>Professional UI/UX Design Services in Kukatpally, Hyderabad</Highlight>
                 </h1>
-                <p className="wow fadeInUp fs-5 text-white-50 mb-4">Growing Businesses Through Smart Digital Strategies</p>
+                <p className="wow fadeInUp fs-5 text-white-50 mb-4">Creating Digital Experiences That Connect With Users</p>
                 <div className="wow fadeInUp d-flex flex-wrap justify-content-center gap-3">
-                  <Link to="/contact" className="pms-dm-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
+                  <Link to="/contact" className="pms-uiux-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
                     Get Free Consultation
                   </Link>
-                  <Link to="/contact" className="pms-dm-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
+                  <Link to="/quote" className="pms-uiux-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
                     Request a Quote
                   </Link>
                 </div>
                 {/* <div className="wow fadeInUp mt-4 d-flex justify-content-center align-items-center gap-2" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem' }}>
                   <Link to="/" className="text-white text-decoration-none">Home</Link>
                   <i className="fa-regular fa-angles-right" />
-                  <span>Digital Marketing</span>
+                  <span>UI/UX Design</span>
                 </div> */}
               </div>
             </div>
@@ -193,13 +193,13 @@ function Digitalmarketing() {
           <div className="container">
             <div className="row align-items-center g-5">
               <div className="col-12 col-lg-6">
-                <h2 style={styles.heading}>Professional <Highlight>Digital Marketing Services in Kukatpally</Highlight>, Hyderabad</h2>
-                <p style={styles.paragraph}>In today's competitive digital world, having an online presence is not enough — businesses need the right strategy to reach the right audience and create meaningful connections. At <Highlight>PixelMind Solutions</Highlight>, we help businesses improve their online visibility and achieve measurable growth through effective digital solutions.</p>
-                <p style={styles.paragraph}>Our team combines creativity, data-driven insights, and modern marketing techniques to create strategies that strengthen your brand presence, attract potential customers, and support long-term business growth.</p>
-                <p style={{ ...styles.paragraph, marginBottom: 0 }}>From improving online reach and increasing engagement to building stronger brand awareness, we create customized marketing plans based on your business goals. Every strategy is carefully designed to deliver better performance and help your business stay ahead in the digital landscape.</p>
+                <h2 style={styles.heading}><Highlight>UI/UX Design Company in Kukatpally</Highlight> — Creating Digital Experiences That Connect With Users</h2>
+                <p style={styles.paragraph}>A great digital product is not only about how it looks, but also about how easily users can interact with it. At <Highlight>PixelMind Solutions</Highlight>, we create thoughtful and engaging digital experiences that combine creativity, usability, and business goals.</p>
+                <p style={styles.paragraph}>Our design approach focuses on understanding your audience, your brand identity, and your business objectives to create interfaces that are visually appealing, simple to use, and built to deliver better user engagement.</p>
+                <p style={{ ...styles.paragraph, marginBottom: 0 }}>We work on creating meaningful designs that improve the way customers interact with websites, applications, and digital platforms. From user research and wireframes to complete interface design, our team ensures every element is carefully planned for a smooth and enjoyable experience.</p>
               </div>
               <div className="col-12 col-lg-6">
-                <img src="/assets/images/service/service-image2.jpg" alt="Digital Marketing" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
+                <img src="/assets/images/service/service-image5.jpg" alt="UI UX Design" className="img-fluid rounded-4 shadow w-100" style={{ objectFit: 'cover', maxHeight: '460px' }} />
               </div>
             </div>
           </div>
@@ -210,15 +210,15 @@ function Digitalmarketing() {
           <div className="container">
             <div className="row mb-5">
               <div className="col-12 col-lg-8 mx-auto text-center">
-                <h2 style={styles.heading}>Why Choose <Highlight>PixelMind Solutions</Highlight>?</h2>
-                <p style={styles.paragraph}>We combine creativity, data-driven insights, and modern techniques to deliver results that matter.</p>
+                <h2 style={styles.heading}>Why Choose <Highlight>PixelMind Solutions</Highlight> for Design?</h2>
+                <p style={styles.paragraph}>We combine creativity, usability, and business goals to create designs that connect with users.</p>
               </div>
             </div>
             <div className="row g-4">
               {features.map((item, idx) => (
                 <div key={idx} className="col-12 col-sm-6 col-lg-3">
-                  <div style={styles.card} className="pms-dm-card text-center">
-                    <div className="pms-dm-icon-wrap">
+                  <div style={styles.card} className="pms-uiux-card text-center">
+                    <div className="pms-uiux-icon-wrap">
                       <i className={`${item.icon} fs-4`} style={{ color: '#06cabc' }}></i>
                     </div>
                     <h4 style={styles.subheading}>{item.title}</h4>
@@ -230,24 +230,24 @@ function Digitalmarketing() {
           </div>
         </section>
 
-        {/* Digital Marketing Process Diagram */}
+        {/* UI/UX Design Process Diagram */}
         <section className="py-5" style={{ backgroundColor: '#fff', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row mb-5">
               <div className="col-12 col-lg-8 mx-auto text-center">
-                <h2 style={styles.heading}>Our Digital <Highlight>Marketing Process</Highlight></h2>
-                <p style={styles.paragraph}>A structured approach to grow your business online</p>
+                <h2 style={styles.heading}>Our UI/UX <Highlight>Design Process</Highlight></h2>
+                <p style={styles.paragraph}>A structured approach to create designs that turn ideas into experiences</p>
               </div>
             </div>
             <div className="row">
               <div className="col-12">
-                <div className="pms-dm-process-wrap p-4 p-md-5" style={{ backgroundColor: '#f8f9fa', borderRadius: '20px' }}>
-                  <div className="pms-dm-process-line d-none d-lg-block" />
+                <div className="pms-uiux-process-wrap p-4 p-md-5" style={{ backgroundColor: '#f8f9fa', borderRadius: '20px' }}>
+                  <div className="pms-uiux-process-line d-none d-lg-block" />
                   <div className="row g-4 g-lg-0">
                     {process.map((item, idx) => (
                       <div key={idx} className="col-6 col-md-4 col-lg-2">
-                        <div className="pms-dm-step text-center">
-                          <div className="pms-dm-process-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '70px', height: '70px', backgroundColor: '#06cabc', borderRadius: '50%', color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>
+                        <div className="pms-uiux-step text-center">
+                          <div className="pms-uiux-process-circle d-flex align-items-center justify-content-center mx-auto mb-3" style={{ width: '70px', height: '70px', backgroundColor: '#06cabc', borderRadius: '50%', color: '#fff', fontSize: '1.4rem', fontWeight: 'bold' }}>
                             {item.step}
                           </div>
                           <h5 className="fw-bold mb-1" style={{ fontSize: '1rem' }}>{item.title}</h5>
@@ -262,18 +262,18 @@ function Digitalmarketing() {
           </div>
         </section>
 
-        {/* Build Stronger Digital Presence */}
+        {/* Designs That Turn Ideas Into Experiences */}
         <section className="py-5" style={{ backgroundColor: '#f0fdfb', paddingTop: '70px', paddingBottom: '70px' }}>
           <div className="container">
             <div className="row align-items-center">
               <div className="col-12 col-lg-8 mx-auto text-center">
-                <h2 style={styles.heading}>Build a <Highlight>Stronger Digital Presence</Highlight> With Us</h2>
-                <p style={styles.paragraph}>At PixelMind Solutions, we believe successful digital growth comes from the right combination of creativity, technology, and strategy. Our mission is to help businesses reach more customers and build a powerful online identity.</p>
+                <h2 style={styles.heading}>Designs That <Highlight>Turn Ideas Into Experiences</Highlight></h2>
+                <p style={styles.paragraph}>At PixelMind Solutions, we believe good design creates meaningful connections. Our goal is to help businesses deliver digital experiences that are attractive, intuitive, and valuable for their customers.</p>
                 <div className="row g-3 mt-3">
                   {[
-                    { icon: 'fa-solid fa-lightbulb', label: 'Creativity' },
-                    { icon: 'fa-solid fa-microchip', label: 'Technology' },
-                    { icon: 'fa-solid fa-bullseye', label: 'Strategy' },
+                    { icon: 'fa-solid fa-palette', label: 'Attractive' },
+                    { icon: 'fa-solid fa-hand-pointer', label: 'Intuitive' },
+                    { icon: 'fa-solid fa-circle-dollar', label: 'Valuable' },
                   ].map((s, i) => (
                     <div className="col-4" key={i}>
                       <div className="p-3 p-md-4 bg-white rounded-3 shadow-sm h-100">
@@ -299,11 +299,11 @@ function Digitalmarketing() {
             <div className="row g-4">
               {testimonials.map((t, i) => (
                 <div key={i} className="col-12 col-md-6 col-lg-4">
-                  <div style={styles.testimonialCard} className="pms-dm-testimonial">
+                  <div style={styles.testimonialCard} className="pms-uiux-testimonial">
                     <i className="fa-solid fa-quote-left fs-3 mb-3" style={{ color: '#06cabc', opacity: 0.3 }} />
                     <p style={{ ...styles.paragraph, flexGrow: 1 }}>"{t.text}"</p>
                     <div className="d-flex align-items-center gap-3 mt-2">
-                      <div className="pms-dm-avatar">{t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</div>
+                      <div className="pms-uiux-avatar">{t.name.split(' ').map(n => n[0]).slice(0, 2).join('')}</div>
                       <div>
                         <h6 className="mb-0 fw-bold">{t.name}</h6>
                         <div style={{ color: '#f5a623', fontSize: '0.8rem' }}>★★★★★</div>
@@ -322,13 +322,13 @@ function Digitalmarketing() {
             <div className="row">
               <div className="col-12 col-lg-9 mx-auto text-center">
                 <h2 style={{ ...styles.heading, color: '#fff' }}>
-                  Ready to Grow Your{' '}
-                  <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 12px', borderRadius: '8px', display: 'inline-block' }}>Business Online</span>?
+                  Ready to{' '}
+                  <span style={{ backgroundColor: '#fff', color: '#06cabc', padding: '0 12px', borderRadius: '8px', display: 'inline-block' }}>Transform Your Digital Experience</span>?
                 </h2>
-                <p style={{ ...styles.paragraph, color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto 30px' }}>Let's create a powerful digital marketing strategy for your business. Contact PixelMind Solutions today for professional digital marketing services in Kukatpally, Hyderabad.</p>
+                <p style={{ ...styles.paragraph, color: 'rgba(255,255,255,0.9)', maxWidth: '700px', margin: '0 auto 30px' }}>Contact PixelMind Solutions today for professional UI/UX design services in Kukatpally, Hyderabad. Let's create designs that users love.</p>
                 <div className="d-flex flex-wrap justify-content-center gap-3">
-                  <Link to="/contact" className="pms-dm-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: 600, padding: '12px 32px' }}>Contact Us Today</Link>
-                  <Link to="/portfolio" className="pms-dm-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>View Portfolio</Link>
+                  <Link to="/contact" className="pms-uiux-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#fff', color: '#06cabc', fontWeight: 600, padding: '12px 32px' }}>Contact Us Today</Link>
+                  <Link to="/portfolio" className="pms-uiux-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>View Portfolio</Link>
                 </div>
               </div>
             </div>
@@ -341,4 +341,4 @@ function Digitalmarketing() {
   );
 }
 
-export default Digitalmarketing;
+export default Uiuxdesign;

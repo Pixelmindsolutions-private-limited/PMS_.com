@@ -27,6 +27,9 @@ import Blog4 from './blogs/Blog4';
 import Blog5 from './blogs/Blog5';
 import Blog6 from './blogs/Blog6';
 import ScrollToTop from './utils/ScrollToTop';
+import Maintenance from './Components/Maintainence';
+import ERPDevelopment from './Components/ERPDevelopment';
+import CareersPage from './Components/CareersPage';
 
 
 function App() {
@@ -45,6 +48,8 @@ function App() {
           <Route path="/uiuxdesign" element={<Design />} />
           <Route path="/webdevelopment" element={<Webdevelopment />} />
           <Route path="/digitalmarketing" element={<Digitalmarketing />} />
+          <Route path="/erp-development" element={<ERPDevelopment />} />    
+          <Route path="/maintenance" element={<Maintenance />} />      
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/portfolio/:id" element={<SinglePortfolio />} />
           <Route path="/formdata" element={<Contactdata />} />
@@ -55,6 +60,8 @@ function App() {
           <Route path="/blog/digital-marketing-services-india" element={<Blog4 />} />
           <Route path="/blog/app-development-services-india" element={<Blog5 />} />
           <Route path="/blog/website-development-services-india" element={<Blog6 />} />
+
+          <Route path='/careers' element={<CareersPage/>}/>
 
           <Route path="/data" element={<AdminVisitors />} />
 

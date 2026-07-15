@@ -314,7 +314,7 @@ function Portfolio() {
                 </section>
 
                 {/* ── Counter Section ── */}
-                <section className="counter-area pt-60 pb-60">
+                {/* <section className="counter-area pt-60 pb-60">
                     <div className="container">
                         <div className="counter__wrp gradient-bg position-relative overflow-hidden p-4 p-md-5">
                             <div className="counter__shape wow slideInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
@@ -358,7 +358,7 @@ function Portfolio() {
                         @media(min-width:992px){ .counter__item h3{font-size:32px;} .counter__item p{font-size:15px;} }
                         @media(min-width:1200px){ .icon-bg{width:70px;height:70px;padding:15px;} }
                     `}</style>
-                </section>
+                </section> */}
 
             </main>
             <Footer />

@@ -17,7 +17,9 @@ import Testimonial from '../assets/Home/Testimonial.png';
 import Step1 from "../assets/Home/step1.png";
 import Step2 from "../assets/Home/step2.png";
 import Step3 from "../assets/Home/step3.png";
-
+import Step4 from "../assets/Home/step2.png";
+import Step5 from "../assets/Home/step3.png";
+import ProcessSection from "../Home/ProcessSection";
 
 
 function Home() {
@@ -228,13 +230,8 @@ function Home() {
                         data-delay=".7s"
                         className="mt-20"
                       >
-                        Build, grow, and scale your business with innovative digital solutions tailored to your goals.
-                        From custom websites and mobile applications to performance-driven digital marketing,
-                        Pixelmindsolutions helps businesses create a strong online presence and achieve sustainable
-                        growth.
-                        <br />
-                        Whether you're a startup, small business, or established enterprise, our team delivers
-                        technology and marketing solutions designed to drive measurable results.
+                        Build smarter. Grow faster. Scale confidently. Pixelmindsolutions delivers custom web, app, and
+                        digital marketing solutions that create measurable business impact.
                       </p>
 
                       {/* Button Group - Two Buttons Side by Side */}
@@ -1360,116 +1357,9 @@ function Home() {
             </div>
           </div> */}
           {/* Brand area end here */}
-          {/* Process area start here */}
-          <section className="process-area pt-60 pb-60">
-            <div className="container">
-              <div className="section-header text-center mb-60">
-                <h5
-                  className="wow fadeInUp"
-                  data-wow-delay="00ms"
-                  data-wow-duration="1500ms"
-                >
-                  <img
-                    className="me-1"
-                    src="/assets/images/icon/section-title.png"
-                    alt="icon"
-                  />
-                  Work Process
-                </h5>
-                <h2
-                  className="wow fadeInUp"
-                  data-wow-delay="200ms"
-                  data-wow-duration="1500ms"
-                >
-                  Our Development Process
-                </h2>
-              </div>
-              <div className="row g-4">
-                <div
-                  className="col-lg-4 wow fadeInUp"
-                  data-wow-delay="00ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="process__item mb-100">
-                    <div className="process-arry bobble__animation">
-                      <img
-                        src="/assets/images/process/process-arry.png"
-                        alt="arry-icon"
-                      />
-                    </div>
-                    <div className="process__image">
-                      <img
-                        src={Step1}
-                        alt="image"
-                      />
-                      <span className="process-number">1</span>
-                    </div>
-                    <div className="process__content">
-                      <h4 className="mt-25 mb-10">Discover & Plan</h4>
-                      <p>
-                        We understand your business goals, requirements,
-                        and challenges to create a clear project
-                        strategy and roadmap for successful execution.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-lg-4 wow fadeInUp"
-                  data-wow-delay="200ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="process__item mb-100">
-                    <div className="process-arry bobble__animation">
-                      <img
-                        src="/assets/images/process/process-arry.png"
-                        alt="arry-icon"
-                      />
-                    </div>
-                    <div className="process__image">
-                      <img
-                        src={Step2}
-                        alt="image"
-                      />
-                      <span className="process-number">2</span>
-                    </div>
-                    <div className="process__content">
-                      <h4 className="mt-25 mb-10">Design & Develop</h4>
-                      <p>
-                        Our team transforms ideas into creative designs
-                        and develops scalable, high-quality solutions
-                        with modern technologies and best practices.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-lg-4 wow fadeInUp"
-                  data-wow-delay="400ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="process__item">
-                    <div className="process__image">
-                      <img
-                        src={Step3}
-                        alt="image"
-                      />
-                      <span className="process-number">3</span>
-                    </div>
-                    <div className="process__content">
-                      <h4 className="mt-25 mb-10">Deliver & Support</h4>
-                      <p>
-                        We deliver a fully tested solution and provide
-                        continuous support to ensure smooth
-                        performance, growth, and long-term success.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          {/* Process area end here */}
+
+
+          <ProcessSection />
 
           <Testimonials />
 

@@ -28,18 +28,7 @@ const Founder = () => {
                   <span className="d-block w-8 h-8 rounded-circle textcolor opacity-75"></span>
                 </div>
 
-                {/* Experience Badge - Premium Version */}
-                <div className="founder-experience-badge position-absolute bottom-0 start-0 m-4 p-3 rounded-3 d-flex align-items-center gap-3">
-                  <div className="badge-icon bg-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="textcolor">
-                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="d-block fs-2 fw-bold text-white lh-1">10+</span>
-                    <span className="d-block fs-7 text-white opacity-75 fw-medium">Years Excellence</span>
-                  </div>
-                </div>
+                
 
                 {/* Social Links - Premium Version */}
                 <div className="founder-social-links position-absolute top-0 end-0 m-4 d-flex flex-column gap-2">
@@ -78,24 +67,19 @@ const Founder = () => {
               data-wow-delay="600ms"
               data-wow-duration="1500ms"
             >
-              <div className="col-4 text-center">
+              <div className="col-6 text-center">
                 <div className="founder-stat">
                   <span className="d-block display-5 fw-bold text-secondary">50+</span>
                   <span className="d-block fs-7 text-secondary opacity-75 fw-medium">Projects Delivered</span>
                 </div>
               </div>
-              <div className="col-4 text-center border-start border-end border-secondary border-opacity-10">
+              <div className="col-6 text-center border-start border-end border-secondary border-opacity-10">
                 <div className="founder-stat">
-                  <span className="d-block display-5 fw-bold text-secondary">25+</span>
+                  <span className="d-block display-5 fw-bold text-secondary">60+</span>
                   <span className="d-block fs-7 text-secondary opacity-75 fw-medium">Happy Clients</span>
                 </div>
               </div>
-              <div className="col-4 text-center">
-                <div className="founder-stat">
-                  <span className="d-block display-5 fw-bold text-secondary">10+</span>
-                  <span className="d-block fs-7 text-secondary opacity-75 fw-medium">Awards & Recognition</span>
-                </div>
-              </div>
+              
             </div>
 
             {/* CTA Button */}
@@ -149,7 +133,7 @@ const Founder = () => {
                   <div className="d-flex align-items-center gap-3 flex-wrap">
                     <span className="textcolor fw-semibold fs-5">Founder & CEO</span>
                     <span className="border-start border-2 border-primary opacity-25" style={{ height: "24px" }}></span>
-                    <span className="text-secondary opacity-50 fs-7">10+ Years of Experience in Technology & Digital Solutions</span>
+                    <span className="text-secondary opacity-50 fs-7">4+ Years of Experience in Technology & Digital Solutions</span>
                   </div>
                 </div>
 
@@ -180,14 +164,14 @@ const Founder = () => {
                 </div>
 
                 {/* Signature */}
-                <div className="mb-4">
+                {/* <div className="mb-4">
                   <img
                     src={signature}
                     alt="Founder Signature"
                     className="h-50px"
                     style={{ maxHeight: "50px" }}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
