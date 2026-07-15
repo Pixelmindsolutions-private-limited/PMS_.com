@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 // import backgroundimg from "../../public/assets/images/banner/banner-image.jpg"
@@ -20,6 +20,7 @@ import Step3 from "../assets/Home/step3.png";
 import Step4 from "../assets/Home/step2.png";
 import Step5 from "../assets/Home/step3.png";
 import ProcessSection from "../Home/ProcessSection";
+import BannerVideoMobile from '../assets/Home/mobile-video.mp4';
 
 
 function Home() {
@@ -36,6 +37,24 @@ function Home() {
   const Offeropen = sessionStorage.getItem('openOffer');
 
   const navigate = useNavigate();
+
+  // State to track if it's mobile view
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div>
@@ -160,15 +179,31 @@ function Home() {
                     />
                   </div>
                   <div className="slide-bg">
+                    {/* Desktop Video */}
                     <video
                       autoPlay
                       muted
                       loop
                       playsInline
-                      className="slide-video"
+                      className={`slide-video ${isMobile ? 'd-none' : ''}`}
                     >
                       <source
                         src={BannerVideo}
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    {/* Mobile Video */}
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className={`slide-video-mobile ${!isMobile ? 'd-none' : ''}`}
+                    >
+                      <source
+                        src={BannerVideoMobile}
                         type="video/mp4"
                       />
                       Your browser does not support the video tag.
