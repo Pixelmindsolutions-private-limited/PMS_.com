@@ -336,11 +336,11 @@ function Home() {
                     data-wow-delay="00ms"
                     data-wow-duration="1500ms"
                   >
-                    <img
+                    {/* <img
                       className="me-1"
                       src="/assets/images/icon/section-title.png"
                       alt="icon"
-                    />
+                    /> */}
                     What We OFFER
                   </h5>
                   <h2
@@ -511,11 +511,11 @@ function Home() {
                       data-wow-delay="00ms"
                       data-wow-duration="1500ms"
                     >
-                      <img
+                      {/* <img
                         className="me-1"
                         src="/assets/images/icon/section-title.png"
                         alt="icon"
-                      />
+                      /> */}
                       ABOUT Pixelmind Solutions
                     </h5>
                     <h2

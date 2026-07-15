@@ -93,7 +93,7 @@ function Contactform() {
                             <div className="talk-us__item">
                                 <div className="section-header text-center mb-40">
                                     <h5 className="text-white">
-                                        <svg
+                                        {/* <svg
                                             width={28}
                                             height={12}
                                             viewBox="0 0 28 12"
@@ -116,7 +116,7 @@ function Contactform() {
                                                 rx={6}
                                                 fill="white"
                                             />
-                                        </svg>
+                                        </svg> */}
                                         
                                         {" "}GET IN TOUCH
                                     </h5>

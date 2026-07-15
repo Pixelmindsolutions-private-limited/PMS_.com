@@ -106,11 +106,11 @@ const Founder = () => {
                   data-wow-delay="00ms"
                   data-wow-duration="1500ms"
                 >
-                  <img
+                  {/* <img
                     className="me-1"
                     src="/assets/images/icon/section-title.png"
                     alt="icon"
-                  />
+                  /> */}
                   MEET THE FOUNDER
                 </h5>
                 <h2
