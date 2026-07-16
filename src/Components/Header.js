@@ -207,11 +207,14 @@ function Header() {
                       <Link to="/portfolio">Portfolio</Link>
                     </li>
                     <li>
+                      <Link to="/careers">Careers</Link>
+                    </li>
+                    <li>
                       <Link to="/blog">Blog</Link>
                     </li>
                     <li>
                       <Link to="/contact">Contact Us</Link>
-                    </li>
+                    </li>                    
                   </ul>
                 </nav>
               </div>
@@ -254,11 +257,17 @@ function Header() {
                       <Link style={{ color: "white" }} to="/portfolio">Portfolio</Link>
                     </li>
                     <li>
+                      <Link style={{ color: "white" }} to="/careers">Careers</Link>
+                    </li>
+                    <li>
                       <Link style={{ color: "white" }} to="/blog">Blog</Link>
                     </li>
                     <li>
                       <Link style={{ color: "white" }} to="/contact">Contact Us</Link>
                     </li>
+                    <li>
+                      <Link style={{ color: "white" }} to="/contact">Contact Us</Link>
+                    </li>                    
                   </ul>
                 </nav>
               </div>

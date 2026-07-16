@@ -181,8 +181,16 @@ function SinglePortfolio() {
                         paddingBottom: "60px"
                     }}
                 >
-                    <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: "rgba(0, 0, 0, 0.2)", zIndex: 1 }}></div>
-
+                    <div
+                        className="position-absolute top-0 start-0 w-100 h-100"
+                        style={{
+                            background: "rgba(15, 23, 42, 0.45)",
+                            backdropFilter: "blur(15px)",
+                            WebkitBackdropFilter: "blur(12px)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            zIndex: 1,
+                        }}
+                    ></div>
                     <div className="container position-relative" style={{ zIndex: 2 }}>
                         <div className="row align-items-center">
                             <div className="col-lg-8">
@@ -206,22 +214,22 @@ function SinglePortfolio() {
                                     </h1>
 
                                     <div className="d-flex flex-wrap gap-3 mb-3">
-                                        <span className="text-white-50">
+                                        <span className="text-white" style={{ color: "#06cabc" }}>
                                             <i className="fa-regular fa-user me-2" style={{ color: "#06cabc" }}></i>
                                             {project.client}
                                         </span>
 
-                                        <span className="text-white-50">
+                                        <span className="text-white">
                                             <i className="fa-regular fa-folder me-2" style={{ color: "#06cabc" }}></i>
                                             {project.category}
                                         </span>
 
-                                        <span className="text-white-50">
+                                        <span className="text-white">
                                             <i className="fa-regular fa-calendar me-2" style={{ color: "#06cabc" }}></i>
                                             {project.year}
                                         </span>
 
-                                        <span className="text-white-50">
+                                        <span className="text-white">
                                             <i className="fa-regular fa-clock me-2" style={{ color: "#06cabc" }}></i>
                                             {project.duration}
                                         </span>

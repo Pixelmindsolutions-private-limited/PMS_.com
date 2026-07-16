@@ -10,6 +10,7 @@ import Testimonial from '../assets/Home/Testimonial.png';
 import Step1 from "../assets/Home/step1.png";
 import Step2 from "../assets/Home/step2.png";
 import Step3 from "../assets/Home/step3.png";
+import ProcessSection from '../Home/ProcessSection'
 
 function About() {
   return (
@@ -519,7 +520,7 @@ function About() {
             </div>
           </div>
         </section>
-        <section className="process-area pt-60 pb-60">
+        {/* <section className="process-area pt-60 pb-60">
           <div className="container">
             <div className="section-header text-center mb-60">
               <h5
@@ -626,7 +627,8 @@ function About() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+        <ProcessSection />
         {/* Process area end here */}
         {/* Testimonial area start here */}
         <Contactform />

@@ -136,6 +136,36 @@ import EditEZY11 from '../assets/EditEZY/11.jpeg';
 import EditEZY12 from '../assets/EditEZY/12.jpeg';
 import EditEZY13 from '../assets/EditEZY/13.jpeg';
 import EditEZY14 from '../assets/EditEZY/14.jpeg';
+import Back1 from '../assets/Backup/1.jpeg';
+import Back2 from '../assets/Backup/2.jpeg';
+import Back3 from '../assets/Backup/3.jpeg';
+import Back4 from '../assets/Backup/4.jpeg';
+import Back5 from '../assets/Backup/5.jpeg';
+import Back6 from '../assets/Backup/6.jpeg';
+import Back7 from '../assets/Backup/7.jpeg';
+import Back8 from '../assets/Backup/8.jpeg';
+import Back9 from '../assets/Backup/9.jpeg';
+import Back10 from '../assets/Backup/10.jpeg';
+import Back11 from '../assets/Backup/11.jpeg';
+
+
+
+
+//Banner Images for Projects
+import Tech from '../assets/ProjectBanners/techsterker.jpeg';
+import Bingenjoy from '../assets/ProjectBanners/bingenjoy.jpeg';
+import Carnival from '../assets/ProjectBanners/carnival.jpeg';
+import EditEZY from '../assets/ProjectBanners/editezy.jpeg';
+import Narada from '../assets/ProjectBanners/narada.jpeg';
+import Simcura from '../assets/ProjectBanners/simcura.jpeg';
+import SSAir from '../assets/ProjectBanners/ssair.jpeg';
+import Varahi from '../assets/ProjectBanners/varahi.jpeg';
+import PMS from '../assets/ProjectBanners/pms.png';
+import VEG from '../assets/ProjectBanners/veg.png';
+import Redemly from '../assets/ProjectBanners/redemly.png';
+import Nupura  from '../assets/ProjectBanners/nupura.png';
+import Backup from '../assets/ProjectBanners/backup.png';
+import App from '../assets/ProjectBanners/app.jpeg';
  
 
 
@@ -161,7 +191,7 @@ const portfolioItems = [
         solution: "Implemented microservices architecture with React frontend.",
         testimonial: { name: "John Doe", position: "CEO, PixelMind Solutions", text: "Exceptional product delivered! The team exceeded our expectations." },
         screenshots: [PMS1, PMS2, PMS3, PMS4, PMS5, PMS6, PMS7],
-        BackgroundImage: bannerImage,
+        BackgroundImage: PMS,
     },
     {
         id: 3, 
@@ -210,7 +240,7 @@ const portfolioItems = [
             Bing7,
             Bing8
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Bingenjoy,
     },
     {
         id: 4, 
@@ -262,7 +292,7 @@ const portfolioItems = [
             Carnival8,
             Carnival9
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Carnival,
     },
     {
         id: 7, 
@@ -319,7 +349,7 @@ const portfolioItems = [
         ],
         videoLabel: "Watch Demo",
         videoId: "TafWxd87uUs",
-        BackgroundImage: bannerImage,
+        BackgroundImage: VEG,
     },
     {
         id: 8, 
@@ -375,7 +405,7 @@ const portfolioItems = [
         ],
         videoLabel: "Watch Demo",
         videoId: "QcvN_Pc4ue8",
-        BackgroundImage: bannerImage,
+        BackgroundImage: Redemly,
     },
     {
         id: 9, 
@@ -435,7 +465,7 @@ const portfolioItems = [
             EditEZY14
         ],
         videoId: "F_8uNhi-_n4",
-        BackgroundImage: bannerImage,
+        BackgroundImage: EditEZY,
     },
     {
         id: 10, 
@@ -489,7 +519,7 @@ const portfolioItems = [
             Varahi10
         ],
         videoId: "QcvN_Pc4ue8",
-        BackgroundImage: bannerImage,
+        BackgroundImage: Varahi,
     },
     {
         id: 11, 
@@ -545,7 +575,7 @@ const portfolioItems = [
             Tech10,
             Tech11,
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Tech,
     },
     {
         id: 12, 
@@ -598,7 +628,7 @@ const portfolioItems = [
             Narada10,
             Narada11
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Narada,
         videoId: "ObYJ9K53HEA"
     },
     {
@@ -638,12 +668,19 @@ const portfolioItems = [
         solution: "Backup Ticket addresses these challenges by providing a dedicated marketplace where users can securely buy and sell unused tickets. The platform offers verified user accounts, secure Razorpay payment processing, transparent listings, and fraud prevention measures, creating a trusted ecosystem that helps sellers recover costs while enabling buyers to purchase genuine tickets conveniently and safely.",
         testimonial: { name: "James Brown", position: "Founder", text: "Secure and reliable ticket platform!" },
         screenshots: [
-            "/assets/portfolio/atoz.png",
-            "/assets/portfolio/carservicelogo.png",
-            "/assets/portfolio/news.png",
-            "/assets/portfolio/clynixlogo.png"
+            Back1,
+            Back2,
+            Back3,
+            Back4,
+            Back5,
+            Back6,
+            Back7,
+            Back8,
+            Back9,
+            Back10,
+            Back11
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Backup,
         videoId: "fPOW_YzYiIc"
     },
     // {
@@ -736,7 +773,7 @@ const portfolioItems = [
             Cynix7,
             Cynix8,
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Simcura,
     },
     {
         id: 14, 
@@ -788,7 +825,7 @@ const portfolioItems = [
             ss7,
             ss8
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: SSAir,
     },
     {
         id: 23, 
@@ -836,7 +873,7 @@ const portfolioItems = [
             Simcurax4,
             Simcurax5
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Simcura,
     },
     {
         id: 15, 
@@ -877,7 +914,7 @@ const portfolioItems = [
             editweb1,
             editweb2
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: EditEZY,
     },
     {
         id: 16, 
@@ -922,7 +959,7 @@ const portfolioItems = [
             Varahiweb5,
             Varahiweb6
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Varahi,
     },
     {
         id: 18, 
@@ -968,7 +1005,7 @@ const portfolioItems = [
             vegweb6,
             vegweb7
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: VEG,
     },
     {
         id: 19, 
@@ -1012,7 +1049,7 @@ const portfolioItems = [
             Redemlyweb4,
             Redemlyweb5
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Redemly,
     },
     {
         id: 20, 
@@ -1053,7 +1090,7 @@ const portfolioItems = [
             editweb1,
             editweb2
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: EditEZY,
     },
     {
         id: 21, 
@@ -1098,7 +1135,7 @@ const portfolioItems = [
             Varahiweb5,
             Varahiweb6
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Varahi,
     },
     {
         id: 24, 
@@ -1138,7 +1175,7 @@ const portfolioItems = [
         screenshots: [
             Nupuraweb
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Nupura,
     },
     {
         id: 25, 
@@ -1178,7 +1215,7 @@ const portfolioItems = [
         screenshots: [
             Naradaweb
         ],
-        BackgroundImage: bannerImage,
+        BackgroundImage: Narada,
     }
 ];
 
