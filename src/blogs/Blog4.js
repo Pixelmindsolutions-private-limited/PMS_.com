@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Blogs4 from '../assets/Blogs/4.jpeg';
+import Blogs6 from '../assets/Blogs/6.jpeg';
+import Blogs1 from '../assets/Blogs/1.jpeg';
+import Blogs2 from '../assets/Blogs/2.jpeg';
+import Blogs3 from '../assets/Blogs/3.jpeg';
+import Blogs5 from '../assets/Blogs/5.jpeg';
 
 function Blog4() {
     return (
@@ -74,7 +80,7 @@ function Blog4() {
                                     <div className="blog__details">
                                         <div className="blog__content">
                                             <div className="blog__image mb-4 position-relative">
-                                                <img src="/assets/images/blog/digital-marketing-blog.jpg" alt="Digital Marketing Services in India" className="img-fluid rounded w-100" style={{ height: '400px', objectFit: 'cover' }} />
+                                                <img src={Blogs4} alt="Digital Marketing Services in India" className="img-fluid rounded w-100" style={{ height: '400px', objectFit: 'cover' }} />
                                                 <div className="blog-tag position-absolute top-0 start-0 bg-primary p-2 text-white">
                                                     <h3 className="text-white m-0">05</h3>
                                                     <span className="text-white">Jul</span>
@@ -178,7 +184,7 @@ function Blog4() {
                                             <div className="recent-post-img d-flex">
                                                 <Link to="/blog/empowering-businesses-through-it-services">
                                                     <img
-                                                        src="/assets/images/blog/blog-image1.jpg"
+                                                        src={Blogs1}
                                                         alt="PIXELMINDSOLUTIONS: Empowering Businesses Through Innovative IT Services"
                                                         className="img-fluid rounded"
                                                         style={{ width: '80px', height: '80px', objectFit: 'cover' }}
@@ -200,7 +206,8 @@ function Blog4() {
                                         <div className="recent-post-item mb-4">
                                             <div className="recent-post-img d-flex">
                                                 <Link to="/blog/professional-it-consulting-and-app-development">
-                                                    <img                                                        src="/assets/images/blog/blog-image2.jpg"
+                                                    <img
+                                                        src={Blogs2}
                                                         alt="PIXELMINDSOLUTIONS: Driving Innovation Through Smart IT Services"
                                                         className="img-fluid rounded"
                                                         style={{ width: '80px', height: '80px', objectFit: 'cover' }}
@@ -223,7 +230,7 @@ function Blog4() {
                                             <div className="recent-post-img d-flex">
                                                 <Link to="/blog/app-development-services-india">
                                                     <img
-                                                        src="/assets/images/blog/app-development-blog.jpg"
+                                                        src={Blogs5}
                                                         alt="App Development: Transform Your Business with Powerful Mobile Applications"
                                                         className="img-fluid rounded"
                                                         style={{ width: '80px', height: '80px', objectFit: 'cover' }}

@@ -1,4 +1,7 @@
 // blogData.js
+
+
+
 const blogPosts = [
     {
         id: 1,

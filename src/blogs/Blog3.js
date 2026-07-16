@@ -5,6 +5,12 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { FaGem } from "react-icons/fa";
 import { GiBrain } from "react-icons/gi";
+import Blogs4 from '../assets/Blogs/4.jpeg';
+import Blogs6 from '../assets/Blogs/6.jpeg';
+import Blogs1 from '../assets/Blogs/1.jpeg';
+import Blogs2 from '../assets/Blogs/2.jpeg';
+import Blogs3 from '../assets/Blogs/3.jpeg';
+import Blogs5 from '../assets/Blogs/5.jpeg';
 
 function Blog3() {
     return (
@@ -76,7 +82,7 @@ function Blog3() {
                                 <div className="blog__details">
                                     <div className="blog__content">
                                         <div className="blog__image mb-4 position-relative">
-                                            <img src="/assets/images/blog/blog-image3.jpg" alt="App development services with SEO optimization" className="img-fluid rounded w-100" style={{ height: '400px', objectFit: 'cover' }} />
+                                            <img src={Blogs3} alt="App development services with SEO optimization" className="img-fluid rounded w-100" style={{ height: '400px', objectFit: 'cover' }} />
                                             <div className="blog-tag position-absolute top-0 start-0 bg-primary p-2 text-white">
                                                 <h3 className="text-white m-0">15</h3>
                                                 <span className="text-white">Jul</span>
@@ -181,7 +187,7 @@ function Blog3() {
                                         <div className="recent-post-img d-flex">
                                             <Link to="/blog/empowering-businesses-through-it-services">
                                                 <img
-                                                    src="/assets/images/blog/blog-image1.jpg"
+                                                    src={Blogs1}
                                                     alt="PIXELMINDSOLUTIONS: Empowering Businesses Through Innovative IT Services"
                                                     className="img-fluid rounded"
                                                     style={{ width: '80px', height: '80px', objectFit: 'cover' }}
@@ -205,7 +211,7 @@ function Blog3() {
                                         <div className="recent-post-img d-flex">
                                             <Link to="/blog/professional-it-consulting-and-app-development">
                                                 <img
-                                                    src="/assets/images/blog/blog-image2.jpg"
+                                                    src={Blogs2}
                                                     alt="PIXELMINDSOLUTIONS: Driving Innovation Through Smart IT Services"
                                                     className="img-fluid rounded"
                                                     style={{ width: '80px', height: '80px', objectFit: 'cover' }}
@@ -229,7 +235,7 @@ function Blog3() {
                                         <div className="recent-post-img d-flex">
                                             <Link to="/blog/application-maintainence-and-digital-growth-strategy">
                                                 <img
-                                                    src="/assets/images/blog/blog-image3.jpg"
+                                                    src={Blogs3}
                                                     alt="How PIXELMINDSOLUTIONS is Shaping the Future of Digital Transformation"
                                                     className="img-fluid rounded"
                                                     style={{ width: '80px', height: '80px', objectFit: 'cover' }}
