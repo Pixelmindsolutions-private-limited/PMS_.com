@@ -250,7 +250,7 @@ function Home() {
                         </svg>
                         Best it SOLUTION Provider
                       </h4>
-                      <h1
+                      <h2
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay=".5s"
@@ -258,16 +258,17 @@ function Home() {
                         style={{ fontSize: "3.5rem" }}
                       >
                         Transforming Ideas into Powerful Digital Experiences
-                      </h1>
+                      </h2><br/>
                       <p
                         data-animation="slideInRight"
                         data-duration="2s"
                         data-delay=".7s"
                         className="mt-20"
                       >
-                        Build smarter. Grow faster. Scale confidently. Pixelmindsolutions delivers custom web, app, and
-                        digital marketing solutions that create measurable business impact.<br/>
-                        
+                        Build smarter. Grow faster. Scale confidently. Pixelmindsolutions transforms ideas 
+                        into high-performing digital experiences through custom websites, mobile apps, eCommerce 
+                        solutions, and data-driven marketing that fuel lasting business success.<br />
+
                       </p>
 
                       {/* Button Group - Two Buttons Side by Side */}

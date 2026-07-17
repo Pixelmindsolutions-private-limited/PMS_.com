@@ -483,9 +483,10 @@ function CareersPage() {
                                 >
                                     WE'RE HIRING
                                 </span>
-                                <h1 className="fw-bold text-white mb-3">
-                                    Build the Future with <span style={{ color: '#06cabc' }}>Pixelmindsolutions</span>
-                                </h1>
+                                <h2 className="display-4 fw-bold text-white mb-3">
+                                    Build the Future with{" "}
+                                    <span style={{ color: "#06cabc" }}>Pixelmindsolutions</span>
+                                </h2>
                                 <p className="fs-5 mb-4" style={{ color: 'rgba(255,255,255,0.75)', maxWidth: '760px', margin: '0 auto' }}>
                                     We're building innovative digital products that help businesses grow. Join a team of creators, developers, designers, and marketers who love solving real-world challenges.
                                 </p>
