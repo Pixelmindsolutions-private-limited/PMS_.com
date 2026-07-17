@@ -62,25 +62,43 @@ const ChatbotModal = ({ show, onClose, onOptionSelect }) => {
 
   const handleOptionClick = (option) => {
     setShowOptions(false);
+
     if (onOptionSelect) onOptionSelect(option);
 
+    // Open only Digital Marketing in a new tab
+    if (option.id === "digital-marketing") {
+      window.open(option.route, "_blank", "noopener,noreferrer");
+      onClose();
+      return;
+    }
+
+    // If section exists on current page, scroll to it
     if (option.section) {
       const section = document.getElementById(option.section);
+
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
         setTimeout(() => onClose(), 300);
-      } else {
-        if (window.location.pathname !== option.route.split("#")[0]) {
-          window.open(option.route, "_blank", "noopener,noreferrer");
-        } else {
-          setTimeout(() => {
-            const targetSection = document.getElementById(option.section);
-            if (targetSection) targetSection.scrollIntoView({ behavior: "smooth" });
-            onClose();
-          }, 500);
-        }
+        return;
       }
     }
+
+    // Navigate to another page in the same tab
+    if (window.location.pathname !== option.route) {
+      window.location.href = option.route;
+      return;
+    }
+
+    // If already on the page, try scrolling after render
+    setTimeout(() => {
+      const targetSection = document.getElementById(option.section);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+
+      onClose();
+    }, 500);
   };
 
   const handleChatWithMe = () => {
