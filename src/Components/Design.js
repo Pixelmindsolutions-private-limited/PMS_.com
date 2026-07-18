@@ -174,7 +174,7 @@ function Uiuxdesign() {
                   <Link to="/contact" className="pms-uiux-btn-solid btn btn-lg rounded-pill" style={{ backgroundColor: '#06cabc', color: '#fff', fontWeight: 600, padding: '12px 32px' }}>
                     Get Free Consultation
                   </Link>
-                  <Link to="/quote" className="pms-uiux-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
+                  <Link to="/contact" className="pms-uiux-btn-outline btn btn-lg rounded-pill" style={{ backgroundColor: 'transparent', color: '#fff', border: '2px solid #fff', fontWeight: 600, padding: '12px 32px' }}>
                     Request a Quote
                   </Link>
                 </div>
