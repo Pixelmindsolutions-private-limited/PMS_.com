@@ -30,6 +30,9 @@ import ScrollToTop from './utils/ScrollToTop';
 import Maintenance from './Components/Maintainence';
 import ERPDevelopment from './Components/ERPDevelopment';
 import CareersPage from './Components/CareersPage';
+import PrivacyPolicyForPlaystore from './Policies&deleteAccount/PrivacyPolicrforPlaystore';
+import DeleteAccount from './Policies&deleteAccount/DeleteAccount';
+import DeleteAccountConfirmation from './Policies&deleteAccount/DeleteConfirmation';
 
 
 function App() {
@@ -48,8 +51,8 @@ function App() {
           <Route path="/uiuxdesign" element={<Design />} />
           <Route path="/webdevelopment" element={<Webdevelopment />} />
           <Route path="/digitalmarketing" element={<Digitalmarketing />} />
-          <Route path="/erp-development" element={<ERPDevelopment />} />    
-          <Route path="/maintenance" element={<Maintenance />} />      
+          <Route path="/erp-development" element={<ERPDevelopment />} />
+          <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/portfolio/:id" element={<SinglePortfolio />} />
           <Route path="/formdata" element={<Contactdata />} />
@@ -61,7 +64,12 @@ function App() {
           <Route path="/blog/app-development-services-india" element={<Blog5 />} />
           <Route path="/blog/website-development-services-india" element={<Blog6 />} />
 
-          <Route path='/careers' element={<CareersPage/>}/>
+          <Route path="/pms-partner/privacy-policy" element={<PrivacyPolicyForPlaystore />} />
+
+          <Route path="/pms-partner/delete-account" element={<DeleteAccount />} />
+          <Route path="/pms-partner/delete-account/:id" element={<DeleteAccountConfirmation />} />
+
+          <Route path='/careers' element={<CareersPage />} />
 
           <Route path="/data" element={<AdminVisitors />} />
 
