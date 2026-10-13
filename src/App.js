@@ -40,7 +40,7 @@ function App() {
     <>
       <HelmetProvider>
         <ScrollToTop />
-        {/* <GlobalTracker /> */}
+        <GlobalTracker />
         <Routes>
 
           <Route path="/" element={<Home />} />
