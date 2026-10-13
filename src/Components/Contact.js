@@ -15,6 +15,8 @@ import {
 } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
 
+// Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
+const API_BASE = "http://localhost:4480";
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -26,6 +28,7 @@ function Contact() {
   });
 
   const [errors, setErrors] = useState({}); // For form validation errors
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Handle form input change
   const handleChange = (e) => {
@@ -53,32 +56,50 @@ function Contact() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      axios
-        .post("https://678cb478f067bf9e24e7ff6a.mockapi.io/api/v1/info/contact", formData)
-        .then((response) => {
-          console.log("Data submitted successfully:", response.data);
-          toast.success("Message sent successfully!", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-          setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
-        })
-        .catch((error) => {
-          console.error("Error submitting data:", error);
-          toast.error("An error occurred. Please try again.", {
-            position: "top-right",
-            autoClose: 3000,
-          });
-        });
-    } else {
+    if (!validateForm()) {
       toast.warn("Please fix the errors in the form.", {
         position: "top-right",
         autoClose: 3000,
       });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        mobile: formData.phone.trim(), // API expects "mobile"
+        subject: formData.subject.trim(),
+        message: formData.message.trim(),
+      };
+
+      const response = await axios.post(`${API_BASE}/api/contact-us`, payload, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      console.log("Data submitted successfully:", response.data);
+      toast.success(response.data?.message || "Message sent successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+      setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
+      setErrors({});
+    } catch (error) {
+      console.error("Error submitting data:", error);
+      toast.error(
+        error.response?.data?.message || "An error occurred. Please try again.",
+        {
+          position: "top-right",
+          autoClose: 3000,
+        }
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -169,7 +190,8 @@ function Contact() {
                             <span className="text-white">Location</span>
                             <h5 className="mt-1 text-white">
                               <a className="text-white" href="https://maps.app.goo.gl/GkfdjzVF9vguB2Dd8" target="_blank" rel="noopener noreferrer">
-                                Plot No 63, Sri Residency, 1st Floor 101, KPHB 5th Phase, Kukatpally, Hyderabad, Telangana 500085                              </a>
+                                Plot No 63, Sri Residency, 1st Floor 101, KPHB 5th Phase, Kukatpally, Hyderabad, Telangana 500085
+                              </a>
                             </h5>
                           </div>
                         </div>
@@ -219,10 +241,10 @@ function Contact() {
                       <a href="https://www.instagram.com/pixelmindsolutions?igsh=ZmQ1c2c0b2twdTd1" target="_blank" rel="noopener noreferrer">
                         <i className="bi bi-instagram fs-5 " style={{ color: "#06cabc" }}></i>
                       </a>
-                      <a href="https://x.com/PIXELMINDS41249" target="_blank">
+                      <a href="https://x.com/PIXELMINDS41249" target="_blank" rel="noopener noreferrer">
                         <i className="bi bi-twitter-x fs-5" style={{ color: "#06cabc" }}></i>
                       </a>
-                      <a href="https://www.linkedin.com/company/pixelmindsolutions-pvt-ltd/" target="_blank">
+                      <a href="https://www.linkedin.com/company/pixelmindsolutions-pvt-ltd/" target="_blank" rel="noopener noreferrer">
                         <i className="bi bi-linkedin fs-5 " style={{ color: "#06cabc" }}></i>
                       </a>
                     </div>
@@ -347,8 +369,9 @@ function Contact() {
                             )}
                           </div>
                         </div>
-                        <button type="submit" className="btn-one mt-3">
-                          Send Message <i className="fa-regular fa-arrow-right-long"></i>
+                        <button type="submit" className="btn-one mt-3" disabled={isSubmitting}>
+                          {isSubmitting ? "Sending..." : "Send Message"}{" "}
+                          {!isSubmitting && <i className="fa-regular fa-arrow-right-long"></i>}
                         </button>
                       </form>
                     </div>

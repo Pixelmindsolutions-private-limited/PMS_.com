@@ -4,6 +4,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Testimonial from "../assets/Home/Testimonial.png"
 
+// Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
+const API_BASE = "http://localhost:4480";
+
 function Contactform() {
 
     const [formData, setFormData] = useState({
@@ -15,6 +18,7 @@ function Contactform() {
     });
 
     const [errors, setErrors] = useState({}); // For form validation errors
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Handle form input change
     const handleChange = (e) => {
@@ -42,33 +46,50 @@ function Contactform() {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (validateForm()) {
-            axios
-                .post("https://678cb478f067bf9e24e7ff6a.mockapi.io/api/v1/info/contact", formData)
-                .then((response) => {
-                    console.log("Data submitted successfully:", response.data);
-                    toast.success("Message sent successfully!", {
-                        position: "top-right",
-                        autoClose: 3000,
-                    });
-                    setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
-                    setErrors({}); // Clear errors
-                })
-                .catch((error) => {
-                    console.error("Error submitting data:", error);
-                    toast.error("An error occurred. Please try again.", {
-                        position: "top-right",
-                        autoClose: 3000,
-                    });
-                });
-        } else {
+        if (!validateForm()) {
             toast.warn("Please fix the errors in the form.", {
                 position: "top-right",
                 autoClose: 3000,
             });
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            const payload = {
+                name: formData.name.trim(),
+                email: formData.email.trim(),
+                mobile: formData.phone.trim(), // API expects "mobile"
+                subject: formData.subject.trim(),
+                message: formData.message.trim(),
+            };
+
+            const response = await axios.post(`${API_BASE}/api/contact-us`, payload, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            console.log("Data submitted successfully:", response.data);
+            toast.success(response.data?.message || "Message sent successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+            });
+            setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
+            setErrors({}); // Clear errors
+        } catch (error) {
+            console.error("Error submitting data:", error);
+            toast.error(
+                error.response?.data?.message || "An error occurred. Please try again.",
+                {
+                    position: "top-right",
+                    autoClose: 3000,
+                }
+            );
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -93,31 +114,6 @@ function Contactform() {
                             <div className="talk-us__item">
                                 <div className="section-header text-center mb-40">
                                     <h5 className="text-white">
-                                        {/* <svg
-                                            width={28}
-                                            height={12}
-                                            viewBox="0 0 28 12"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <rect
-                                                x="0.75"
-                                                y="0.75"
-                                                width="18.5"
-                                                height="10.5"
-                                                rx="5.25"
-                                                stroke="white"
-                                                strokeWidth="1.5"
-                                            />
-                                            <rect
-                                                x={8}
-                                                width={20}
-                                                height={12}
-                                                rx={6}
-                                                fill="white"
-                                            />
-                                        </svg> */}
-                                        
                                         {" "}GET IN TOUCH
                                     </h5>
                                     <h2 className="text-white">Let's Start Your Project Today</h2>
@@ -201,9 +197,9 @@ function Contactform() {
 
                                         {/* Submit Button */}
                                         <div className="col-12 text-center">
-                                            <button type="submit" className="btn-one">
-                                                Send Message{" "}
-                                                <i className="fa-regular fa-arrow-right-long" />
+                                            <button type="submit" className="btn-one" disabled={isSubmitting}>
+                                                {isSubmitting ? "Sending..." : "Send Message"}{" "}
+                                                {!isSubmitting && <i className="fa-regular fa-arrow-right-long" />}
                                             </button>
                                         </div>
                                     </div>

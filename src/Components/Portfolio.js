@@ -1,34 +1,101 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-import portfolioItems from '../Home/PortfolioData';
 
+// Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
+const API_BASE = "http://localhost:4480";
+
+// Your API returns "https://localhost:5000/..." which fails (localhost has no SSL).
+// This normalises it to http and also handles relative paths.
+const resolveImageUrl = (url) => {
+    if (!url) return "";
+    if (/^https?:\/\/localhost/i.test(url)) {
+        return url.replace(/^https:\/\//i, "http://");
+    }
+    if (/^https?:\/\//i.test(url)) return url;
+    return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
+};
+
+// Badge styles per API type
+const typeMeta = {
+    'website': { label: 'Website', icon: 'fa-globe', color: '#2563eb', lightBg: '#eff6ff' },
+    'mobile-app': { label: 'Mobile App', icon: 'fa-mobile-screen-button', color: '#059669', lightBg: '#ecfdf5' },
+    'web-app': { label: 'Web App', icon: 'fa-laptop-code', color: '#7c3aed', lightBg: '#f5f3ff' },
+    'other': { label: 'Other', icon: 'fa-layer-group', color: '#db2777', lightBg: '#fdf2f8' },
+};
+
+// Filter buttons (order shown in the filter bar)
+const filterTabs = [
+    { key: 'all', label: 'All Projects' },
+    { key: 'website', label: 'Websites' },
+    { key: 'mobile-app', label: 'Mobile Apps' },
+    { key: 'web-app', label: 'Web Apps' },
+    { key: 'other', label: 'Other' },
+];
 
 function Portfolio() {
+    const [portfolioItems, setPortfolioItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
     const [expandedItems, setExpandedItems] = useState({});
     const [activeFilter, setActiveFilter] = useState('all');
+
+    // Fetch portfolios from API
+    const fetchPortfolios = useCallback(async (signal) => {
+        try {
+            setLoading(true);
+            setError("");
+
+            const res = await fetch(`${API_BASE}/api/portfolios/get-portfolios`, { signal });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+
+            // API groups items by type: { website: [], "mobile-app": [], "web-app": [], other: [] }
+            const grouped = json?.data || {};
+            const flat = Object.entries(grouped).flatMap(([type, list]) =>
+                (Array.isArray(list) ? list : []).map((p) => ({
+                    ...p,
+                    id: p._id,
+                    type: p.type || type,
+                    image: resolveImageUrl(p.image),
+                    icon: resolveImageUrl(p.icon),
+                }))
+            );
+
+            setPortfolioItems(flat);
+        } catch (err) {
+            if (err.name === "AbortError") return;
+            console.error("Failed to load portfolios:", err);
+            setError("Unable to load projects. Please try again.");
+        } finally {
+            if (!signal?.aborted) setLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        const controller = new AbortController();
+        fetchPortfolios(controller.signal);
+        return () => controller.abort();
+    }, [fetchPortfolios]);
 
     const toggleExpand = (id) => {
         setExpandedItems((prev) => ({ ...prev, [id]: !prev[id] }));
     };
 
-   
-
     const filteredItems = activeFilter === 'all'
         ? portfolioItems
         : portfolioItems.filter(item => item.type === activeFilter);
 
-    const websiteCount = portfolioItems.filter(i => i.type === 'website').length;
-    const appCount = portfolioItems.filter(i => i.type === 'app').length;
-    const digitalCount = portfolioItems.filter(i => i.type === 'digital').length;
-
-    const typeMeta = {
-        website: { label: 'Website', icon: 'fa-globe', color: '#2563eb', lightBg: '#eff6ff' },
-        app: { label: 'Mobile App', icon: 'fa-mobile-screen-button', color: '#059669', lightBg: '#ecfdf5' },
-        digital: { label: 'Digital Marketing', icon: 'fa-chart-line', color: '#db2777', lightBg: '#fdf2f8' },
-    };
+    // Counts per filter
+    const counts = useMemo(() => {
+        const c = { all: portfolioItems.length };
+        portfolioItems.forEach((i) => {
+            c[i.type] = (c[i.type] || 0) + 1;
+        });
+        return c;
+    }, [portfolioItems]);
 
     return (
         <div>
@@ -61,25 +128,20 @@ function Portfolio() {
                     <div className="container">
                         <div className="pf-filter-box">
                             <div className="pf-filter-nav">
-                                {[
-                                    { key: 'all', label: 'All Projects', count: portfolioItems.length },
-                                    { key: 'website', label: 'Websites', count: websiteCount },
-                                    { key: 'app', label: 'Mobile Apps', count: appCount },
-                                    { key: 'digital', label: 'Digital Marketing', count: digitalCount },
-                                ].map(f => (
+                                {filterTabs.map(f => (
                                     <button
                                         key={f.key}
                                         className={`pf-filter-btn${activeFilter === f.key ? ' pf-active' : ''}`}
                                         onClick={() => setActiveFilter(f.key)}
                                     >
                                         <span className="pf-btn-label">{f.label}</span>
-                                        <span className="pf-btn-count">{f.count}</span>
+                                        <span className="pf-btn-count">{counts[f.key] || 0}</span>
                                     </button>
                                 ))}
                             </div>
                         </div>
                     </div>
-                    <style jsx>{`
+                    <style>{`
                         .pf-filter-section { background:#f1f5f9; padding:28px 0; }
                         .pf-filter-box { background:#fff; border-radius:14px; padding:16px 22px; box-shadow:0 2px 16px rgba(0,0,0,0.06); border:1px solid #e8edf2; }
                         .pf-filter-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
@@ -95,22 +157,38 @@ function Portfolio() {
                 {/* ── Portfolio Grid ── */}
                 <section className="pf-section">
                     <div className="container">
-                        {filteredItems.length === 0 ? (
+                        {loading ? (
+                            <div className="pf-empty">
+                                <div className="pf-spinner" />
+                                <p>Loading projects...</p>
+                            </div>
+                        ) : error ? (
+                            <div className="pf-empty">
+                                <i className="fa-solid fa-triangle-exclamation"></i>
+                                <h4>Something went wrong</h4>
+                                <p>{error}</p>
+                                <button className="pf-empty-btn" onClick={() => fetchPortfolios()}>Try Again</button>
+                            </div>
+                        ) : filteredItems.length === 0 ? (
                             <div className="pf-empty">
                                 <i className="fa-regular fa-folder-open"></i>
                                 <h4>No projects found</h4>
                                 <p>No projects match the selected filter.</p>
-                                <button className="pf-empty-btn" onClick={() => setActiveFilter('all')}>Show All Projects</button>
+                                {activeFilter !== 'all' && (
+                                    <button className="pf-empty-btn" onClick={() => setActiveFilter('all')}>Show All Projects</button>
+                                )}
                             </div>
                         ) : (
                             <div className="pf-grid">
                                 {filteredItems.map((item) => {
+                                    const description = item.description || '';
                                     const isExpanded = expandedItems[item.id];
-                                    const shouldTruncate = item.description.length > 100;
+                                    const shouldTruncate = description.length > 100;
                                     const displayedText = isExpanded || !shouldTruncate
-                                        ? item.description
-                                        : item.description.slice(0, 100) + '…';
+                                        ? description
+                                        : description.slice(0, 100) + '…';
                                     const meta = typeMeta[item.type] || typeMeta.website;
+                                    const titleLink = item.websiteLink || item.playstoreLink || item.appstoreLink;
 
                                     return (
                                         <div key={item.id} className="pf-card">
@@ -119,9 +197,11 @@ function Portfolio() {
                                             <div className="pf-img-panel">
                                                 <img src={item.image} alt={item.title} className="pf-img" />
                                                 <div className="pf-img-overlay" />
-                                                <div className="pf-logo-bubble">
-                                                    <img src={item.icon} alt={item.title} className="pf-logo" />
-                                                </div>
+                                                {item.icon && (
+                                                    <div className="pf-logo-bubble">
+                                                        <img src={item.icon} alt={item.title} className="pf-logo" />
+                                                    </div>
+                                                )}
                                             </div>
 
                                             {/* ── Right: Content ── */}
@@ -135,9 +215,13 @@ function Portfolio() {
 
                                                 {/* Title */}
                                                 <h4 className="pf-title">
-                                                    <a href={item.websiteLink || item.playstoreLink || item.appstoreLink} target="_blank" rel="noopener noreferrer">
-                                                        {item.title}
-                                                    </a>
+                                                    {titleLink ? (
+                                                        <a href={titleLink} target="_blank" rel="noopener noreferrer">
+                                                            {item.title}
+                                                        </a>
+                                                    ) : (
+                                                        <span>{item.title}</span>
+                                                    )}
                                                 </h4>
                                                 <div className="pf-accent" />
 
@@ -160,28 +244,6 @@ function Portfolio() {
                                                     )}
                                                 </div>
 
-                                                {/* ── Links ── */}
-                                                {/* <div className="pf-links">
-                                                    {item.websiteLink && (
-                                                        <a href={item.websiteLink} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-web">
-                                                            <i className="fa-solid fa-globe"></i>
-                                                            <span>Website</span>
-                                                        </a>
-                                                    )}
-                                                    {item.playstoreLink && (
-                                                        <a href={item.playstoreLink} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-play">
-                                                            <i className="fa-brands fa-google-play"></i>
-                                                            <span>Play Store</span>
-                                                        </a>
-                                                    )}
-                                                    {item.appstoreLink && (
-                                                        <a href={item.appstoreLink} target="_blank" rel="noopener noreferrer" className="pf-link pf-link-apple">
-                                                            <i className="fa-brands fa-apple"></i>
-                                                            <span>App Store</span>
-                                                        </a>
-                                                    )}
-                                                </div> */}
-
                                             </div>
                                         </div>
                                     );
@@ -190,7 +252,7 @@ function Portfolio() {
                         )}
                     </div>
 
-                    <style jsx>{`
+                    <style>{`
                         .pf-section { background:#f1f5f9; padding:36px 0 80px; }
 
                         /* Grid: 1 → 2 → 3 cols */
@@ -303,63 +365,23 @@ function Portfolio() {
                             .pf-title { font-size:13px; -webkit-line-clamp:unset; }
                         }
 
-                        /* Empty state */
+                        /* Empty / loading / error state */
                         .pf-empty { text-align:center; padding:60px 20px; }
                         .pf-empty i { font-size:52px; color:#06cabc; margin-bottom:16px; display:block; }
                         .pf-empty h4 { color:#1e293b; margin-bottom:8px; }
                         .pf-empty p { color:#64748b; }
                         .pf-empty-btn { margin-top:16px; padding:10px 24px; background:linear-gradient(135deg,#06cabc,#2e77b0); color:#fff; border:none; border-radius:50px; font-weight:600; cursor:pointer; transition:all 0.25s; }
                         .pf-empty-btn:hover { opacity:0.9; transform:translateY(-2px); }
+
+                        /* Loading spinner */
+                        .pf-spinner {
+                            width:42px; height:42px; margin:0 auto 14px;
+                            border:4px solid #e2e8f0; border-top-color:#06cabc;
+                            border-radius:50%; animation:pfSpin 0.8s linear infinite;
+                        }
+                        @keyframes pfSpin { to { transform:rotate(360deg); } }
                     `}</style>
                 </section>
-
-                {/* ── Counter Section ── */}
-                {/* <section className="counter-area pt-60 pb-60">
-                    <div className="container">
-                        <div className="counter__wrp gradient-bg position-relative overflow-hidden p-4 p-md-5">
-                            <div className="counter__shape wow slideInRight" data-wow-delay="200ms" data-wow-duration="1500ms">
-                                <img src="/assets/images/shape/counnter-bg-shape.png" alt="shape" className="img-fluid" />
-                            </div>
-                            <h2 className="text-light text-center mb-4 mb-md-5">Our Achievements</h2>
-                            <div className="row g-4 justify-content-center">
-                                {[
-                                    { icon: 'counter-icon1', count: '499', label: 'Satisfied Clients', delay: '0ms' },
-                                    { icon: 'counter-icon2', count: '25', label: 'Finished Projects', delay: '200ms' },
-                                    { icon: 'counter-icon3', count: '50', label: 'Skilled Experts', delay: '400ms' },
-                                    { icon: 'counter-icon4', count: '30', label: 'Media Posts', delay: '800ms' },
-                                ].map((c) => (
-                                    <div key={c.label} className="col-6 col-sm-6 col-md-4 col-lg-3 wow bounceInUp" data-wow-delay={c.delay} data-wow-duration="1000ms">
-                                        <div className="counter__item h-100">
-                                            <div className="d-flex flex-column flex-sm-row align-items-center text-center text-sm-start">
-                                                <div className="icon-bg rounded-circle bg-white d-flex align-items-center justify-content-center me-sm-3 me-md-4 mb-3 mb-sm-0 mx-auto mx-sm-0">
-                                                    <img src={`/assets/images/icon/${c.icon}.png`} alt="icon" className="img-fluid" style={{ maxWidth: '40px' }} />
-                                                </div>
-                                                <div className="content">
-                                                    <h3 className="mb-0"><span className="count">{c.count}</span>+</h3>
-                                                    <p className="text-white mb-0">{c.label}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                    <style jsx>{`
-                        .gradient-bg { background:linear-gradient(135deg,#06cabc 0%,#2e77b0 100%); border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.1); }
-                        .counter__item { background:rgba(255,255,255,0.1); backdrop-filter:blur(5px); border-radius:10px; padding:15px; transition:all 0.3s ease; }
-                        .counter__item:hover { transform:translateY(-5px); box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-                        .icon-bg { width:50px; height:50px; padding:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
-                        .counter__item h3 { color:white; font-size:24px; font-weight:700; }
-                        .counter__item p { font-size:13px; opacity:0.9; }
-                        .counter__shape { position:absolute; right:0; top:0; z-index:0; }
-                        .counter__shape img { opacity:0.2; max-width:150px; }
-                        @media(min-width:576px){ .counter__item{padding:20px;} .icon-bg{width:60px;height:60px;padding:10px;} .counter__item h3{font-size:28px;} }
-                        @media(min-width:992px){ .counter__item h3{font-size:32px;} .counter__item p{font-size:15px;} }
-                        @media(min-width:1200px){ .icon-bg{width:70px;height:70px;padding:15px;} }
-                    `}</style>
-                </section> */}
-
             </main>
             <Footer />
         </div>

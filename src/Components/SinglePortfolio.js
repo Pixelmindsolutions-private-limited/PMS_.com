@@ -3,8 +3,76 @@ import Header from './Header';
 import Footer from './Footer';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-import portfolioItems from '../Home/PortfolioData';
 import bannerImage from '../assets/bg.png';
+
+// Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
+const API_BASE = "http://localhost:4480";
+
+// Your API returns "https://localhost:5000/..." which fails (localhost has no SSL).
+// This normalises it to http and also handles relative paths.
+const resolveImageUrl = (url) => {
+    if (!url) return "";
+    if (/^https?:\/\/localhost/i.test(url)) {
+        return url.replace(/^https:\/\//i, "http://");
+    }
+    if (/^https?:\/\//i.test(url)) return url;
+    return `${API_BASE}${url.startsWith("/") ? "" : "/"}${url}`;
+};
+
+// Map an API portfolio object to what the UI uses
+const normalizeProject = (p, fallbackType) => ({
+    ...p,
+    id: p._id,
+    type: p.type || fallbackType,
+    image: resolveImageUrl(p.image),
+    icon: resolveImageUrl(p.icon),
+    BackgroundImage: resolveImageUrl(p.BackgroundImage),
+    gallery: (p.gallery || []).map(resolveImageUrl),
+});
+
+// Styles per API type
+const typeMeta = {
+    "website": {
+        label: "Website",
+        icon: "fa-globe",
+        color: "#06cabc",
+        colorDark: "#06cabc",
+        lightBg: "#eff6ff",
+        emoji: "🌐",
+        screenshotLabel: "Website Screenshots",
+        videoLabel: "Website Demo"
+    },
+    "mobile-app": {
+        label: "Mobile App",
+        icon: "fa-mobile-screen-button",
+        color: "#06cabc",
+        colorDark: "#06cabc",
+        lightBg: "#eff6ff",
+        emoji: "📱",
+        screenshotLabel: "App Screenshots",
+        videoLabel: "App Demo Video"
+    },
+    "web-app": {
+        label: "Web App",
+        icon: "fa-laptop-code",
+        color: "#06cabc",
+        colorDark: "#06cabc",
+        lightBg: "#f5f3ff",
+        emoji: "💻",
+        screenshotLabel: "Web App Screenshots",
+        videoLabel: "Web App Demo"
+    },
+    "other": {
+        label: "Other",
+        icon: "fa-layer-group",
+        color: "#db2777",
+        colorDark: "#be185d",
+        lightBg: "#fdf2f8",
+        emoji: "📊",
+        screenshotLabel: "Project Materials",
+        videoLabel: "Project Video"
+    },
+};
 
 function SinglePortfolio() {
     const { id } = useParams();
@@ -12,76 +80,87 @@ function SinglePortfolio() {
     const [activeImage, setActiveImage] = useState(0);
     const [project, setProject] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
     const [isPaused, setIsPaused] = useState(false);
     const [relatedProjects, setRelatedProjects] = useState([]);
     const scrollContainerRef = useRef(null);
 
+    // Fetch the project + related projects whenever the id changes
     useEffect(() => {
-        const foundProject = portfolioItems.find(
-            item => item.id === Number(id)
-        );
+        const controller = new AbortController();
+        const { signal } = controller;
 
-        setProject(foundProject || null);
-        setLoading(false);
-        setActiveImage(0);
+        const loadProject = async () => {
+            try {
+                setLoading(true);
+                setError("");
+                setProject(null);
+                setRelatedProjects([]);
+                setExpanded(false);
+                setActiveImage(0);
 
-        // Find related projects of the same type
-        if (foundProject) {
-            const related = portfolioItems
-                .filter(item =>
-                    item.id !== foundProject.id &&
-                    item.type === foundProject.type
-                )
-                .slice(0, 6); // Get up to 6 related projects
-            setRelatedProjects(related);
-        }
+                const res = await fetch(`${API_BASE}/api/portfolios/${id}`, { signal });
+                if (res.status === 404) {
+                    setProject(null);
+                    return;
+                }
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const json = await res.json();
+
+                if (!json?.data) {
+                    setProject(null);
+                    return;
+                }
+
+                const current = normalizeProject(json.data);
+                setProject(current);
+                setLoading(false);
+
+                // Related projects: same type, excluding the current one
+                try {
+                    const relRes = await fetch(`${API_BASE}/api/portfolios/get-portfolios`, { signal });
+                    if (relRes.ok) {
+                        const relJson = await relRes.json();
+                        const grouped = relJson?.data || {};
+                        const flat = Object.entries(grouped).flatMap(([type, list]) =>
+                            (Array.isArray(list) ? list : []).map((p) => normalizeProject(p, type))
+                        );
+                        setRelatedProjects(
+                            flat
+                                .filter((item) => item.id !== current.id && item.type === current.type)
+                                .slice(0, 6)
+                        );
+                    }
+                } catch (relErr) {
+                    if (relErr.name !== "AbortError") {
+                        console.error("Failed to load related projects:", relErr);
+                    }
+                }
+            } catch (err) {
+                if (err.name === "AbortError") return;
+                console.error("Failed to load project:", err);
+                setError("Unable to load this project. Please try again.");
+            } finally {
+                if (!signal.aborted) setLoading(false);
+            }
+        };
+
+        loadProject();
+        return () => controller.abort();
     }, [id]);
-
-    const typeMeta = {
-        website: {
-            label: "Website",
-            icon: "fa-globe",
-            color: "#06cabc",
-            colorDark: "#06cabc",
-            lightBg: "#eff6ff",
-            emoji: "🌐",
-            screenshotLabel: "Website Screenshots",
-            videoLabel: "Website Demo"
-        },
-        app: {
-            label: "Mobile App",
-            icon: "fa-mobile-screen-button",
-            color: "#06cabc",
-            colorDark: "#06cabc",
-            lightBg: "#eff6ff",
-            emoji: "📱",
-            screenshotLabel: "App Screenshots",
-            videoLabel: "App Demo Video"
-        },
-        digital: {
-            label: "Digital Marketing",
-            icon: "fa-chart-line",
-            color: "#db2777",
-            colorDark: "#be185d",
-            lightBg: "#fdf2f8",
-            emoji: "📊",
-            screenshotLabel: "Marketing Materials",
-            videoLabel: "Campaign Video"
-        },
-    };
 
     // Safe defaults while project is null
     const meta = typeMeta[project?.type] || typeMeta.website;
 
     const screenshots =
-        project?.screenshots?.length > 0
-            ? project.screenshots
+        project?.gallery?.length > 0
+            ? project.gallery
             : project?.image
                 ? [project.image]
                 : [];
 
-    const isApp = project?.type === "app";
-    const isWebsite = project?.type === "website";
+    const isApp = project?.type === "mobile-app";
+    const isWebsite = project?.type === "website" || project?.type === "web-app";
 
     const displayUrl = project?.websiteLink
         ? project.websiteLink.replace(/^https?:\/\//, "").replace(/\/$/, "")
@@ -89,12 +168,7 @@ function SinglePortfolio() {
             ? `www.${project.title.toLowerCase().replace(/\s+/g, "")}.com`
             : "";
 
-    const initials = (project?.testimonial?.name || "")
-        .split(" ")
-        .map((w) => w[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase();
+    const description = project?.description || "";
 
     // ✅ Hook stays BEFORE any return
     useEffect(() => {
@@ -144,6 +218,23 @@ function SinglePortfolio() {
         );
     }
 
+    if (error) {
+        return (
+            <div className="container py-5">
+                <div className="text-center py-5">
+                    <h2>Something went wrong</h2>
+                    <p className="text-secondary">{error}</p>
+                    <button className="btn btn-primary mt-3 me-2" onClick={() => window.location.reload()}>
+                        Try Again
+                    </button>
+                    <Link to="/portfolio" className="btn btn-outline-secondary mt-3">
+                        Back to Portfolio
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
     if (!project) {
         return (
             <div className="container py-5">
@@ -161,7 +252,7 @@ function SinglePortfolio() {
         <div>
             <Helmet>
                 <title>{project.title} | Project Details - PixelMindSolutions</title>
-                <meta name="description" content={project.description} />
+                <meta name="description" content={description} />
             </Helmet>
 
             <Header />
@@ -214,25 +305,33 @@ function SinglePortfolio() {
                                     </h1>
 
                                     <div className="d-flex flex-wrap gap-3 mb-3">
-                                        <span className="text-white" style={{ color: "#06cabc" }}>
-                                            <i className="fa-regular fa-user me-2" style={{ color: "#06cabc" }}></i>
-                                            {project.client}
-                                        </span>
+                                        {project.client && (
+                                            <span className="text-white" style={{ color: "#06cabc" }}>
+                                                <i className="fa-regular fa-user me-2" style={{ color: "#06cabc" }}></i>
+                                                {project.client}
+                                            </span>
+                                        )}
 
-                                        <span className="text-white">
-                                            <i className="fa-regular fa-folder me-2" style={{ color: "#06cabc" }}></i>
-                                            {project.category}
-                                        </span>
+                                        {project.category && (
+                                            <span className="text-white">
+                                                <i className="fa-regular fa-folder me-2" style={{ color: "#06cabc" }}></i>
+                                                {project.category}
+                                            </span>
+                                        )}
 
-                                        <span className="text-white">
-                                            <i className="fa-regular fa-calendar me-2" style={{ color: "#06cabc" }}></i>
-                                            {project.year}
-                                        </span>
+                                        {project.year && (
+                                            <span className="text-white">
+                                                <i className="fa-regular fa-calendar me-2" style={{ color: "#06cabc" }}></i>
+                                                {project.year}
+                                            </span>
+                                        )}
 
-                                        <span className="text-white">
-                                            <i className="fa-regular fa-clock me-2" style={{ color: "#06cabc" }}></i>
-                                            {project.duration}
-                                        </span>
+                                        {project.duration && (
+                                            <span className="text-white">
+                                                <i className="fa-regular fa-clock me-2" style={{ color: "#06cabc" }}></i>
+                                                {project.duration}
+                                            </span>
+                                        )}
                                     </div>
 
                                     <nav aria-label="breadcrumb">
@@ -262,9 +361,6 @@ function SinglePortfolio() {
                             </div>
                         </div>
                     </div>
-
-                    {/* <div className="position-absolute rounded-circle opacity-10" style={{ width: "400px", height: "400px", background: "#06cabc", top: "-20%", right: "-10%", zIndex: 2 }}></div>
-                    <div className="position-absolute rounded-circle opacity-10" style={{ width: "300px", height: "300px", background: "#06cabc", bottom: "-20%", left: "-10%", zIndex: 2 }}></div> */}
                 </section>
 
                 {/* ── Back Button ── */}
@@ -283,18 +379,12 @@ function SinglePortfolio() {
                             {/* ── Left Column: Device Preview ── */}
                             <div className="col-lg-7">
 
-                                {/* Type + Year badges sit above the frame — no overlap with the screenshot */}
+                                {/* Type badge sits above the frame — no overlap with the screenshot */}
                                 <div className="d-flex justify-content-between align-items-center mb-3">
                                     <span className="rounded-pill px-3 py-2 text-white" style={{ background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})`, fontSize: "13px", fontWeight: "600" }}>
                                         <i className={`fa-solid ${meta.icon} me-1`}></i>
                                         {meta.label}
                                     </span>
-                                    {/* <span className="d-flex align-items-center gap-2">
-                                        <span className="d-inline-block rounded-circle" style={{ width: "9px", height: "9px", background: "#22c55e", boxShadow: "0 0 0 rgba(34,197,94,0.6)", animation: "pulseDot 1.8s infinite" }}></span>
-                                        <span className="rounded-pill px-3 py-2" style={{ background: "#1e293b", color: "#fff", fontSize: "13px", fontWeight: "600" }}>
-                                            <i className="fa-regular fa-calendar me-1"></i>{project.year}
-                                        </span>
-                                    </span> */}
                                 </div>
 
                                 {/* Device Mockup */}
@@ -347,7 +437,7 @@ function SinglePortfolio() {
                                             </div>
                                         </div>
                                     ) : (
-                                        /* ── Generic Frame (Digital Marketing) ── */
+                                        /* ── Generic Frame ── */
                                         <div className="position-relative" style={{ width: "100%", height: "500px", overflowY: "auto", overflowX: "hidden", background: "#fff" }}>
                                             <img
                                                 key={activeImage}
@@ -396,108 +486,91 @@ function SinglePortfolio() {
                                 </div>
 
                                 {/* Screenshot Gallery */}
-                                <div className="card border-0 rounded-4 shadow-sm mt-3 p-3">
-                                    <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
-                                        <i className={`fa-solid ${meta.icon} me-2`}></i>
-                                        {meta.screenshotLabel}
-                                    </h6>
-                                    <div className="row g-2">
-                                        {screenshots.map((img, index) => (
-                                            <div className={isApp ? 'col-3 col-sm-2' : 'col-3'} key={index}>
-                                                {isApp ? (
-                                                    <div
-                                                        className="mx-auto position-relative rounded-4"
-                                                        style={{
-                                                            aspectRatio: "9/17",
-                                                            background: "#111827",
-                                                            padding: "4px",
-                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
-                                                            borderRadius: "16px",
-                                                            cursor: "pointer",
-                                                            transition: "all 0.3s ease"
-                                                        }}
-                                                        onClick={() => goToSlide(index)}
-                                                    >
-                                                        <div className="position-absolute top-0 start-50 translate-middle-x" style={{ width: "26px", height: "5px", borderRadius: "4px", background: "#111827", zIndex: 2, top: "6px" }}></div>
-                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="w-100 h-100 rounded-3" style={{ objectFit: "cover", objectPosition: "top" }} />
-                                                    </div>
-                                                ) : isWebsite ? (
-                                                    <div
-                                                        className="w-100 rounded-3 overflow-hidden"
-                                                        style={{
-                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
-                                                            borderRadius: "10px",
-                                                            cursor: "pointer",
-                                                            transition: "all 0.3s ease",
-                                                            background: "#fff",
-                                                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
-                                                        }}
-                                                        onClick={() => goToSlide(index)}
-                                                    >
-                                                        <div className="d-flex align-items-center gap-1 px-2" style={{ height: "12px", background: "#f1f5f9" }}>
-                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
-                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
-                                                            <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                {screenshots.length > 0 && (
+                                    <div className="card border-0 rounded-4 shadow-sm mt-3 p-3">
+                                        <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
+                                            <i className={`fa-solid ${meta.icon} me-2`}></i>
+                                            {meta.screenshotLabel}
+                                        </h6>
+                                        <div className="row g-2">
+                                            {screenshots.map((img, index) => (
+                                                <div className={isApp ? 'col-3 col-sm-2' : 'col-3'} key={index}>
+                                                    {isApp ? (
+                                                        <div
+                                                            className="mx-auto position-relative rounded-4"
+                                                            style={{
+                                                                aspectRatio: "9/17",
+                                                                background: "#111827",
+                                                                padding: "4px",
+                                                                border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                                borderRadius: "16px",
+                                                                cursor: "pointer",
+                                                                transition: "all 0.3s ease"
+                                                            }}
+                                                            onClick={() => goToSlide(index)}
+                                                        >
+                                                            <div className="position-absolute top-0 start-50 translate-middle-x" style={{ width: "26px", height: "5px", borderRadius: "4px", background: "#111827", zIndex: 2, top: "6px" }}></div>
+                                                            <img src={img} alt={`${project.title} ${index + 1}`} className="w-100 h-100 rounded-3" style={{ objectFit: "cover", objectPosition: "top" }} />
                                                         </div>
-                                                        <img src={img} alt={`${project.title} ${index + 1}`} className="w-100" style={{ height: "58px", objectFit: "cover", objectPosition: "top" }} />
-                                                    </div>
-                                                ) : (
-                                                    <img
-                                                        src={img}
-                                                        alt={`${project.title} ${index + 1}`}
-                                                        className="w-100 rounded-3"
-                                                        style={{
-                                                            height: "80px",
-                                                            objectFit: "cover",
-                                                            objectPosition: "top",
-                                                            border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
-                                                            borderRadius: "10px",
-                                                            cursor: "pointer",
-                                                            transition: "all 0.3s ease"
-                                                        }}
-                                                        onClick={() => goToSlide(index)}
-                                                    />
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* ── Video Section (App Only) ── */}
-                                {isApp && project?.videoId && (
-                                    <div className="card border-0 rounded-4 shadow-sm mt-3 overflow-hidden">
-                                        <div className="px-3 pt-3">
-                                            <h6 className="fw-bold mb-0" style={{ color: meta.color }}>
-                                                <i className="fa-solid fa-circle-play me-2"></i>
-                                                {meta.videoLabel}
-                                            </h6>
-                                        </div>
-                                        <div className="ratio ratio-16x9 mt-3">
-                                            <iframe
-                                                src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${project.videoId}&disablekb=1`}
-                                                title={`${project.title} Demo Video`}
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowFullScreen
-                                                className="border-0 rounded-bottom-4"
-                                            />
+                                                    ) : isWebsite ? (
+                                                        <div
+                                                            className="w-100 rounded-3 overflow-hidden"
+                                                            style={{
+                                                                border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                                borderRadius: "10px",
+                                                                cursor: "pointer",
+                                                                transition: "all 0.3s ease",
+                                                                background: "#fff",
+                                                                boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
+                                                            }}
+                                                            onClick={() => goToSlide(index)}
+                                                        >
+                                                            <div className="d-flex align-items-center gap-1 px-2" style={{ height: "12px", background: "#f1f5f9" }}>
+                                                                <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                                                <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                                                <span className="rounded-circle" style={{ width: "4px", height: "4px", background: "#cbd5e1" }}></span>
+                                                            </div>
+                                                            <img src={img} alt={`${project.title} ${index + 1}`} className="w-100" style={{ height: "58px", objectFit: "cover", objectPosition: "top" }} />
+                                                        </div>
+                                                    ) : (
+                                                        <img
+                                                            src={img}
+                                                            alt={`${project.title} ${index + 1}`}
+                                                            className="w-100 rounded-3"
+                                                            style={{
+                                                                height: "80px",
+                                                                objectFit: "cover",
+                                                                objectPosition: "top",
+                                                                border: `3px solid ${activeImage === index ? meta.color : 'transparent'}`,
+                                                                borderRadius: "10px",
+                                                                cursor: "pointer",
+                                                                transition: "all 0.3s ease"
+                                                            }}
+                                                            onClick={() => goToSlide(index)}
+                                                        />
+                                                    )}
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 )}
 
                                 {/* Tech Stack */}
-                                <div className="card border-0 rounded-4 shadow-sm mt-3 p-3">
-                                    <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
-                                        <i className="fa-solid fa-code me-2"></i>
-                                        Technologies Used
-                                    </h6>
-                                    <div className="d-flex flex-wrap gap-2">
-                                        {(project.technologies || []).map((tech, index) => (
-                                            <span key={index} className="bg-light border rounded-pill px-3 py-2" style={{ fontSize: "13px", fontWeight: "500", borderColor: "#e2e8f0 !important" }}>
-                                                {tech}
-                                            </span>
-                                        ))}
+                                {project.technologies && project.technologies.length > 0 && (
+                                    <div className="card border-0 rounded-4 shadow-sm mt-3 p-3">
+                                        <h6 className="fw-bold mb-3" style={{ color: meta.color }}>
+                                            <i className="fa-solid fa-code me-2"></i>
+                                            Technologies Used
+                                        </h6>
+                                        <div className="d-flex flex-wrap gap-2">
+                                            {project.technologies.map((tech, index) => (
+                                                <span key={index} className="bg-light border rounded-pill px-3 py-2" style={{ fontSize: "13px", fontWeight: "500", borderColor: "#e2e8f0 !important" }}>
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </div>
 
                             {/* ── Right Column: Project Details ── */}
@@ -513,18 +586,24 @@ function SinglePortfolio() {
                                         </span>
                                     </div>
                                     <div className="d-flex flex-wrap gap-3 mb-3">
-                                        <span className="small text-secondary">
-                                            <i className="fa-regular fa-user me-1" style={{ color: meta.color }}></i>
-                                            {project.client}
-                                        </span>
-                                        <span className="small text-secondary">
-                                            <i className="fa-regular fa-folder me-1" style={{ color: meta.color }}></i>
-                                            {project.category}
-                                        </span>
-                                        <span className="small text-secondary">
-                                            <i className="fa-regular fa-clock me-1" style={{ color: meta.color }}></i>
-                                            {project.duration}
-                                        </span>
+                                        {project.client && (
+                                            <span className="small text-secondary">
+                                                <i className="fa-regular fa-user me-1" style={{ color: meta.color }}></i>
+                                                {project.client}
+                                            </span>
+                                        )}
+                                        {project.category && (
+                                            <span className="small text-secondary">
+                                                <i className="fa-regular fa-folder me-1" style={{ color: meta.color }}></i>
+                                                {project.category}
+                                            </span>
+                                        )}
+                                        {project.duration && (
+                                            <span className="small text-secondary">
+                                                <i className="fa-regular fa-clock me-1" style={{ color: meta.color }}></i>
+                                                {project.duration}
+                                            </span>
+                                        )}
                                     </div>
 
                                     <hr className="my-3" style={{ borderColor: "#e8edf2" }} />
@@ -532,8 +611,8 @@ function SinglePortfolio() {
                                     {/* Description */}
                                     <div className="overflow-auto" style={{ maxHeight: "200px" }}>
                                         <p className="text-secondary" style={{ fontSize: "15px", lineHeight: "1.8" }}>
-                                            {expanded ? (project.fullDescription || project.description) : project.description}
-                                            {(project.fullDescription && project.fullDescription.length > project.description.length) && (
+                                            {expanded ? (project.fullDescription || description) : description}
+                                            {(project.fullDescription && project.fullDescription.length > description.length) && (
                                                 <button
                                                     onClick={() => setExpanded(!expanded)}
                                                     className="btn btn-link p-0 ms-1 text-decoration-none"
@@ -638,25 +717,6 @@ function SinglePortfolio() {
 
                         </div>
 
-                        {/* ── Testimonial ──
-                        {project.testimonial && (
-                            <div className="mt-4 p-4 p-md-5 rounded-4 text-center position-relative" style={{ background: "linear-gradient(135deg, #f8fafc, #f1f5f9)", border: "1px solid #e2e8f0" }}>
-                                <i className="fa-solid fa-quote-left mb-3" style={{ color: meta.color, fontSize: "40px", opacity: 0.25 }}></i>
-                                <p className="fs-5 fst-italic text-secondary mb-4" style={{ maxWidth: "700px", margin: "0 auto" }}>
-                                    "{project.testimonial.text}"
-                                </p>
-                                <div className="d-flex align-items-center justify-content-center gap-3">
-                                    <span className="d-inline-flex align-items-center justify-content-center rounded-circle text-white fw-bold" style={{ width: "46px", height: "46px", background: `linear-gradient(135deg, ${meta.color}, ${meta.colorDark})`, fontSize: "15px", letterSpacing: "0.5px", boxShadow: "0 6px 16px rgba(0,0,0,0.15)" }}>
-                                        {initials}
-                                    </span>
-                                    <div className="text-start">
-                                        <h6 className="fw-bold mb-0">{project.testimonial.name}</h6>
-                                        <small className="text-secondary">{project.testimonial.position}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        )} */}
-
                         {/* ── Related Projects Section with Horizontal Scroll ── */}
                         {relatedProjects.length > 0 && (
                             <section className="mt-5 pt-4" style={{ borderTop: "2px solid #e8edf2" }}>
@@ -717,80 +777,84 @@ function SinglePortfolio() {
                                         msOverflowStyle: "none"
                                     }}
                                 >
-                                    {relatedProjects.map((related, index) => (
-                                        <div
-                                            key={related.id}
-                                            className="flex-shrink-0"
-                                            style={{
-                                                width: "280px",
-                                                scrollSnapAlign: "start"
-                                            }}
-                                        >
-                                            <Link
-                                                to={`/portfolio/${related.id}`}
-                                                className="text-decoration-none"
+                                    {relatedProjects.map((related) => {
+                                        const relMeta = typeMeta[related.type] || typeMeta.website;
+                                        const relDesc = related.description || "";
+                                        return (
+                                            <div
+                                                key={related.id}
+                                                className="flex-shrink-0"
+                                                style={{
+                                                    width: "280px",
+                                                    scrollSnapAlign: "start"
+                                                }}
                                             >
-                                                <div className="card border-0 rounded-4 overflow-hidden shadow-sm h-100" style={{ border: "1px solid rgba(15,23,42,0.06)", transition: "all 0.3s ease" }}>
-                                                    <div className="position-relative overflow-hidden" style={{ background: "#f8fafc" }}>
-                                                        <img
-                                                            src={related.image}
-                                                            alt={related.title}
-                                                            className="w-100"
-                                                            style={{
-                                                                height: "180px",
-                                                                objectFit: "cover",
-                                                                transition: "transform 0.5s ease"
-                                                            }}
-                                                        />
-                                                        <span
-                                                            className="position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1"
-                                                            style={{
-                                                                background: `linear-gradient(135deg, ${typeMeta[related.type]?.color || '#06cabc'}, ${typeMeta[related.type]?.colorDark || '#06cabc'})`,
-                                                                color: "#fff",
-                                                                fontSize: "11px",
-                                                                fontWeight: "600",
-                                                                boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
-                                                            }}
-                                                        >
-                                                            <i className={`fa-solid ${typeMeta[related.type]?.icon || 'fa-folder'} me-1`}></i>
-                                                            {typeMeta[related.type]?.label || related.type}
-                                                        </span>
-                                                    </div>
-                                                    <div className="card-body p-3">
-                                                        <h6 className="fw-bold mb-2" style={{ color: "#1e293b", fontSize: "14px" }}>
-                                                            {related.title}
-                                                        </h6>
-                                                        <p className="text-secondary small mb-3" style={{ fontSize: "13px" }}>
-                                                            {related.description.substring(0, 60)}...
-                                                        </p>
-                                                        <div className="d-flex flex-wrap gap-1 mb-2">
-                                                            {(related.technologies || []).slice(0, 2).map((tech, idx) => (
-                                                                <span
-                                                                    key={idx}
-                                                                    className="badge bg-light text-secondary border rounded-pill px-2 py-1"
-                                                                    style={{ fontSize: "9px" }}
-                                                                >
-                                                                    {tech}
-                                                                </span>
-                                                            ))}
-                                                            {(related.technologies || []).length > 2 && (
-                                                                <span className="badge bg-light text-secondary border rounded-pill px-2 py-1" style={{ fontSize: "9px" }}>
-                                                                    +{related.technologies.length - 2}
-                                                                </span>
-                                                            )}
+                                                <Link
+                                                    to={`/portfolio/${related.id}`}
+                                                    className="text-decoration-none"
+                                                >
+                                                    <div className="card border-0 rounded-4 overflow-hidden shadow-sm h-100" style={{ border: "1px solid rgba(15,23,42,0.06)", transition: "all 0.3s ease" }}>
+                                                        <div className="position-relative overflow-hidden" style={{ background: "#f8fafc" }}>
+                                                            <img
+                                                                src={related.image}
+                                                                alt={related.title}
+                                                                className="w-100"
+                                                                style={{
+                                                                    height: "180px",
+                                                                    objectFit: "cover",
+                                                                    transition: "transform 0.5s ease"
+                                                                }}
+                                                            />
+                                                            <span
+                                                                className="position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1"
+                                                                style={{
+                                                                    background: `linear-gradient(135deg, ${relMeta.color}, ${relMeta.colorDark})`,
+                                                                    color: "#fff",
+                                                                    fontSize: "11px",
+                                                                    fontWeight: "600",
+                                                                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+                                                                }}
+                                                            >
+                                                                <i className={`fa-solid ${relMeta.icon} me-1`}></i>
+                                                                {relMeta.label}
+                                                            </span>
                                                         </div>
-                                                        <span className="text-primary small fw-semibold" style={{ color: meta.color }}>
-                                                            View Project <i className="fa-solid fa-arrow-right ms-1"></i>
-                                                        </span>
+                                                        <div className="card-body p-3">
+                                                            <h6 className="fw-bold mb-2" style={{ color: "#1e293b", fontSize: "14px" }}>
+                                                                {related.title}
+                                                            </h6>
+                                                            <p className="text-secondary small mb-3" style={{ fontSize: "13px" }}>
+                                                                {relDesc.length > 60 ? `${relDesc.substring(0, 60)}...` : relDesc}
+                                                            </p>
+                                                            <div className="d-flex flex-wrap gap-1 mb-2">
+                                                                {(related.technologies || []).slice(0, 2).map((tech, idx) => (
+                                                                    <span
+                                                                        key={idx}
+                                                                        className="badge bg-light text-secondary border rounded-pill px-2 py-1"
+                                                                        style={{ fontSize: "9px" }}
+                                                                    >
+                                                                        {tech}
+                                                                    </span>
+                                                                ))}
+                                                                {(related.technologies || []).length > 2 && (
+                                                                    <span className="badge bg-light text-secondary border rounded-pill px-2 py-1" style={{ fontSize: "9px" }}>
+                                                                        +{related.technologies.length - 2}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            <span className="text-primary small fw-semibold" style={{ color: meta.color }}>
+                                                                View Project <i className="fa-solid fa-arrow-right ms-1"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    ))}
+                                                </Link>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
 
                                 {/* Custom scrollbar styling */}
-                                <style jsx>{`
+                                <style>{`
                                     .d-flex::-webkit-scrollbar {
                                         height: 6px;
                                     }
@@ -819,7 +883,6 @@ function SinglePortfolio() {
                                 `}</style>
                             </section>
                         )}
-
 
                     </div>
                 </section>
@@ -856,7 +919,7 @@ function SinglePortfolio() {
             <Footer />
 
             {/* Only keyframe animations needed */}
-            <style jsx>{`
+            <style>{`
                 @keyframes pulseDot {
                     0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.55); }
                     70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }

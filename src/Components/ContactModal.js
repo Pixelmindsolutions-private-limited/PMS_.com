@@ -3,6 +3,9 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
+const API_BASE = "http://localhost:4480";
+
 function ContactModal({ show, onClose }) {
     const [formData, setFormData] = useState({
         name: "",
@@ -13,6 +16,7 @@ function ContactModal({ show, onClose }) {
     });
 
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -37,32 +41,50 @@ function ContactModal({ show, onClose }) {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (validateForm()) {
-            axios
-                .post("https://678cb478f067bf9e24e7ff6a.mockapi.io/api/v1/info/contact", formData)
-                .then((response) => {
-                    console.log("Data submitted successfully:", response.data);
-                    toast.success("Message sent successfully!", {
-                        position: "top-right",
-                        autoClose: 3000,
-                    });
-                    setFormData({ name: "", email: "", subject: "", phone: "", message: "" }); // Clear the form
-                })
-                .catch((error) => {
-                    console.error("Error submitting data:", error);
-                    toast.error("An error occurred. Please try again.", {
-                        position: "top-right",
-                        autoClose: 3000,
-                    });
-                });
-        } else {
+        if (!validateForm()) {
             toast.warn("Please fix the errors in the form.", {
                 position: "top-right",
                 autoClose: 3000,
             });
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            const payload = {
+                name: formData.name.trim(),
+                email: formData.email.trim(),
+                mobile: formData.phone.trim(), // API expects "mobile"
+                subject: formData.subject.trim(),
+                message: formData.message.trim(),
+            };
+
+            const response = await axios.post(`${API_BASE}/api/contact-us`, payload, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            console.log("Data submitted successfully:", response.data);
+            toast.success(response.data?.message || "Message sent successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+            });
+            setFormData({ name: "", email: "", subject: "", phone: "", message: "" });
+            setErrors({});
+        } catch (error) {
+            console.error("Error submitting data:", error);
+            toast.error(
+                error.response?.data?.message || "An error occurred. Please try again.",
+                {
+                    position: "top-right",
+                    autoClose: 3000,
+                }
+            );
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -127,8 +149,6 @@ function ContactModal({ show, onClose }) {
                             className="banner__right-line4"
                             style={{ position: 'absolute', top: '70%', right: '0', zIndex: 0 }}
                         />
-
-
                     </div>
 
                     <div className="modal-header position-relative z-1">
@@ -210,8 +230,8 @@ function ContactModal({ show, onClose }) {
                             </div>
 
                             <div className="mt-4">
-                                <button type="submit" className="btn btn-dark">
-                                    Send Message
+                                <button type="submit" className="btn btn-dark" disabled={isSubmitting}>
+                                    {isSubmitting ? "Sending..." : "Send Message"}
                                 </button>
                             </div>
                         </form>
