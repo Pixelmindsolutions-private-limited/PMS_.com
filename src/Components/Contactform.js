@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Testimonial from "../assets/Home/Testimonial.png"
 
 // Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
-const API_BASE = "http://localhost:4480";
+const API_BASE = "https://pmswebbackend.pixelmindsolutions.com";
 
 function Contactform() {
 

@@ -16,7 +16,7 @@ import {
 import { Helmet } from 'react-helmet';
 
 // Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
-const API_BASE = "http://localhost:4480";
+const API_BASE = "https://pmswebbackend.pixelmindsolutions.com";
 
 function Contact() {
   const [formData, setFormData] = useState({

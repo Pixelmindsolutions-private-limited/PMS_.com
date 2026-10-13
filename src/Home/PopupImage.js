@@ -5,7 +5,7 @@ import offerimage from "../assets/Home/Offer.png";
 
 // ---- API config ----
 // Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
-const API_BASE = "http://localhost:4480";
+const API_BASE = "https://pmswebbackend.pixelmindsolutions.com";
 
 // Used only if the API fails or returns no active banners
 const fallbackImages = [{ id: "fallback", src: offerimage, alt: "Special Offer" }];

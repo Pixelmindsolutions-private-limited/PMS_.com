@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 
 // Vite: import.meta.env.VITE_API_URL | CRA: process.env.REACT_APP_API_URL
-const API_BASE = "http://localhost:4480";
+const API_BASE = "https://pmswebbackend.pixelmindsolutions.com";
 
 // Your API returns "https://localhost:5000/..." which fails (localhost has no SSL).
 // This normalises it to http and also handles relative paths.
