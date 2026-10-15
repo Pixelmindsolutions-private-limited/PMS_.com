@@ -29,6 +29,9 @@ function Contact() {
 
   const [errors, setErrors] = useState({}); // For form validation errors
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // State for map selection
+  const [activeMap, setActiveMap] = useState("hyderabad");
 
   // Handle form input change
   const handleChange = (e) => {
@@ -107,8 +110,8 @@ function Contact() {
     <div>
       <Helmet>
         <title>Contact PixelmindSolutions | Web Development, Mobile Apps & Digital Marketing</title>
-        <meta name="description" content="Get in touch with PixelmindSolutions Pvt Ltd in Hyderabad for professional web development, mobile app development, UI/UX design, digital marketing, website maintenance, and custom software solutions. Contact our experts today." />
-        <meta name="keywords" content="contact pixelmindsolutions, contact software company hyderabad, web development company contact, mobile app development company hyderabad, digital marketing company contact, ui ux design company hyderabad, website development services, custom software development, website maintenance company, IT company contact hyderabad" />
+        <meta name="description" content="Get in touch with PixelmindSolutions Pvt Ltd in Hyderabad and Vizag for professional web development, mobile app development, UI/UX design, digital marketing, website maintenance, and custom software solutions. Contact our experts today." />
+        <meta name="keywords" content="contact pixelmindsolutions, contact software company hyderabad, contact software company vizag, web development company contact, mobile app development company hyderabad, digital marketing company contact, ui ux design company hyderabad, website development services, custom software development, website maintenance company, IT company contact hyderabad" />
         <link rel="canonical" href="https://www.pixelmindsolutions.com/contact" />
       </Helmet>
 
@@ -117,7 +120,6 @@ function Contact() {
         {/* Page banner area start here */}
         <section
           className="banner__inner-page bg-image pt-100 pb-100 bg-image"
-          // data-background="/assets/images/banner/banner-inner-page.jpg"
           style={{
             backgroundImage: `url(${"/assets/images/banner/banner-inner-page.jpg"})`,
           }}
@@ -181,16 +183,35 @@ function Contact() {
                     </p>
 
                     <ul className="mt-4 mb-4 list-unstyled">
+                      
+                      {/* HYDERABAD BRANCH */}
                       <li className="mb-4">
                         <div className="d-flex align-items-start">
                           <div className="me-3">
                             <i className="bi bi-geo-alt-fill fs-4" style={{ color: "#06cabc" }}></i>
                           </div>
                           <div>
-                            <span className="text-white">Location</span>
+                            <span className="text-white fw-bold">Hyderabad Office</span>
                             <h5 className="mt-1 text-white">
                               <a className="text-white" href="https://maps.app.goo.gl/GkfdjzVF9vguB2Dd8" target="_blank" rel="noopener noreferrer">
                                 Plot No 63, Sri Residency, 1st Floor 101, KPHB 5th Phase, Kukatpally, Hyderabad, Telangana 500085
+                              </a>
+                            </h5>
+                          </div>
+                        </div>
+                      </li>
+
+                      {/* VIZAG BRANCH */}
+                      <li className="mb-4">
+                        <div className="d-flex align-items-start">
+                          <div className="me-3">
+                            <i className="bi bi-geo-alt-fill fs-4" style={{ color: "#06cabc" }}></i>
+                          </div>
+                          <div>
+                            <span className="text-white fw-bold">Vizag Office</span>
+                            <h5 className="mt-1 text-white">
+                              <a className="text-white" href="https://maps.app.goo.gl/q3BP3vHcyBngPiQQ9" target="_blank" rel="noopener noreferrer">
+                                Beach Road, behind Ambica Sea Green, Visakhapatnam 530017
                               </a>
                             </h5>
                           </div>
@@ -382,22 +403,71 @@ function Contact() {
           </section>
           {/* Contact area end here */}
 
-          {/* Embedded Map Section */}
+          {/* Embedded Map Section with Selection Tabs */}
           <section className="map-area pb-80">
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <div className="map-container">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4514.143746212494!2d78.3941646!3d17.480906400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc3f9ee6211d7041%3A0x57e8ab2675c2f578!2sPIXELMINDSOLUTIONS%20PVT.LTD%20-%20Software%20Company%20in%20Hyderabad!5e1!3m2!1sen!2sin!4v1772010688017!5m2!1sen!2sin"
-                      width="100%"
-                      height="450"
-                      style={{ border: 0 }}
-                      allowFullScreen=""
-                      loading="lazy"
-                      title="PixelMind Solutions Location"
-                    ></iframe>
+                  
+                  {/* Map Selection Tabs */}
+                  <div className="text-center mb-4">
+                    <div className="d-inline-flex p-1 rounded-pill" style={{ backgroundColor: '#f1f1f1' }}>
+                      <button
+                        className="btn px-4 py-2 rounded-pill fw-bold"
+                        onClick={() => setActiveMap("hyderabad")}
+                        style={{
+                          backgroundColor: activeMap === "hyderabad" ? "#06cabc" : "transparent",
+                          color: activeMap === "hyderabad" ? "#fff" : "#333",
+                          border: "none",
+                          transition: "all 0.3s ease",
+                          boxShadow: activeMap === "hyderabad" ? "0 4px 6px rgba(6, 202, 188, 0.3)" : "none"
+                        }}
+                      >
+                        <i className="bi bi-geo-alt-fill me-2"></i>Hyderabad Office
+                      </button>
+                      <button
+                        className="btn px-4 py-2 rounded-pill fw-bold"
+                        onClick={() => setActiveMap("vizag")}
+                        style={{
+                          backgroundColor: activeMap === "vizag" ? "#06cabc" : "transparent",
+                          color: activeMap === "vizag" ? "#fff" : "#333",
+                          border: "none",
+                          transition: "all 0.3s ease",
+                          boxShadow: activeMap === "vizag" ? "0 4px 6px rgba(6, 202, 188, 0.3)" : "none"
+                        }}
+                      >
+                        <i className="bi bi-geo-alt-fill me-2"></i>Vizag Office
+                      </button>
+                    </div>
                   </div>
+
+                  {/* Conditional Map Rendering */}
+                  <div className="map-container rounded overflow-hidden shadow-sm">
+                    {activeMap === "hyderabad" ? (
+                      <iframe
+                        key="hyderabad-map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4514.143746212494!2d78.3941646!3d17.480906400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc3f9ee6211d7041%3A0x57e8ab2675c2f578!2sPIXELMINDSOLUTIONS%20PVT.LTD%20-%20Software%20Company%20in%20Hyderabad!5e1!3m2!1sen!2sin!4v1772010688017!5m2!1sen!2sin"
+                        width="100%"
+                        height="450"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        title="PixelMind Solutions Hyderabad Location"
+                      ></iframe>
+                    ) : (
+                      <iframe
+                        key="vizag-map"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d244.64829695299767!2d83.33114982306584!3d17.718513489109903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1792041391531!5m2!1sen!2sin"
+                        width="100%"
+                        height="450"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        title="PixelMind Solutions Vizag Location"
+                      ></iframe>
+                    )}
+                  </div>
+                  
                 </div>
               </div>
             </div>

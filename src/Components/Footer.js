@@ -122,11 +122,11 @@ function Footer() {
                     <i className="fa-regular fa-angles-right me-1" /> Our Portfolio
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="/careers" data-discover="true">
                     <i className="fa-regular fa-angles-right me-1" /> Careers Page
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div

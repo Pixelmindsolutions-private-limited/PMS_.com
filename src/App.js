@@ -33,6 +33,8 @@ import CareersPage from './Components/CareersPage';
 import PrivacyPolicyForPlaystore from './Policies&deleteAccount/PrivacyPolicrforPlaystore';
 import DeleteAccount from './Policies&deleteAccount/DeleteAccount';
 import DeleteAccountConfirmation from './Policies&deleteAccount/DeleteConfirmation';
+import Branches from './Components/Branches';
+import Gallery from './Components/Gallery';
 
 
 function App() {
@@ -40,7 +42,7 @@ function App() {
     <>
       <HelmetProvider>
         <ScrollToTop />
-        <GlobalTracker />
+        {/* <GlobalTracker /> */}
         <Routes>
 
           <Route path="/" element={<Home />} />
@@ -70,6 +72,9 @@ function App() {
           <Route path="/pms-partner/delete-account/:id" element={<DeleteAccountConfirmation />} />
 
           <Route path='/careers' element={<CareersPage />} />
+
+          <Route path="/branches" element={<Branches />} />
+          <Route path="/gallery" element={<Gallery />} />
 
           <Route path="/data" element={<AdminVisitors />} />
 
