@@ -16,7 +16,7 @@ import {
   FaVideo,
 } from "react-icons/fa";
 
-const API_BASE_URL = "http://localhost:4480";
+const API_BASE_URL = "https://pmswebbackend.pixelmindsolutions.com";
 
 const GALLERY_API = `${API_BASE_URL}/api/galleries`;
 
