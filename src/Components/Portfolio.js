@@ -30,9 +30,9 @@ const typeMeta = {
 const filterTabs = [
     { key: 'all', label: 'All Projects' },
     { key: 'website', label: 'Websites' },
-    { key: 'mobile-app', label: 'Mobile Apps' },
+    { key: 'mobile-app', label: 'Mobile Applications' },
     { key: 'web-app', label: 'Web Apps' },
-    { key: 'other', label: 'Other' },
+    { key: 'digital-marketing', label: 'Other' },
 ];
 
 function Portfolio() {

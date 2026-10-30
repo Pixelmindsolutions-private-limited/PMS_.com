@@ -246,12 +246,14 @@ function Gallery() {
               )}
             </div>
 
+
             {/* Category Filter */}
-            <div className="row justify-content-center mb-5">
-              <div className="col-lg-10">
-                <div className="d-flex flex-wrap justify-content-center gap-2 p-2 bg-light rounded-pill shadow-sm">
+            <div className="row justify-content-center mb-4">
+              <div className="col-12 col-lg-10">
+                <div className="gallery-category-tabs d-flex flex-nowrap justify-content-center gap-1 p-1 bg-light rounded-pill shadow-sm">
                   {categories.map((category) => {
                     const isActive = selectedCategory === category.id;
+
                     return (
                       <button
                         key={category.id}
@@ -260,14 +262,8 @@ function Gallery() {
                           setSelectedCategory(category.id);
                           setSelectedMedia(null);
                         }}
-                        className="btn px-3 px-md-4 py-2 rounded-pill fw-medium"
-                        style={{
-                          backgroundColor: isActive ? "#06cabc" : "transparent",
-                          color: isActive ? "#fff" : "#6c757d",
-                          border: "none",
-                          boxShadow: isActive ? "0 4px 10px rgba(6, 202, 188, 0.3)" : "none",
-                          transition: "all 0.25s ease",
-                        }}
+                        className={`btn gallery-category-tab flex-shrink-0 px-3 px-md-4 py-2 rounded-pill fw-medium ${isActive ? "active" : ""
+                          }`}
                       >
                         {category.name}
                       </button>
@@ -276,6 +272,7 @@ function Gallery() {
                 </div>
               </div>
             </div>
+
 
             {loading && (
               <div className="text-center py-5">
@@ -512,6 +509,66 @@ function Gallery() {
         @media (prefers-reduced-motion: reduce) {
           .gallery-card, .gallery-media-thumb { transition: none !important; }
         }
+          
+/* Responsive Gallery Category Tabs */
+.gallery-category-tabs {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gallery-category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-category-tab {
+  flex-shrink: 0;
+  border: none !important;
+  background: transparent;
+  color: #6c757d;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.gallery-category-tab:hover {
+  background: rgba(6, 202, 188, 0.1);
+  color: #06b9aa;
+}
+
+.gallery-category-tab.active {
+  background: #06cabc;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(6, 202, 188, 0.25);
+}
+
+@media (max-width: 767px) {
+  .gallery-category-tabs {
+    width: 100%;
+    justify-content: flex-start !important;
+    border-radius: 14px !important;
+    padding: 5px !important;
+    gap: 4px !important;
+  }
+
+  .gallery-category-tab {
+    padding: 7px 12px !important;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .gallery-category-tab {
+    padding: 7px 10px !important;
+    font-size: 12px;
+  }
+}
+
       `}</style>
     </div>
   );

@@ -8,7 +8,7 @@ import offerimage from "../assets/Home/Offer.png";
 const API_BASE = "https://pmswebbackend.pixelmindsolutions.com";
 
 // Used only if the API fails or returns no active banners
-const fallbackImages = [{ id: "fallback", src: offerimage, alt: "Special Offer" }];
+const fallbackImages = [];
 
 // Your API returns "https://localhost:5000/..." which fails (localhost has no SSL).
 // This normalises it to http and also handles relative paths.
